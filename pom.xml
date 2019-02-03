@@ -1,0 +1,331 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>br.com.taxidobarba</groupId>
+  <artifactId>taxidobarba</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Taxi do Barba</name>
+  <packaging>jar</packaging>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+	</parent>
+
+	<properties>
+		<spring.boot.starter.web.version>2.0.3.RELEASE</spring.boot.starter.web.version>
+		<maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
+		<spring.security.version>2.0.3.RELEASE</spring.security.version>
+		<spring.security.test.version>5.0.8.RELEASE</spring.security.test.version>
+	</properties>
+
+	<build>
+		<finalName>taxidobarba</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven.enforcer.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-antrun-plugin
+										</artifactId>
+										<versionRange>
+											[1.8,)
+										</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.3.3</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>1.8</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>2.0.1</version>
+				<configuration>
+					<appName>patiolegal</appName>
+					<includeTarget>false</includeTarget>
+					<includes>
+						<include>${project.basedir}/target/taxidobarba.jar</include>
+					</includes>
+					<jdkVersion>1.8</jdkVersion>
+					<processTypes>
+						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/taxidobarba.jar</web>
+					</processTypes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-test</artifactId>
+				<version>${spring.security.test.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Testing -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Commons Lang3 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.7</version>
+			</dependency>
+
+			<!-- Jasper Reports -->
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>6.5.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.bouncycastle</groupId>
+						<artifactId>bcprov-jdk15on</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- Commons Codec -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.11</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>6.0.11.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>br.com.caelum.stella</groupId>
+				<artifactId>caelum-stella-core</artifactId>
+				<version>2.1.2</version>
+			</dependency>
+
+			<!-- Spring Security -->
+			<dependency>
+				<groupId>org.springframework.security.oauth.boot</groupId>
+				<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+				<version>${spring.security.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.bouncycastle</groupId>
+						<artifactId>bcpkix-jdk15on</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- DataSource (HikariCP) -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency>
+
+		<!-- Spring Boot Starter Data MongoDB -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<!-- Spring Boot Starter Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!-- Commons Lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- Jasper Reports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+		</dependency>
+
+		<!-- Commons Codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+
+		<!-- Spring Boot DevTools -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-core</artifactId>
+		</dependency>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth.boot</groupId>
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
