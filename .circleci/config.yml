@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
 
-    working_directory: ~/taxidobarba/backend
+    working_directory: ~/alitdb/taxidobarba/backend
 
     docker:
       - image: circleci/openjdk:11-jdk-browsers
@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - checkout:
-          path: ~/taxidobarba/backend
+          path: ~/alitdb/taxidobarba/backend
 
       - restore_cache:
           key: taxidobarba/backend-{{ checksum "pom.xml" }}
