@@ -13,15 +13,14 @@ jobs:
           path: ~/taxidobarba
 
       - restore_cache:
-          key: backend-{{ checksum "pom.xml" }}
-          - backend-
+          key: taxidobarba/backend-{{ checksum "pom.xml" }}
       
       - run: mvn dependency:go-offline
       
       - save_cache:
           paths:
             - ~/.m2
-          key: backend-{{ checksum "pom.xml" }}
+          key: taxidobarba/backend-{{ checksum "pom.xml" }}
       
       - run: mvn clean install
       
