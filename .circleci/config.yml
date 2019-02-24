@@ -1,6 +1,11 @@
 version: 2
 jobs:
+    
+    working_directory: ~/circleci-demo-java-spring
 
+    docker:
+      - image: circleci/openjdk:8-jdk
+      
     steps:
 
       - checkout
