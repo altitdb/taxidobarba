@@ -4,20 +4,22 @@ jobs:
     working_directory: ~/taxidobarba 
   steps:
   - checkout
-    - run: mvn dependency:go-offline
-    - save_cache:
-        paths:
-          - ~/.m2
-        key: taxidobarba-{{checksum "pom.xml"}}
-    - run: mvn clean install
-    - store_test_results:
-        path: target/surefire-reports
-    - store_artifacts:
-        path: target/taxidobarba.jar
-    - run: bash .circleci/setup-heroku.sh
-    - deploy:
-        name: Deploy to Heroku if tests pass and branch is master
-        command: |
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
-          fi
+  - restore_cache:
+    key: taxidobarba-{{checksum "pom.xml"}}
+  - run: mvn dependency:go-offline
+  - save_cache:
+      paths:
+        - ~/.m2
+      key: taxidobarba-{{checksum "pom.xml"}}
+  - run: mvn clean install
+  - store_test_results:
+    path: target/surefire-reports
+  - store_artifacts:
+      path: target/taxidobarba.jar
+  - run: bash .circleci/setup-heroku.sh
+  - deploy:
+      name: Deploy to Heroku if tests pass and branch is master
+      command: |
+        if [ "${CIRCLE_BRANCH}" == "master" ]; then
+          git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
+        fi
