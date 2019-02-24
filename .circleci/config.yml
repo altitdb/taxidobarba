@@ -10,7 +10,7 @@ jobs:
    - save_cache:
        key: taxidobarba-{{checksum "pom.xml"}}
          paths:
-           - ~/.m2
+          - ~/.m2
    - run: mvn clean install
    - store_test_results:
     path: target/surefire-reports
