@@ -1,8 +1,5 @@
 version: 2
 jobs:
-  build:
-    
-    working_directory: ~/taxidobarba
 
     steps:
 
