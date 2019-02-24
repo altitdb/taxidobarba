@@ -5,7 +5,7 @@ jobs:
   steps:
   - checkout
     - restore_cache:
-        key: taxidobarba-{{checksum "pom.xml"}}
+      key: taxidobarba-{{checksum "pom.xml"}}
     - run: mvn dependency:go-offline
     - save_cache:
         paths:
