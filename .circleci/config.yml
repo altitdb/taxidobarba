@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/taxidobarba
+    working_directory: ~/
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -19,7 +19,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: taxidobarba-{{ checksum "pom.xml" }}
+          key: -{{ checksum "pom.xml" }}
       
       - run: mvn clean install
       
