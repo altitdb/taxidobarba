@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/taxidobarba
+    working_directory: ~/taxidobarba/backend
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -12,7 +12,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: -{{ checksum "pom.xml" }}
+          key: taxidobarba-{{ checksum "pom.xml" }}
       
       - run: mvn dependency:go-offline
       
