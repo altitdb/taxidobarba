@@ -17,7 +17,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: -{{ checksum "pom.xml" }}
+          key: taxidobarba-{{ checksum "pom.xml" }}
       
       - run: mvn clean install
       
