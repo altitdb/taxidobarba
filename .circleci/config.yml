@@ -8,9 +8,9 @@ jobs:
        key: taxidobarba-{{checksum "pom.xml"}}
    - run: mvn dependency:go-offline
    - save_cache:
+       paths:
+         - ~/.m2
        key: taxidobarba-{{checksum "pom.xml"}}
-         paths:
-          - ~/.m2
    - run: mvn clean install
    - store_test_results:
     path: target/surefire-reports
