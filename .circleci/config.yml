@@ -9,7 +9,7 @@ jobs:
 
     steps:
 
-      - checkout
+      - checkout:
           path: ~/taxidobarba/backend
 
       - restore_cache:
