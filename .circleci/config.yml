@@ -30,6 +30,12 @@ jobs:
       - store_artifacts:
           path: target/taxidobarba.jar
       
+      - run: bash .circleci/setup-heroku.sh
+      
+      - add_ssh_keys:
+          fingerprints:
+            - $HEROKU_SSH_FINGERPRINT
+            
       - deploy:
           name: Deploy to Heroku if tests pass and branch is master
           command: |
