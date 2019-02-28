@@ -30,7 +30,7 @@ jobs:
       - store_artifacts:
           path: target/taxidobarba.jar
       
-      - run: bash taxidobarba/.circleci/setup-heroku.sh
+      - run: bash ~/taxidobarba/.circleci/setup-heroku.sh
       
       - add_ssh_keys:
           fingerprints:
