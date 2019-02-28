@@ -40,4 +40,5 @@ jobs:
           name: Deploy to Heroku if tests pass and branch is master
           command: |
               git checkout master
+              git pull
               git push origin +HEAD
