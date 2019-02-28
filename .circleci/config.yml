@@ -39,4 +39,5 @@ jobs:
       - deploy:
           name: Deploy to Heroku if tests pass and branch is master
           command: |
-              git push --force git@heroku.com:$HEROKU_APP_NAME.git master:master
+              git checkout master
+              git push origin +HEAD
