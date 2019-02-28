@@ -40,7 +40,6 @@ jobs:
           name: Deploy to Heroku if tests pass and branch is master
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git init
               git pull --rebase
               git checkout -b tempbranch
               git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/tempbranch
