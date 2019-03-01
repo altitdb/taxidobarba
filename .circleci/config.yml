@@ -36,13 +36,14 @@ jobs:
           fingerprints:
             - $HEROKU_SSH_FINGERPRINT
             
-      - deploy:
+  deploy:
 
-          docker:
-            - image: buildpack-deps:trusty
-          steps:
-            - checkout
-            - run:
-                name: Deploy Heroku
-                comand: |
-                  git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+    docker:
+      - image: buildpack-deps:trusty
+    
+    steps:
+      - checkout
+      - run:
+          name: Deploy Heroku
+          command: |
+             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
