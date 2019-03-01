@@ -37,12 +37,14 @@ jobs:
             - $HEROKU_SSH_FINGERPRINT
             
       - deploy:
-        
+
           docker:
             - image: buildpack-deps:trusty
 
           steps:
+
             - checkout
+            
             - run:
                 name: Deploy Master to Heroku
                 command: |
