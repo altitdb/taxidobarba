@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - checkout:
-          path: ~/taxidobarba
+          path: ~/taxidobarba/backend
 
       - restore_cache:
           key: taxidobarba/backend-{{ checksum "pom.xml" }}
