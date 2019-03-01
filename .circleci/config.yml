@@ -42,7 +42,9 @@ jobs:
       - image: buildpack-deps:trusty
     
     steps:
+      
       - checkout
+
       - run:
           name: Deploy Heroku
           command: |
