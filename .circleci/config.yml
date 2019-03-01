@@ -42,9 +42,8 @@ jobs:
             - image: buildpack-deps:trusty
 
           steps:
-
-            - checkout
-            
+            - checkout:
+                path: ~/taxidobarba/backend
             - run:
                 name: Deploy Master to Heroku
                 command: |
