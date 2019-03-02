@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -f backend/pom.xml -jar target/taxidobarba.jar
