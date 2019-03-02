@@ -140,10 +140,11 @@
 					<includeTarget>false</includeTarget>
 					<includes>
 						<include>${project.basedir}/target/taxidobarba.jar</include>
+						<include>${project.basedir}/backend/pom.xml</include>
 					</includes>
 					<jdkVersion>1.8</jdkVersion>
 					<processTypes>
-						<web>java -Dserver.port=$PORT $JAVA_OPTS $MAVEN_CUSTOM_OPTS -jar target/taxidobarba.jar</web>
+						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/taxidobarba.jar</web>
 					</processTypes>
 				</configuration>
 			</plugin>
