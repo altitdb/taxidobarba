@@ -22,7 +22,7 @@ jobs:
             - ~/.m2
           key: taxidobarba/backend-{{ checksum "pom.xml" }}
       
-      - run: mvn clean install
+      - run: mvn clean install heroku:deploy
       
       - store_test_results:
           path: target/surefire-reports
