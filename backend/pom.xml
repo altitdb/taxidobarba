@@ -140,7 +140,6 @@
 					<includeTarget>false</includeTarget>
 					<includes>
 						<include>${project.basedir}/target/taxidobarba.jar</include>
-						<include>${project.basedir}/backend/pom.xml</include>
 					</includes>
 					<jdkVersion>1.8</jdkVersion>
 					<processTypes>
