@@ -140,11 +140,11 @@
 					<appName>taxidobarba</appName>
 					<includeTarget>false</includeTarget>
 					<includes>
-						<include>${project.build.directory}/${project.build.finalName}.jar</include>
+						<include>${project.basedir}/backend/target/taxidobarba.jar</include>
 					</includes>
 					<jdkVersion>11</jdkVersion>
 					<processTypes>
-						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar ${project.build.directory}/${project.build.finalName}.jar</web>
+						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar backend/target/taxidobarba.jar</web>
 					</processTypes>
 				</configuration>
 			</plugin>
