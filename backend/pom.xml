@@ -140,7 +140,7 @@
 					<appName>taxidobarba</appName>
 					<includeTarget>false</includeTarget>
 					<includes>
-						<include>${project.basedir}target/taxidobarba.jar</include>
+						<include>${project.basedir}/target/taxidobarba.jar</include>
 					</includes>
 					<jdkVersion>11</jdkVersion>
 					<processTypes>
