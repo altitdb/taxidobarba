@@ -7,6 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Taxi do Barba</name>
   <packaging>jar</packaging>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -132,24 +133,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-					<phase>install</phase>
-					<configuration>
-						<target>
-						<copy file="${project.build.directory}/${project.build.finalName}.jar"
-								todir="${project.basedir}/backend/target" />
-						</target>
-					</configuration>
-					<goals>
-						<goal>run</goal>
-					</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>2.0.7</version>
@@ -157,7 +140,7 @@
 					<appName>taxidobarba</appName>
 					<includeTarget>false</includeTarget>
 					<includes>
-						<include>${project.basedir}/backend/target/taxidobarba.jar</include>
+						<include>${project.basedir}target/taxidobarba.jar</include>
 					</includes>
 					<jdkVersion>11</jdkVersion>
 					<processTypes>
@@ -347,8 +330,9 @@
 
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+    		<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 	</dependencies>
 
 </project>
