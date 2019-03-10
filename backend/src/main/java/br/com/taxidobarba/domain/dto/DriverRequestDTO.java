@@ -6,11 +6,14 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 public class DriverRequestDTO {
 
 	@NotEmpty
 	private String name;
 	@NotEmpty
+	@CPF(message = "CPF invalido")
 	private String taxIdentifier;
 	@NotEmpty
 	private String nationalRegister;
