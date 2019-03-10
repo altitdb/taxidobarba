@@ -14,11 +14,64 @@ public class Driver {
 	private String name;
 	private String taxIdentifier;
 	private String nationalRegister;
-	private LocalDate bithDate;
+	private LocalDate birthDate;
 	private String licenseNumber;
 	private LocalDate licenseDueDate;
 	private BigDecimal priceKm;
 	private Boolean enable;
+
+	public static class DriverBuilder {
+
+		private Driver driver;
+
+		public DriverBuilder() {
+			this.driver = new Driver();
+		}
+
+		public DriverBuilder withName(String name) {
+			driver.name = name;
+			return this;
+		}
+
+		public DriverBuilder withTaxIdentifier(String taxIdentifier) {
+			driver.taxIdentifier = taxIdentifier;
+			return this;
+		}
+
+		public DriverBuilder withNationalRegister(String nationalRegister) {
+			driver.nationalRegister = nationalRegister;
+			return this;
+		}
+
+		public DriverBuilder withBirthDate(LocalDate birthDate) {
+			driver.birthDate = birthDate;
+			return this;
+		}
+
+		public DriverBuilder withLicenseNumber(String licenseNumber) {
+			driver.licenseNumber = licenseNumber;
+			return this;
+		}
+
+		public DriverBuilder withLicenseDueDate(LocalDate licenseDueDate) {
+			driver.licenseDueDate = licenseDueDate;
+			return this;
+		}
+
+		public DriverBuilder withPriceKm(BigDecimal priceKm) {
+			driver.priceKm = priceKm;
+			return this;
+		}
+
+		public DriverBuilder isEnable(Boolean enable) {
+			driver.enable = enable;
+			return this;
+		}
+
+		public Driver build() {
+			return driver;
+		}
+	}
 
 	public String getName() {
 		return name;
@@ -44,12 +97,12 @@ public class Driver {
 		this.nationalRegister = nationalRegister;
 	}
 
-	public LocalDate getBithDate() {
-		return bithDate;
+	public LocalDate getBirthDate() {
+		return birthDate;
 	}
 
-	public void setBithDate(LocalDate bithDate) {
-		this.bithDate = bithDate;
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getLicenseNumber() {
@@ -76,7 +129,7 @@ public class Driver {
 		this.priceKm = priceKm;
 	}
 
-	public Boolean getEnable() {
+	public Boolean isEnable() {
 		return enable;
 	}
 
@@ -86,6 +139,13 @@ public class Driver {
 
 	public String getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Driver [id=" + id + ", name=" + name + ", taxIdentifier=" + taxIdentifier + ", nationalRegister="
+				+ nationalRegister + ", birthDate=" + birthDate + ", licenseNumber=" + licenseNumber
+				+ ", licenseDueDate=" + licenseDueDate + ", priceKm=" + priceKm + ", enable=" + enable + "]";
 	}
 
 }
