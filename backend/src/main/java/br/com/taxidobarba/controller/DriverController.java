@@ -1,10 +1,13 @@
 package br.com.taxidobarba.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,11 +22,17 @@ public class DriverController {
 
 	@Autowired
 	private DriverService service;
-	
+
 	@PostMapping(value = "/api/v1/driver/save")
-	public @ResponseBody ResponseEntity<DriverResponseDTO> save(@RequestBody @Valid DriverRequestDTO request){
+	public @ResponseBody ResponseEntity<DriverResponseDTO> save(@RequestBody @Valid DriverRequestDTO request) {
 		DriverResponseDTO driverResponseDTO = service.save(request);
-		return new ResponseEntity<>(driverResponseDTO,HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(driverResponseDTO, HttpStatus.ACCEPTED);
 	}
-	
+
+	@GetMapping(value = "/api/v1/driver/findAll")
+	public @ResponseBody ResponseEntity<List<DriverResponseDTO>> findAll() {
+		List<DriverResponseDTO> drivers = service.findAll();
+		return new ResponseEntity<>(drivers, HttpStatus.ACCEPTED);
+	}
+
 }
