@@ -1,0 +1,58 @@
+package br.com.taxidobarba.controller;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.BDDMockito;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import br.com.taxidobarba.domain.Driver;
+import br.com.taxidobarba.domain.dto.DriverRequestDTO;
+import br.com.taxidobarba.mock.DriverMock;
+import br.com.taxidobarba.mock.DriverResquestDTOMock;
+import br.com.taxidobarba.repository.DriverRepository;
+import br.com.taxidobarba.service.DriverServiceBean;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = { DriverController.class, DriverServiceBean.class})
+public class DriverControllerTest extends ControllerTest {
+
+	@MockBean
+	private DriverRepository repository;
+	private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
+	private Driver driver = DriverMock.mockDriver();
+	
+	@Test
+	public void shoulValidateRequestFindAllWithHttpStatusAccepted() {
+		try {
+			mockMvc.perform(get("/api/v1/driver/findAll")
+					.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				).andExpect(status().isAccepted());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void shoulValidateSaveDriverWithHttpStatusAccepted() {
+		BDDMockito.given(repository.save(ArgumentMatchers.any(Driver.class))).willReturn(driver);
+		try {
+			String json = mapper.writeValueAsString(driverRequestDto);
+			mockMvc.perform(post("/api/v1/driver/save")
+					.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+					.content(json)
+					.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				).andExpect(status().isAccepted());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
