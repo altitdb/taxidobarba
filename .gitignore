@@ -4,3 +4,4 @@ backend/target/
 .settings/
 
 frontend/node_modules/
+/.metadata/

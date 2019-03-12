@@ -7,16 +7,17 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Taxi do Barba</name>
   <packaging>jar</packaging>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.1.3.RELEASE</version>
 	</parent>
 
 	<properties>
-		<spring.boot.starter.web.version>2.0.3.RELEASE</spring.boot.starter.web.version>
+		<spring.boot.starter.web.version>2.1.3.RELEASE</spring.boot.starter.web.version>
 		<maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
-		<spring.security.version>2.0.3.RELEASE</spring.security.version>
+		<spring.security.version>2.1.3.RELEASE</spring.security.version>
 		<spring.security.test.version>5.0.8.RELEASE</spring.security.test.version>
 	</properties>
 
@@ -32,7 +33,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.3</version>
+					<version>3.8.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -89,10 +90,10 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-									<version>3.3.3</version>
+									<version>3.6.0</version>
 								</requireMavenVersion>
 								<requireJavaVersion>
-									<version>1.8</version>
+									<version>11</version>
 								</requireJavaVersion>
 							</rules>
 						</configuration>
@@ -134,14 +135,14 @@
 			<plugin>
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
-				<version>2.0.1</version>
+				<version>2.0.7</version>
 				<configuration>
 					<appName>taxidobarba</appName>
 					<includeTarget>false</includeTarget>
 					<includes>
 						<include>${project.basedir}/target/taxidobarba.jar</include>
 					</includes>
-					<jdkVersion>1.8</jdkVersion>
+					<jdkVersion>11</jdkVersion>
 					<processTypes>
 						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/taxidobarba.jar</web>
 					</processTypes>
@@ -208,7 +209,7 @@
 			</dependency>
 
 			<!-- Spring Security -->
-			<dependency>
+			<!--<dependency>
 				<groupId>org.springframework.security.oauth.boot</groupId>
 				<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 				<version>${spring.security.version}</version>
@@ -218,7 +219,7 @@
 						<artifactId>bcpkix-jdk15on</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
+			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -318,14 +319,20 @@
 		</dependency>
 
 		<!-- Spring Security -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+		</dependency> -->
+
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 	</dependencies>
 
 </project>
