@@ -26,7 +26,7 @@ public class DriverServiceBean implements DriverService{
 	private DriverRepository repository;
 	
 	@Override
-	public DriverResponseDTO save(DriverRequestDTO request) {
+	public void save(DriverRequestDTO request) {
 		validateDriverRequest(request);
 		Driver driver = driverRequestDTOToDriver(request);
 		
@@ -34,7 +34,6 @@ public class DriverServiceBean implements DriverService{
 		driver = repository.save(driver);
 		LOG.info("Motorista persistido.");
 		
-		return driverToDriverResponseDTO(driver);
 	}
 
 	@Override
@@ -100,20 +99,6 @@ public class DriverServiceBean implements DriverService{
 									.withPriceKm(request.getPriceKm())
 									.withTaxIdentifier(request.getTaxIdentifier())
 									.isEnable(request.isEnable())
-									.build();
-	}
-	
-	private DriverResponseDTO driverToDriverResponseDTO(Driver driver) {
-		return new DriverResponseDTO.DriverResponseBuilder()
-									.withBirthDate(driver.getBirthDate())
-									.withId(driver.getId())
-									.withLicenseDueDate(driver.getLicenseDueDate())
-									.isEnable(driver.isEnable())
-									.withLicenseNumber(driver.getLicenseNumber())
-									.withName(driver.getName())
-									.withNationalRegister(driver.getNationalRegister())
-									.withPriceKm(driver.getPriceKm())
-									.withTaxIdentifier(driver.getTaxIdentifier())
 									.build();
 	}
 	

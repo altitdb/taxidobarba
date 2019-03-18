@@ -10,7 +10,7 @@ import br.com.taxidobarba.domain.dto.DriverResponseDTO;
 
 public interface DriverService {
 
-	public DriverResponseDTO save(DriverRequestDTO request);
+	public void save(DriverRequestDTO request);
 
 	public List<DriverResponseDTO> findAll();
 
