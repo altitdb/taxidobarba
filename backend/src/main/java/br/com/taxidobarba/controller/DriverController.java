@@ -23,13 +23,13 @@ public class DriverController {
 	@Autowired
 	private DriverService service;
 
-	@PostMapping(value = "/api/v1/driver/save")
+	@PostMapping(value = "/api/v1/driver")
 	public @ResponseBody ResponseEntity<DriverResponseDTO> save(@RequestBody @Valid DriverRequestDTO request) {
 		DriverResponseDTO driverResponseDTO = service.save(request);
 		return new ResponseEntity<>(driverResponseDTO, HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping(value = "/api/v1/driver/findAll")
+	@GetMapping(value = "/api/v1/driver")
 	public @ResponseBody ResponseEntity<List<DriverResponseDTO>> findAll() {
 		List<DriverResponseDTO> drivers = service.findAll();
 		return new ResponseEntity<>(drivers, HttpStatus.ACCEPTED);
