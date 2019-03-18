@@ -13,6 +13,7 @@ public class DriverResponseDTO {
 	private String licenseNumber;
 	private LocalDate licenseDueDate;
 	private BigDecimal priceKm;
+	private BigDecimal percentualTravel;
 	private Boolean enable;
 
 	public static class DriverResponseBuilder {
@@ -63,6 +64,11 @@ public class DriverResponseDTO {
 			return this;
 		}
 
+		public DriverResponseBuilder withPercentualTravel(BigDecimal percentualTravel) {
+			dto.percentualTravel = percentualTravel;
+			return this;
+		}
+
 		public DriverResponseBuilder isEnable(Boolean enable) {
 			dto.enable = enable;
 			return this;
@@ -103,6 +109,10 @@ public class DriverResponseDTO {
 
 	public BigDecimal getPriceKm() {
 		return priceKm;
+	}
+
+	public BigDecimal getPercentualTravel() {
+		return percentualTravel;
 	}
 
 	public Boolean getEnable() {

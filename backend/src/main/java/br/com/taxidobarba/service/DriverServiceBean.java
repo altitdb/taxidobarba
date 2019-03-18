@@ -97,6 +97,7 @@ public class DriverServiceBean implements DriverService{
 									.withLicenseNumber(request.getLicenseNumber())
 									.withNationalRegister(request.getNationalRegister())
 									.withPriceKm(request.getPriceKm())
+									.withPercentualTravel(request.getPercentualTravel())
 									.withTaxIdentifier(request.getTaxIdentifier())
 									.isEnable(request.isEnable())
 									.build();
@@ -113,6 +114,7 @@ public class DriverServiceBean implements DriverService{
 						 .withName(driver.getName())
 						 .withNationalRegister(driver.getNationalRegister())
 						 .withPriceKm(driver.getPriceKm())
+						 .withPercentualTravel(driver.getPercentualTravel())
 						 .withTaxIdentifier(driver.getTaxIdentifier())
 						 .build())
 					  .collect(Collectors.toList());
