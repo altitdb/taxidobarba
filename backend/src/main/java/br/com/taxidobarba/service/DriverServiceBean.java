@@ -31,7 +31,7 @@ public class DriverServiceBean implements DriverService{
 		Driver driver = driverRequestDTOToDriver(request);
 		
 		LOG.info("Persistindo motorista: " + driver);
-		driver = repository.save(driver);
+		repository.save(driver);
 		LOG.info("Motorista persistido.");
 		
 	}

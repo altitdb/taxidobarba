@@ -2,7 +2,6 @@ package br.com.taxidobarba.service;
 
 import java.util.Optional;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.dto.DriverRequestDTO;
-import br.com.taxidobarba.domain.dto.DriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessExpetion;
 import br.com.taxidobarba.mock.DriverMock;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
@@ -33,11 +31,7 @@ public class DriverServiceBeanTest {
 
 	@Test
 	public void shouldSaveDriver() {		
-		BDDMockito.given(repository.save(ArgumentMatchers.any())).willReturn(driver);
-		
-		DriverResponseDTO driverDto = service.save(driverRequestDto);
-
-		Assert.assertNotNull(driverDto);
+		service.save(driverRequestDto);
 	}
 
 	@Test(expected = BusinessExpetion.class)
