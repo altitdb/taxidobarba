@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DriverService {
 
-  private url = 'https://taxidobarba.herokuapp.com/api/v1/driver/findAll';
+  private url = environment.baseUrl + '/api/v1/driver';
 
-  constructor(public _http: HttpClient) { 
-    this._http = _http;
-  }
+  constructor(public _http: HttpClient) { }
 
   public get() {
     return this._http.get<Array<Driver>>(this.url);

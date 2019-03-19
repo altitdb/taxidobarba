@@ -17,7 +17,6 @@ export class Tab1Page {
   }
 
   getDrivers() {
-    console.log("aqui");
     this._driverService.get()
        .subscribe(suc => {
           this.drivers = suc
