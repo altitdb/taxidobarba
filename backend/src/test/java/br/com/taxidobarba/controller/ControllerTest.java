@@ -9,14 +9,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class ControllerTest {
 
-	@Autowired
-	protected MockMvc mockMvc;
-	@Autowired
-	protected ObjectMapper mapper;
-	@Autowired
-	protected WebApplicationContext webApplicationContext;
+    @Autowired
+    protected MockMvc mockMvc;
+    @Autowired
+    protected ObjectMapper mapper;
+    @Autowired
+    protected WebApplicationContext webApplicationContext;
 
-	public void init() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
+    public void init() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
 }

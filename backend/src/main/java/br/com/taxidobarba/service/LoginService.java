@@ -4,6 +4,6 @@ import br.com.taxidobarba.domain.dto.LoginRequestDTO;
 
 public interface LoginService {
 
-	public void login(LoginRequestDTO request);
+    public void login(LoginRequestDTO request);
 
 }

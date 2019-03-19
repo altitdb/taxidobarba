@@ -11,16 +11,16 @@ import br.com.taxidobarba.exception.AccessDeniedException;
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
 
-	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<ErrorDTO> accessDanied(final AccessDeniedException exception) {
-		ErrorDTO errorDTO = new ErrorDTO(exception.getMessage());
-		return new ResponseEntity<>(errorDTO, HttpStatus.FORBIDDEN);
-	}
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorDTO> accessDanied(final AccessDeniedException exception) {
+        ErrorDTO errorDTO = new ErrorDTO(exception.getMessage());
+        return new ResponseEntity<>(errorDTO, HttpStatus.FORBIDDEN);
+    }
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorDTO> genericException(final Exception exception) {
-		ErrorDTO errorDTO = new ErrorDTO(exception.getMessage());
-		return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
-	}
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDTO> genericException(final Exception exception) {
+        ErrorDTO errorDTO = new ErrorDTO(exception.getMessage());
+        return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
+    }
 
 }

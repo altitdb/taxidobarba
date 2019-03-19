@@ -8,18 +8,18 @@ import br.com.taxidobarba.domain.dto.LoginRequestDTO;
 
 public class LoginRequestDTOMock {
 
-	public static LoginRequestDTO mockLoginRequestDTO() {
-		LoginRequestDTO loginRequestDto = new LoginRequestDTO();
+    public static LoginRequestDTO mockLoginRequestDTO() {
+        LoginRequestDTO loginRequestDto = new LoginRequestDTO();
 
-		Field fieldUsername = ReflectionUtils.findField(LoginRequestDTO.class, "username");
-		Field fieldPassword = ReflectionUtils.findField(LoginRequestDTO.class, "password");
+        Field fieldUsername = ReflectionUtils.findField(LoginRequestDTO.class, "username");
+        Field fieldPassword = ReflectionUtils.findField(LoginRequestDTO.class, "password");
 
-		ReflectionUtils.makeAccessible(fieldUsername);
-		ReflectionUtils.makeAccessible(fieldPassword);
+        ReflectionUtils.makeAccessible(fieldUsername);
+        ReflectionUtils.makeAccessible(fieldPassword);
 
-		ReflectionUtils.setField(fieldUsername, loginRequestDto, "taxidobarba");
-		ReflectionUtils.setField(fieldPassword, loginRequestDto, "taxidobarba");
+        ReflectionUtils.setField(fieldUsername, loginRequestDto, "taxidobarba");
+        ReflectionUtils.setField(fieldPassword, loginRequestDto, "taxidobarba");
 
-		return loginRequestDto;
-	}
+        return loginRequestDto;
+    }
 }
