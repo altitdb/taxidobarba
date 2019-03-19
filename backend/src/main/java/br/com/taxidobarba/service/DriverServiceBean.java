@@ -46,6 +46,16 @@ public class DriverServiceBean implements DriverService {
 
     @Override
     public DriverResponseDTO findById(String id) {
+        LOG.info("Buscando motorista pelo id: " + id);
+        
+        Optional<Driver> driver = repository.findById(id);
+        
+        if(driver.isPresent()) {
+            LOG.info("Motorista localizado.");
+            return driverToDriverResponseDTO(driver.get());
+        }
+        
+        LOG.info("Id não localizado.");
         return null;
     }
 
@@ -119,5 +129,19 @@ public class DriverServiceBean implements DriverService {
                             .build())
                 .collect(Collectors.toList());
     }
+    
+    private DriverResponseDTO driverToDriverResponseDTO(Driver driver) {
+        return new DriverResponseDTO.DriverResponseBuilder()
+                            .withBirthDate(driver.getBirthDate())
+                            .withId(driver.getId())
+                            .withLicenseDueDate(driver.getLicenseDueDate())
+                            .isEnable(driver.isEnable())
+                            .withLicenseNumber(driver.getLicenseNumber())
+                            .withName(driver.getName())
+                            .withNationalRegister(driver.getNationalRegister())
+                            .withPriceKm(driver.getPriceKm())
+                            .withTaxIdentifier(driver.getTaxIdentifier())
+                            .build();
+}
 
 }
