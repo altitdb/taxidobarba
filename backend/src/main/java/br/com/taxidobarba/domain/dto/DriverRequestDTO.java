@@ -26,6 +26,8 @@ public class DriverRequestDTO {
 	@NotNull
 	private BigDecimal priceKm;
 	@NotNull
+	private BigDecimal percentualTravel;
+	@NotNull
 	private Boolean enable;
 
 	public String getName() {
@@ -54,6 +56,10 @@ public class DriverRequestDTO {
 
 	public BigDecimal getPriceKm() {
 		return priceKm;
+	}
+
+	public BigDecimal getPercentualTravel() {
+		return percentualTravel;
 	}
 
 	public Boolean isEnable() {

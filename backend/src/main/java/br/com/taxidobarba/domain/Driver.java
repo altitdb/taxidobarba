@@ -18,6 +18,7 @@ public class Driver {
 	private String licenseNumber;
 	private LocalDate licenseDueDate;
 	private BigDecimal priceKm;
+	private BigDecimal percentualTravel;
 	private Boolean enable;
 
 	public static class DriverBuilder {
@@ -60,6 +61,11 @@ public class Driver {
 
 		public DriverBuilder withPriceKm(BigDecimal priceKm) {
 			driver.priceKm = priceKm;
+			return this;
+		}
+
+		public DriverBuilder withPercentualTravel(BigDecimal percentualTravel) {
+			driver.percentualTravel = percentualTravel;
 			return this;
 		}
 
@@ -127,6 +133,14 @@ public class Driver {
 
 	public void setPriceKm(BigDecimal priceKm) {
 		this.priceKm = priceKm;
+	}
+
+	public BigDecimal getPercentualTravel() {
+		return percentualTravel;
+	}
+
+	public void setPercentualTravel(BigDecimal percentualTravel) {
+		this.percentualTravel = percentualTravel;
 	}
 
 	public Boolean isEnable() {

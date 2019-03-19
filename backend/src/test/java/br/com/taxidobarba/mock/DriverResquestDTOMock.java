@@ -20,6 +20,7 @@ public class DriverResquestDTOMock {
 		Field birthDate = ReflectionUtils.findField(DriverRequestDTO.class, "birthDate");
 		Field licenseNumber = ReflectionUtils.findField(DriverRequestDTO.class, "licenseNumber");
 		Field priceKm = ReflectionUtils.findField(DriverRequestDTO.class, "priceKm");
+		Field percentualTravel = ReflectionUtils.findField(DriverRequestDTO.class, "percentualTravel");
 		Field licenseDueDate = ReflectionUtils.findField(DriverRequestDTO.class, "licenseDueDate");
 		Field enable = ReflectionUtils.findField(DriverRequestDTO.class, "enable");
 
@@ -30,6 +31,7 @@ public class DriverResquestDTOMock {
 		ReflectionUtils.makeAccessible(licenseDueDate);
 		ReflectionUtils.makeAccessible(licenseNumber);
 		ReflectionUtils.makeAccessible(priceKm);
+		ReflectionUtils.makeAccessible(percentualTravel);
 		ReflectionUtils.makeAccessible(enable);
 
 		ReflectionUtils.setField(name, driverRequestDto, "Taxista A");
@@ -39,6 +41,7 @@ public class DriverResquestDTOMock {
 		ReflectionUtils.setField(licenseDueDate, driverRequestDto, LocalDate.of(2022, 01, 20));
 		ReflectionUtils.setField(licenseNumber, driverRequestDto, "456789");
 		ReflectionUtils.setField(priceKm, driverRequestDto, BigDecimal.TEN);
+		ReflectionUtils.setField(percentualTravel, driverRequestDto, BigDecimal.ONE);
 		ReflectionUtils.setField(enable, driverRequestDto, Boolean.TRUE);
 
 		return driverRequestDto;
