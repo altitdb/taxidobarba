@@ -10,15 +10,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { DriverModule } from './driver/driver.module';
+import { MenuItemComponent } from './menu-item/menu-item.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuItemComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     StatusBar,
