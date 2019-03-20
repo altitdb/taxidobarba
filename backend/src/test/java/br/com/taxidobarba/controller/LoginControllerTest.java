@@ -23,27 +23,27 @@ import br.com.taxidobarba.service.LoginServiceBean;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { LoginController.class, LoginServiceBean.class })
-public class LoginControllerTest extends ControllerTest{
+public class LoginControllerTest extends ControllerTest {
 
-	@MockBean
-	private UserRepository repository;
-	private User mockUser = UserMock.mockUser();
-	private LoginRequestDTO loginRequestDto = LoginRequestDTOMock.mockLoginRequestDTO();
-	
-	@Test
-	public void shouldValidateValidUserAndPasswordHttpStatusAccepted() {
+    @MockBean
+    private UserRepository repository;
+    private User mockUser = UserMock.mockUser();
+    private LoginRequestDTO loginRequestDto = LoginRequestDTOMock.mockLoginRequestDTO();
 
-		BDDMockito.given(repository.findByUsername(ArgumentMatchers.anyString())).willReturn(Optional.of(mockUser));
+    @Test
+    public void shouldValidateValidUserAndPasswordHttpStatusAccepted() {
 
-		try {
-			String json = mapper.writeValueAsString(loginRequestDto);
-			mockMvc.perform(post("/api/v1/login")
-					.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-					.content(json)
-					.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
-				).andExpect(status().isAccepted());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        BDDMockito.given(repository.findByUsername(ArgumentMatchers.anyString())).willReturn(Optional.of(mockUser));
+
+        try {
+            String json = mapper.writeValueAsString(loginRequestDto);
+            mockMvc.perform(post("/api/v1/login")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isAccepted());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

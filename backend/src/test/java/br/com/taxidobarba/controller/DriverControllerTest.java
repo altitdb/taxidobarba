@@ -17,36 +17,36 @@ import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.service.DriverServiceBean;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { DriverController.class, DriverServiceBean.class})
+@WebMvcTest(value = { DriverController.class, DriverServiceBean.class })
 public class DriverControllerTest extends ControllerTest {
 
-	@MockBean
-	private DriverRepository repository;
-	private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
-	
-	@Test
-	public void shoulValidateRequestFindAllWithHttpStatusOk() {
-		try {
-			mockMvc.perform(get("/api/v1/driver")
-					.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
-				).andExpect(status().isOk());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void shoulValidateSaveDriverWithHttpStatusAccepted() {
-		try {
-			String json = mapper.writeValueAsString(driverRequestDto);
-			mockMvc.perform(post("/api/v1/driver")
-					.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-					.content(json)
-					.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
-				).andExpect(status().isAccepted());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @MockBean
+    private DriverRepository repository;
+    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
+
+    @Test
+    public void shoulValidateRequestFindAllWithHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/driver")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void shoulValidateSaveDriverWithHttpStatusAccepted() {
+        try {
+            String json = mapper.writeValueAsString(driverRequestDto);
+            mockMvc.perform(post("/api/v1/driver")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isAccepted());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

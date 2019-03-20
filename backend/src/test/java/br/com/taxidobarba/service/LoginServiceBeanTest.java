@@ -19,18 +19,18 @@ import br.com.taxidobarba.repository.UserRepository;
 @SpringBootTest(classes = { UserRepository.class, LoginRequestDTO.class, LoginServiceBean.class })
 public class LoginServiceBeanTest {
 
-	@MockBean
-	private UserRepository repository;
-	@MockBean
-	private LoginRequestDTO loginRequestDto;
+    @MockBean
+    private UserRepository repository;
+    @MockBean
+    private LoginRequestDTO loginRequestDto;
 
-	@Autowired
-	private LoginService service;
+    @Autowired
+    private LoginService service;
 
-	@Test(expected = AccessDeniedException.class)
-	public void shouldValidateInvalidUser() {
-		BDDMockito.given(repository.findByUsername(ArgumentMatchers.anyString())).willReturn(Optional.empty());
-		service.login(loginRequestDto);
-	}
+    @Test(expected = AccessDeniedException.class)
+    public void shouldValidateInvalidUser() {
+        BDDMockito.given(repository.findByUsername(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        service.login(loginRequestDto);
+    }
 
 }

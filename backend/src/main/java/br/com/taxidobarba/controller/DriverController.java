@@ -20,19 +20,19 @@ import br.com.taxidobarba.service.DriverService;
 @RestController
 public class DriverController {
 
-	@Autowired
-	private DriverService service;
+    @Autowired
+    private DriverService service;
 
-	@PostMapping(value = "/api/v1/driver")
-	public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid DriverRequestDTO request) {
-		service.save(request);
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
-	}
+    @PostMapping(value = "/api/v1/driver")
+    public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid DriverRequestDTO request) {
+        service.save(request);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
-	@GetMapping(value = "/api/v1/driver")
-	public @ResponseBody ResponseEntity<List<DriverResponseDTO>> findAll() {
-		List<DriverResponseDTO> drivers = service.findAll();
-		return new ResponseEntity<>(drivers, HttpStatus.OK);
-	}
+    @GetMapping(value = "/api/v1/driver")
+    public @ResponseBody ResponseEntity<List<DriverResponseDTO>> findAll() {
+        List<DriverResponseDTO> drivers = service.findAll();
+        return new ResponseEntity<>(drivers, HttpStatus.OK);
+    }
 
 }

@@ -22,21 +22,21 @@ import br.com.taxidobarba.repository.DriverRepository;
 @SpringBootTest(classes = { DriverRepository.class, DriverServiceBean.class })
 public class DriverServiceBeanTest {
 
-	@MockBean
-	private DriverRepository repository;
-	@Autowired
-	private DriverService service;
-	private Driver driver = DriverMock.mockDriver();
-	private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
+    @MockBean
+    private DriverRepository repository;
+    @Autowired
+    private DriverService service;
+    private Driver driver = DriverMock.mockDriver();
+    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
 
-	@Test
-	public void shouldSaveDriver() {		
-		service.save(driverRequestDto);
-	}
+    @Test
+    public void shouldSaveDriver() {
+        service.save(driverRequestDto);
+    }
 
-	@Test(expected = BusinessExpetion.class)
-	public void shouldValidateDriverWithEqualsAttributes() {
-		BDDMockito.given(repository.findByTaxIdentifier(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
-		service.save(driverRequestDto);
-	}
+    @Test(expected = BusinessExpetion.class)
+    public void shouldValidateDriverWithEqualsAttributes() {
+        BDDMockito.given(repository.findByTaxIdentifier(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
+        service.save(driverRequestDto);
+    }
 }
