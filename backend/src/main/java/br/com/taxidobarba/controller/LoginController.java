@@ -16,13 +16,13 @@ import br.com.taxidobarba.service.LoginService;
 @RestController
 public class LoginController {
 
-	@Autowired
-	LoginService service;
+    @Autowired
+    private LoginService service;
 
-	@PostMapping(value = "/api/v1/login")
-	public @ResponseBody ResponseEntity<HttpStatus> login(@RequestBody @Valid LoginRequestDTO request) {
-		service.login(request);
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
-	}
+    @PostMapping(value = "/api/v1/login")
+    public @ResponseBody ResponseEntity<HttpStatus> login(@RequestBody @Valid LoginRequestDTO request) {
+        service.login(request);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 }

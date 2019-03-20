@@ -10,11 +10,11 @@ import br.com.taxidobarba.domain.Driver;
 @Repository
 public interface DriverRepository extends MongoRepository<Driver, String> {
 
-	public Optional<Driver> findById(String id);
+    public Optional<Driver> findById(String id);
 
-	public Optional<Driver> findByTaxIdentifier(String taxIdentifier);
+    public Optional<Driver> findByTaxIdentifier(String taxIdentifier);
 
-	public Optional<Driver> findByLicenseNumber(String licenseNumber);
+    public Optional<Driver> findByLicenseNumber(String licenseNumber);
 
-	public Optional<Driver> findByNationalRegister(String licenseNumber);
+    public Optional<Driver> findByNationalRegister(String licenseNumber);
 }

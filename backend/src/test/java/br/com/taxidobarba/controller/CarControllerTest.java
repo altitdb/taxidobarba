@@ -11,35 +11,24 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.taxidobarba.domain.dto.DriverRequestDTO;
-import br.com.taxidobarba.mock.DriverResquestDTOMock;
-import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.DriverServiceBean;
+import br.com.taxidobarba.domain.dto.CarRequestDTO;
+import br.com.taxidobarba.mock.CarRequestDTOMock;
+import br.com.taxidobarba.repository.CarRepository;
+import br.com.taxidobarba.service.CarServiceBean;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { DriverController.class, DriverServiceBean.class })
-public class DriverControllerTest extends ControllerTest {
+@WebMvcTest(value = {CarController.class, CarServiceBean.class})
+public class CarControllerTest extends ControllerTest{
 
     @MockBean
-    private DriverRepository repository;
-    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
-
+    private CarRepository repository;
+    private CarRequestDTO carRequestDto = CarRequestDTOMock.mockCarRequestDTO();
+    
     @Test
-    public void shoulValidateRequestFindAllWithHttpStatusOk() {
+    public void shouldSaveCarWithResponseHttpAccepted() {
         try {
-            mockMvc.perform(get("/api/v1/driver")
-                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isOk());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void shoulValidateSaveDriverWithHttpStatusAccepted() {
-        try {
-            String json = mapper.writeValueAsString(driverRequestDto);
-            mockMvc.perform(post("/api/v1/driver")
+            String json = mapper.writeValueAsString(carRequestDto);
+            mockMvc.perform(post("/api/v1/car")
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -48,11 +37,12 @@ public class DriverControllerTest extends ControllerTest {
             e.printStackTrace();
         }
     }
-    
+        
     @Test
-    public void shoulValidateDriverFindByIdHttpStatusOk() {
+    public void shouldReturnCarsWithResponseHttpOK() {
         try {
-            mockMvc.perform(get("/api/v1/driver/1234654587"))
+            mockMvc.perform(get("/api/v1/car")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(status().isOk());
         } catch (Exception e) {
             e.printStackTrace();

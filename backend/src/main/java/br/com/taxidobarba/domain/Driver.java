@@ -9,143 +9,157 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "driver")
 public class Driver {
 
-	@Id
-	private String id;
-	private String name;
-	private String taxIdentifier;
-	private String nationalRegister;
-	private LocalDate birthDate;
-	private String licenseNumber;
-	private LocalDate licenseDueDate;
-	private BigDecimal priceKm;
-	private Boolean enable;
+    @Id
+    private String id;
+    private String name;
+    private String taxIdentifier;
+    private String nationalRegister;
+    private LocalDate birthDate;
+    private String licenseNumber;
+    private LocalDate licenseDueDate;
+    private BigDecimal priceKm;
+    private BigDecimal percentualTravel;
+    private Boolean enable;
 
-	public static class DriverBuilder {
+    public static class DriverBuilder {
 
-		private Driver driver;
+        private Driver driver;
 
-		public DriverBuilder() {
-			this.driver = new Driver();
-		}
+        public DriverBuilder() {
+            this.driver = new Driver();
+        }
 
-		public DriverBuilder withName(String name) {
-			driver.name = name;
-			return this;
-		}
+        public DriverBuilder withName(String name) {
+            driver.name = name;
+            return this;
+        }
 
-		public DriverBuilder withTaxIdentifier(String taxIdentifier) {
-			driver.taxIdentifier = taxIdentifier;
-			return this;
-		}
+        public DriverBuilder withTaxIdentifier(String taxIdentifier) {
+            driver.taxIdentifier = taxIdentifier;
+            return this;
+        }
 
-		public DriverBuilder withNationalRegister(String nationalRegister) {
-			driver.nationalRegister = nationalRegister;
-			return this;
-		}
+        public DriverBuilder withNationalRegister(String nationalRegister) {
+            driver.nationalRegister = nationalRegister;
+            return this;
+        }
 
-		public DriverBuilder withBirthDate(LocalDate birthDate) {
-			driver.birthDate = birthDate;
-			return this;
-		}
+        public DriverBuilder withBirthDate(LocalDate birthDate) {
+            driver.birthDate = birthDate;
+            return this;
+        }
 
-		public DriverBuilder withLicenseNumber(String licenseNumber) {
-			driver.licenseNumber = licenseNumber;
-			return this;
-		}
+        public DriverBuilder withLicenseNumber(String licenseNumber) {
+            driver.licenseNumber = licenseNumber;
+            return this;
+        }
 
-		public DriverBuilder withLicenseDueDate(LocalDate licenseDueDate) {
-			driver.licenseDueDate = licenseDueDate;
-			return this;
-		}
+        public DriverBuilder withLicenseDueDate(LocalDate licenseDueDate) {
+            driver.licenseDueDate = licenseDueDate;
+            return this;
+        }
 
-		public DriverBuilder withPriceKm(BigDecimal priceKm) {
-			driver.priceKm = priceKm;
-			return this;
-		}
+        public DriverBuilder withPriceKm(BigDecimal priceKm) {
+            driver.priceKm = priceKm;
+            return this;
+        }
 
-		public DriverBuilder isEnable(Boolean enable) {
-			driver.enable = enable;
-			return this;
-		}
+        public DriverBuilder withPercentualTravel(BigDecimal percentualTravel) {
+            driver.percentualTravel = percentualTravel;
+            return this;
+        }
 
-		public Driver build() {
-			return driver;
-		}
-	}
+        public DriverBuilder isEnable(Boolean enable) {
+            driver.enable = enable;
+            return this;
+        }
 
-	public String getName() {
-		return name;
-	}
+        public Driver build() {
+            return driver;
+        }
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getTaxIdentifier() {
-		return taxIdentifier;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setTaxIdentifier(String taxIdentifier) {
-		this.taxIdentifier = taxIdentifier;
-	}
+    public String getTaxIdentifier() {
+        return taxIdentifier;
+    }
 
-	public String getNationalRegister() {
-		return nationalRegister;
-	}
+    public void setTaxIdentifier(String taxIdentifier) {
+        this.taxIdentifier = taxIdentifier;
+    }
 
-	public void setNationalRegister(String nationalRegister) {
-		this.nationalRegister = nationalRegister;
-	}
+    public String getNationalRegister() {
+        return nationalRegister;
+    }
 
-	public LocalDate getBirthDate() {
-		return birthDate;
-	}
+    public void setNationalRegister(String nationalRegister) {
+        this.nationalRegister = nationalRegister;
+    }
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
 
-	public String getLicenseNumber() {
-		return licenseNumber;
-	}
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public void setLicenseNumber(String licenseNumber) {
-		this.licenseNumber = licenseNumber;
-	}
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
 
-	public LocalDate getLicenseDueDate() {
-		return licenseDueDate;
-	}
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
 
-	public void setLicenseDueDate(LocalDate licenseDueDate) {
-		this.licenseDueDate = licenseDueDate;
-	}
+    public LocalDate getLicenseDueDate() {
+        return licenseDueDate;
+    }
 
-	public BigDecimal getPriceKm() {
-		return priceKm;
-	}
+    public void setLicenseDueDate(LocalDate licenseDueDate) {
+        this.licenseDueDate = licenseDueDate;
+    }
 
-	public void setPriceKm(BigDecimal priceKm) {
-		this.priceKm = priceKm;
-	}
+    public BigDecimal getPriceKm() {
+        return priceKm;
+    }
 
-	public Boolean isEnable() {
-		return enable;
-	}
+    public void setPriceKm(BigDecimal priceKm) {
+        this.priceKm = priceKm;
+    }
 
-	public void setEnable(Boolean enable) {
-		this.enable = enable;
-	}
+    public BigDecimal getPercentualTravel() {
+        return percentualTravel;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setPercentualTravel(BigDecimal percentualTravel) {
+        this.percentualTravel = percentualTravel;
+    }
 
-	@Override
-	public String toString() {
-		return "Driver [id=" + id + ", name=" + name + ", taxIdentifier=" + taxIdentifier + ", nationalRegister="
-				+ nationalRegister + ", birthDate=" + birthDate + ", licenseNumber=" + licenseNumber
-				+ ", licenseDueDate=" + licenseDueDate + ", priceKm=" + priceKm + ", enable=" + enable + "]";
-	}
+    public Boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Driver [id=" + id + ", name=" + name + ", taxIdentifier=" + taxIdentifier + ", nationalRegister="
+                + nationalRegister + ", birthDate=" + birthDate + ", licenseNumber=" + licenseNumber
+                + ", licenseDueDate=" + licenseDueDate + ", priceKm=" + priceKm + ", enable=" + enable + "]";
+    }
 
 }
