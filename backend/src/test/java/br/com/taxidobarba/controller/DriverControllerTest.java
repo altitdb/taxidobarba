@@ -48,5 +48,15 @@ public class DriverControllerTest extends ControllerTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    public void shoulValidateDriverFindByIdHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/driver/1234654587"))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
