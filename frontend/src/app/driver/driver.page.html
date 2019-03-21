@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Taxi do Barba
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of drivers">
+      <ion-avatar item-left>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Gevu4Tk803Ydc4VywH_ANoJSf3B6rnuI64IChMJSdw9qfR7s">
+      </ion-avatar>
+      <h2>{{item.name}}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

@@ -1,11 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DriverComponent } from './driver.component';
+import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+
+import { IonicModule } from '@ionic/angular';
+
+import { DriverPage } from './driver.page';
+import { HttpClientModule } from '@angular/common/http';
+
+import { DriverService } from './driver.service';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: DriverPage
+  }
+];
 
 @NgModule({
-  declarations: [DriverComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RouterModule.forChild(routes),
+    HttpClientModule
+  ],
+  declarations: [DriverPage],
+  providers: [
+    DriverService
   ]
 })
-export class DriverModule { }
+export class DriverPageModule {}
