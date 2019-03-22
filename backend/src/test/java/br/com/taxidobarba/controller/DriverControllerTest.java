@@ -4,13 +4,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.BDDMockito;
+import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.dto.DriverRequestDTO;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
 import br.com.taxidobarba.repository.DriverRepository;
@@ -23,6 +29,8 @@ public class DriverControllerTest extends ControllerTest {
     @MockBean
     private DriverRepository repository;
     private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
+    @Mock
+    private Driver driver;
 
     @Test
     public void shoulValidateRequestFindAllWithHttpStatusOk() {
@@ -51,6 +59,7 @@ public class DriverControllerTest extends ControllerTest {
     
     @Test
     public void shoulValidateDriverFindByIdHttpStatusOk() {
+        BDDMockito.given(repository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
         try {
             mockMvc.perform(get("/api/v1/driver/1234654587"))
                     .andExpect(status().isOk());
@@ -58,5 +67,15 @@ public class DriverControllerTest extends ControllerTest {
             e.printStackTrace();
         }
     }
-
+    
+    @Test
+    public void shoulValidateDriverFindByIdNotReturnHttpStatusBadRequest() {
+        BDDMockito.given(repository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            mockMvc.perform(get("/api/v1/driver/1234654587"))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

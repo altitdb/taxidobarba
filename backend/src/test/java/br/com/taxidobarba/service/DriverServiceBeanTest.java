@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.dto.DriverRequestDTO;
 import br.com.taxidobarba.domain.dto.DriverResponseDTO;
-import br.com.taxidobarba.exception.BusinessExpetion;
+import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.mock.DriverMock;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
 import br.com.taxidobarba.repository.DriverRepository;
@@ -36,7 +36,7 @@ public class DriverServiceBeanTest {
         service.save(driverRequestDto);
     }
 
-    @Test(expected = BusinessExpetion.class)
+    @Test(expected = BusinessException.class)
     public void shouldValidateDriverWithEqualsAttributes() {
         BDDMockito.given(repository.findByTaxIdentifier(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
         service.save(driverRequestDto);
