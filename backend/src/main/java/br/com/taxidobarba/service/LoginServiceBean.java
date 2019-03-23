@@ -34,10 +34,8 @@ public class LoginServiceBean implements LoginService {
 
     private User getUserByUsername(String username) {
         Optional<User> user = repository.findByUsername(username);
-        if (user.isPresent()) {
-            return user.get();
-        }
-        throw new AccessDeniedException("Usuario e/ou senha invalidos.");
+        return user
+                .orElseThrow(() -> new AccessDeniedException("Usuario e/ou senha invalidos."));
     }
 
     private String encoderPasswordRequest(String passwordRequest) {

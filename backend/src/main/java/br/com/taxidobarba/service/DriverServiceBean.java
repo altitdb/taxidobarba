@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.dto.DriverRequestDTO;
 import br.com.taxidobarba.domain.dto.DriverResponseDTO;
-import br.com.taxidobarba.exception.BusinessExpetion;
+import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.DriverRepository;
 
 @Service
@@ -29,7 +29,6 @@ public class DriverServiceBean implements DriverService {
     public void save(DriverRequestDTO request) {
         validateDriverRequest(request);
         Driver driver = driverRequestDTOToDriver(request);
-
         LOG.info("Persistindo motorista: " + driver);
         repository.save(driver);
         LOG.info("Motorista persistido.");
@@ -47,16 +46,10 @@ public class DriverServiceBean implements DriverService {
     @Override
     public DriverResponseDTO findById(String id) {
         LOG.info("Buscando motorista pelo id: " + id);
-        
+
         Optional<Driver> driver = repository.findById(id);
-        
-        if(driver.isPresent()) {
-            LOG.info("Motorista localizado.");
-            return driverToDriverResponseDTO(driver.get());
-        }
-        
-        LOG.info("Id não localizado.");
-        return null;
+
+        return driverToDriverResponseDTO(driver.orElseThrow(() -> new BusinessException("Motorista não localizado.")));
     }
 
     @Override
@@ -74,28 +67,25 @@ public class DriverServiceBean implements DriverService {
 
     private void validateTaxIdentifier(String taxIdentifier) {
         Optional<Driver> driver = repository.findByTaxIdentifier(taxIdentifier);
-        if (driver.isPresent()) {
-            LOG.warn(String.format("Motorista ja cadastrado com CPF [%s]", taxIdentifier));
-            throw new BusinessExpetion("Motorista ja cadastrado com esse CPF. " + driver);
-        }
+        driver.ifPresent(d -> {
+            throw new BusinessException("Motorista ja cadastrado com esse CPF.");
+        });
         LOG.info("CPF validado!");
     }
 
     private void validateNationalRegister(String nationalRegister) {
         Optional<Driver> driver = repository.findByNationalRegister(nationalRegister);
-        if (driver.isPresent()) {
-            LOG.warn(String.format("Motorista ja cadastrado com registro nacional [%s]", nationalRegister));
-            throw new BusinessExpetion("Motorista ja cadastrado com esse registro nacional. " + driver);
-        }
+        driver.ifPresent(d -> {
+            throw new BusinessException("Motorista ja cadastrado com esse registro nacional.");
+        });
         LOG.info("Registro nacional validado!");
     }
 
     private void validateLicenseNumber(String licenseNumber) {
         Optional<Driver> driver = repository.findByLicenseNumber(licenseNumber);
-        if (driver.isPresent()) {
-            LOG.warn(String.format("Motorista ja cadastrado com licenca [%s]", licenseNumber));
-            throw new BusinessExpetion("Motorista ja cadastrado com essa licenca. " + driver);
-        }
+        driver.ifPresent(d -> {
+            throw new BusinessException("Motorista ja cadastrado com essa licenca.");
+        });
         LOG.info("Licenca validada!");
     }
 
@@ -142,6 +132,6 @@ public class DriverServiceBean implements DriverService {
                             .withPriceKm(driver.getPriceKm())
                             .withTaxIdentifier(driver.getTaxIdentifier())
                             .build();
-}
+    }
 
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.dto.CarResponseDTO;
-import br.com.taxidobarba.exception.BusinessExpetion;
+import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 
 @Service
@@ -47,13 +47,12 @@ public class CarServiceBean implements CarService {
     private void validateLicensePlate(String licensePlate) {
         LOG.info("Validando placa...");
         Optional<Car> car = repository.findByLicensePlate(licensePlate);
-        if (car.isPresent()) {
-            LOG.warn(String.format("Carro ja cadastrado com essa placa [%s]", licensePlate));
-            throw new BusinessExpetion("Placa já cadastrada.");
-        }
+        car.ifPresent(c -> {
+            throw new BusinessException("Placa já cadastrada.");
+        });
         LOG.info("Placa validada!");
     }
-    
+
     private Car carRequestDtoToCar(CarRequestDTO request) {
         return new Car.CarBuilder()
                     .withName(request.getName())
