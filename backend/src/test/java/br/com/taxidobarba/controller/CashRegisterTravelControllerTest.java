@@ -38,7 +38,7 @@ public class CashRegisterTravelControllerTest extends ControllerTest{
     private Car car;
     @Mock
     private Driver driver;
-    private CashRegisterTravelRequestDTO cashRegisterRequest = CashRegisterTravelRequestDTOMock.mockCashRegisterTravelRequestDTO();
+    private CashRegisterTravelRequestDTO cashRegisterRequest = CashRegisterTravelRequestDTOMock.mock();
     
     @Test
     public void shouldValidateRequestWithCarIdNonExistentHttpStatusBadRequest() {

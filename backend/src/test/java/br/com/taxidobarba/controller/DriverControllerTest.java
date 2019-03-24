@@ -28,7 +28,7 @@ public class DriverControllerTest extends ControllerTest {
 
     @MockBean
     private DriverRepository repository;
-    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
+    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mock();
     @Mock
     private Driver driver;
 
