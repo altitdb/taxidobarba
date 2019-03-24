@@ -1,25 +1,21 @@
 package br.com.taxidobarba.mock;
 
-import java.lang.reflect.Field;
-
-import org.springframework.util.ReflectionUtils;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.taxidobarba.domain.dto.LoginRequestDTO;
 
-public class LoginRequestDTOMock {
+public class LoginRequestDTOMock extends GenericRequestDTOMock {
 
     public static LoginRequestDTO mockLoginRequestDTO() {
+
         LoginRequestDTO loginRequestDto = new LoginRequestDTO();
 
-        Field fieldUsername = ReflectionUtils.findField(LoginRequestDTO.class, "username");
-        Field fieldPassword = ReflectionUtils.findField(LoginRequestDTO.class, "password");
+        Map<String, Object> attributes = new HashMap<>();
 
-        ReflectionUtils.makeAccessible(fieldUsername);
-        ReflectionUtils.makeAccessible(fieldPassword);
+        attributes.put("username", "taxidobarba");
+        attributes.put("password", "taxidobarba");
 
-        ReflectionUtils.setField(fieldUsername, loginRequestDto, "taxidobarba");
-        ReflectionUtils.setField(fieldPassword, loginRequestDto, "taxidobarba");
-
-        return loginRequestDto;
+        return createRequestDto(loginRequestDto, attributes);
     }
 }

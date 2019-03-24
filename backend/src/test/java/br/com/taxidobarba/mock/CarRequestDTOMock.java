@@ -1,26 +1,23 @@
 package br.com.taxidobarba.mock;
 
-import java.lang.reflect.Field;
-
-import org.springframework.util.ReflectionUtils;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.taxidobarba.domain.dto.CarRequestDTO;
 
-public class CarRequestDTOMock {
+public class CarRequestDTOMock extends GenericRequestDTOMock {
 
-    public static CarRequestDTO mockCarRequestDTO() {
+    public static CarRequestDTO mock() {
+
         CarRequestDTO carRequestDTO = new CarRequestDTO();
 
-        Field name = ReflectionUtils.findField(CarRequestDTO.class, "name");
-        Field licensePlate = ReflectionUtils.findField(CarRequestDTO.class, "licensePlate");
+        Map<String, Object> attributes = new HashMap<>();
 
-        ReflectionUtils.makeAccessible(name);
-        ReflectionUtils.makeAccessible(licensePlate);
+        attributes.put("name", "Gol");
+        attributes.put("licensePlate", "77683955060");
 
-        ReflectionUtils.setField(name, carRequestDTO, "Gol");
-        ReflectionUtils.setField(licensePlate, carRequestDTO, "77683955060");
+        return createRequestDto(carRequestDTO, attributes);
 
-        return carRequestDTO;
     }
 
 }
