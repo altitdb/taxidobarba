@@ -79,80 +79,44 @@ public class Driver {
         }
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public String getTaxIdentifier() {
         return taxIdentifier;
     }
 
-    public void setTaxIdentifier(String taxIdentifier) {
-        this.taxIdentifier = taxIdentifier;
-    }
-
     public String getNationalRegister() {
         return nationalRegister;
-    }
-
-    public void setNationalRegister(String nationalRegister) {
-        this.nationalRegister = nationalRegister;
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public String getLicenseNumber() {
         return licenseNumber;
-    }
-
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
     }
 
     public LocalDate getLicenseDueDate() {
         return licenseDueDate;
     }
 
-    public void setLicenseDueDate(LocalDate licenseDueDate) {
-        this.licenseDueDate = licenseDueDate;
-    }
-
     public BigDecimal getPriceKm() {
         return priceKm;
-    }
-
-    public void setPriceKm(BigDecimal priceKm) {
-        this.priceKm = priceKm;
     }
 
     public BigDecimal getPercentualTravel() {
         return percentualTravel;
     }
 
-    public void setPercentualTravel(BigDecimal percentualTravel) {
-        this.percentualTravel = percentualTravel;
-    }
-
     public Boolean isEnable() {
         return enable;
-    }
-
-    public void setEnable(Boolean enable) {
-        this.enable = enable;
-    }
-
-    public String getId() {
-        return id;
     }
 
     @Override

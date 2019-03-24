@@ -22,88 +22,110 @@ public class CashRegisterTravel {
     private BigDecimal averagePriceKm;
     private LocalDate date;
 
-    public Car getCar() {
-        return car;
-    }
+    public static class CashRegisterTravelBuilder {
 
-    public void setCar(Car car) {
-        this.car = car;
-    }
+        private CashRegisterTravel cashRegisterTravel;
 
-    public Driver getDriver() {
-        return driver;
-    }
+        public CashRegisterTravelBuilder() {
+            cashRegisterTravel = new CashRegisterTravel();
+        }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
+        public CashRegisterTravelBuilder withCar(Car car) {
+            cashRegisterTravel.car = car;
+            return this;
+        }
 
-    public BigDecimal getPercentualDriver() {
-        return percentualDriver;
-    }
+        public CashRegisterTravelBuilder withDriver(Driver driver) {
+            cashRegisterTravel.driver = driver;
+            return this;
+        }
 
-    public void setPercentualDriver(BigDecimal percentualDriver) {
-        this.percentualDriver = percentualDriver;
-    }
+        public CashRegisterTravelBuilder withPercentualDriver(BigDecimal percentualDriver) {
+            cashRegisterTravel.percentualDriver = percentualDriver;
+            return this;
+        }
 
-    public BigDecimal getValueDriver() {
-        return valueDriver;
-    }
+        public CashRegisterTravelBuilder withValueDriver(BigDecimal valueDriver) {
+            cashRegisterTravel.valueDriver = valueDriver;
+            return this;
+        }
 
-    public void setValueDriver(BigDecimal valueDriver) {
-        this.valueDriver = valueDriver;
-    }
+        public CashRegisterTravelBuilder withCity(String city) {
+            cashRegisterTravel.city = city;
+            return this;
+        }
 
-    public String getCity() {
-        return city;
-    }
+        public CashRegisterTravelBuilder withPrice(BigDecimal price) {
+            cashRegisterTravel.price = price;
+            return this;
+        }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+        public CashRegisterTravelBuilder withNetValue(BigDecimal netValue) {
+            cashRegisterTravel.netValue = netValue;
+            return this;
+        }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+        public CashRegisterTravelBuilder withKm(BigDecimal km) {
+            cashRegisterTravel.km = km;
+            return this;
+        }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+        public CashRegisterTravelBuilder withAveragePriceKm(BigDecimal averagePriceKm) {
+            cashRegisterTravel.averagePriceKm = averagePriceKm;
+            return this;
+        }
 
-    public BigDecimal getNetValue() {
-        return netValue;
-    }
+        public CashRegisterTravelBuilder withDate(LocalDate date) {
+            cashRegisterTravel.date = date;
+            return this;
+        }
 
-    public void setNetValue(BigDecimal netValue) {
-        this.netValue = netValue;
-    }
-
-    public BigDecimal getKm() {
-        return km;
-    }
-
-    public void setKm(BigDecimal km) {
-        this.km = km;
-    }
-
-    public BigDecimal getAveragePriceKm() {
-        return averagePriceKm;
-    }
-
-    public void setAveragePriceKm(BigDecimal averagePriceKm) {
-        this.averagePriceKm = averagePriceKm;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
+        public CashRegisterTravel build() {
+            return cashRegisterTravel;
+        }
     }
 
     public String getId() {
         return id;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public BigDecimal getPercentualDriver() {
+        return percentualDriver;
+    }
+
+    public BigDecimal getValueDriver() {
+        return valueDriver;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public BigDecimal getNetValue() {
+        return netValue;
+    }
+
+    public BigDecimal getKm() {
+        return km;
+    }
+
+    public BigDecimal getAveragePriceKm() {
+        return averagePriceKm;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

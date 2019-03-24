@@ -1,7 +1,5 @@
 package br.com.taxidobarba.domain;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,30 +10,36 @@ public class User {
     private String id;
     private String username;
     private String password;
-    private LocalDateTime lastAccess;
+
+    public static class UserBuilder {
+
+        private User user;
+
+        public UserBuilder() {
+            user = new User();
+        }
+
+        public UserBuilder withUsername(String username) {
+            user.username = username;
+            return this;
+        }
+
+        public UserBuilder withPassword(String password) {
+            user.password = password;
+            return this;
+        }
+
+        public User build() {
+            return user;
+        }
+    }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public LocalDateTime getLastAccess() {
-        return lastAccess;
-    }
-
-    public void setLastAccess(LocalDateTime lastAccess) {
-        this.lastAccess = lastAccess;
     }
 
     public String getId() {
