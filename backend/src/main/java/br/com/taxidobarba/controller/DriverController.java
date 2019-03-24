@@ -32,13 +32,11 @@ public class DriverController {
 
     @GetMapping(value = "/api/v1/driver")
     public @ResponseBody ResponseEntity<List<DriverResponseDTO>> findAll() {
-        List<DriverResponseDTO> drivers = service.findAll();
-        return new ResponseEntity<>(drivers, HttpStatus.OK);
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/v1/driver/{id}")
     public @ResponseBody ResponseEntity<DriverResponseDTO> findById(@PathVariable("id") String id) {
-        DriverResponseDTO driverResponseDTO = service.findById(id);
-        return new ResponseEntity<>(driverResponseDTO, HttpStatus.OK);
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 }
