@@ -27,7 +27,7 @@ public class LoginControllerTest extends ControllerTest {
 
     @MockBean
     private UserRepository repository;
-    private User mockUser = UserMock.mockUser();
+    private User mockUser = UserMock.mock();
     private LoginRequestDTO loginRequestDto = LoginRequestDTOMock.mockLoginRequestDTO();
 
     @Test

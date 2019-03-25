@@ -39,7 +39,6 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     }
 
     private CashRegisterTravel cashRegisterTravelRequestDtoToEntity(CashRegisterTravelRequestDTO request) {
-        CashRegisterTravel cashRegisterTravel = new CashRegisterTravel();
         Car car = findCarById(request.getCarId());
         Driver driver = findDriverById(request.getDriverId());
 
@@ -50,18 +49,18 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         BigDecimal averagePriceKm = calculateAveragePriceKm(price, km);
         BigDecimal netValue = price.subtract(valueDriver);
 
-        cashRegisterTravel.setCar(car);
-        cashRegisterTravel.setDriver(driver);
-        cashRegisterTravel.setCity(request.getCity());
-        cashRegisterTravel.setDate(request.getDate());
-        cashRegisterTravel.setKm(km);
-        cashRegisterTravel.setPercentualDriver(percentualDriver);
-        cashRegisterTravel.setPrice(price);
-        cashRegisterTravel.setValueDriver(valueDriver);
-        cashRegisterTravel.setNetValue(netValue);
-        cashRegisterTravel.setAveragePriceKm(averagePriceKm);
-
-        return cashRegisterTravel;
+        return new CashRegisterTravel.CashRegisterTravelBuilder()
+                                .withCar(car)
+                                .withAveragePriceKm(averagePriceKm)
+                                .withCity(request.getCity())
+                                .withDate(request.getDate())
+                                .withDriver(driver)
+                                .withKm(km)
+                                .withNetValue(netValue)
+                                .withPercentualDriver(percentualDriver)
+                                .withPrice(price)
+                                .withValueDriver(valueDriver)
+                                .build();
     }
 
     private BigDecimal calculateValueDriver(BigDecimal price, BigDecimal percentualDriver) {

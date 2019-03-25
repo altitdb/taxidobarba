@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,7 +17,6 @@ import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.dto.DriverRequestDTO;
 import br.com.taxidobarba.domain.dto.DriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
-import br.com.taxidobarba.mock.DriverMock;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
 import br.com.taxidobarba.repository.DriverRepository;
 
@@ -28,8 +28,9 @@ public class DriverServiceBeanTest {
     private DriverRepository repository;
     @Autowired
     private DriverService service;
-    private Driver driver = DriverMock.mockDriver();
-    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mockDriverRequestDTO();
+    @Mock
+    private Driver driver;
+    private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mock();
 
     @Test
     public void shouldSaveDriver() {

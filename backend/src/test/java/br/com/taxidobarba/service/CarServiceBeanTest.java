@@ -28,7 +28,7 @@ public class CarServiceBeanTest {
     private Car car;
     @Autowired
     private CarService service;
-    private CarRequestDTO carRequestDto = CarRequestDTOMock.mockCarRequestDTO();
+    private CarRequestDTO carRequestDto = CarRequestDTOMock.mock();
 
     @Test(expected = BusinessException.class)
     public void shouldValidateCarWithLicensePlateAlreadyExisting() {

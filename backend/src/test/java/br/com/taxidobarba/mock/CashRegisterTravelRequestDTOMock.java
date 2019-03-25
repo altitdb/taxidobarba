@@ -1,44 +1,29 @@
 package br.com.taxidobarba.mock;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import org.springframework.util.ReflectionUtils;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
 
-public class CashRegisterTravelRequestDTOMock {
+public class CashRegisterTravelRequestDTOMock extends GenericRequestDTOMock {
 
-    public static CashRegisterTravelRequestDTO mockCashRegisterTravelRequestDTO() {
+    public static CashRegisterTravelRequestDTO mock() {
 
         CashRegisterTravelRequestDTO cashRegisterTravelRequestDto = new CashRegisterTravelRequestDTO();
 
-        Field carId = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "carId");
-        Field driverId = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "driverId");
-        Field percentualDriver = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "percentualDriver");
-        Field city = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "city");
-        Field price = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "price");
-        Field km = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "km");
-        Field date = ReflectionUtils.findField(CashRegisterTravelRequestDTO.class, "date");
+        Map<String, Object> attributes = new HashMap<>();
 
-        ReflectionUtils.makeAccessible(carId);
-        ReflectionUtils.makeAccessible(driverId);
-        ReflectionUtils.makeAccessible(percentualDriver);
-        ReflectionUtils.makeAccessible(city);
-        ReflectionUtils.makeAccessible(price);
-        ReflectionUtils.makeAccessible(km);
-        ReflectionUtils.makeAccessible(date);
+        attributes.put("carId", "asct9547dg41");
+        attributes.put("driverId", "Werbn980023lo");
+        attributes.put("percentualDriver", new BigDecimal(10));
+        attributes.put("city", "Londrina");
+        attributes.put("price", new BigDecimal(25));
+        attributes.put("km", new BigDecimal(158.6));
+        attributes.put("date", LocalDate.now());
 
-        ReflectionUtils.setField(carId, cashRegisterTravelRequestDto, "asct9547dg41");
-        ReflectionUtils.setField(driverId, cashRegisterTravelRequestDto, "Werbn980023lo");
-        ReflectionUtils.setField(percentualDriver, cashRegisterTravelRequestDto, BigDecimal.TEN);
-        ReflectionUtils.setField(city, cashRegisterTravelRequestDto, "Londrina");
-        ReflectionUtils.setField(price, cashRegisterTravelRequestDto, new BigDecimal(25));
-        ReflectionUtils.setField(km, cashRegisterTravelRequestDto, new BigDecimal(158.6));
-        ReflectionUtils.setField(date, cashRegisterTravelRequestDto, LocalDate.now());
-
-        return cashRegisterTravelRequestDto;
+        return createRequestDto(cashRegisterTravelRequestDto, attributes);
     }
 
 }

@@ -1,49 +1,30 @@
 package br.com.taxidobarba.mock;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import org.springframework.util.ReflectionUtils;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.taxidobarba.domain.dto.DriverRequestDTO;
 
-public class DriverResquestDTOMock {
+public class DriverResquestDTOMock extends GenericRequestDTOMock{
 
-    public static DriverRequestDTO mockDriverRequestDTO() {
+    public static DriverRequestDTO mock() {
 
         DriverRequestDTO driverRequestDto = new DriverRequestDTO();
 
-        Field name = ReflectionUtils.findField(DriverRequestDTO.class, "name");
-        Field taxIdentifier = ReflectionUtils.findField(DriverRequestDTO.class, "taxIdentifier");
-        Field nationalRegister = ReflectionUtils.findField(DriverRequestDTO.class, "nationalRegister");
-        Field birthDate = ReflectionUtils.findField(DriverRequestDTO.class, "birthDate");
-        Field licenseNumber = ReflectionUtils.findField(DriverRequestDTO.class, "licenseNumber");
-        Field priceKm = ReflectionUtils.findField(DriverRequestDTO.class, "priceKm");
-        Field percentualTravel = ReflectionUtils.findField(DriverRequestDTO.class, "percentualTravel");
-        Field licenseDueDate = ReflectionUtils.findField(DriverRequestDTO.class, "licenseDueDate");
-        Field enable = ReflectionUtils.findField(DriverRequestDTO.class, "enable");
+        Map<String, Object> attributes = new HashMap<>();
 
-        ReflectionUtils.makeAccessible(name);
-        ReflectionUtils.makeAccessible(taxIdentifier);
-        ReflectionUtils.makeAccessible(nationalRegister);
-        ReflectionUtils.makeAccessible(birthDate);
-        ReflectionUtils.makeAccessible(licenseDueDate);
-        ReflectionUtils.makeAccessible(licenseNumber);
-        ReflectionUtils.makeAccessible(priceKm);
-        ReflectionUtils.makeAccessible(percentualTravel);
-        ReflectionUtils.makeAccessible(enable);
+        attributes.put("name", "Taxista A");
+        attributes.put("taxIdentifier", "77683955060");
+        attributes.put("nationalRegister", "123456");
+        attributes.put("birthDate", LocalDate.of(1980, 01, 20));
+        attributes.put("licenseNumber", "1254798");
+        attributes.put("priceKm", BigDecimal.TEN);
+        attributes.put("percentualTravel", BigDecimal.TEN);
+        attributes.put("licenseDueDate", LocalDate.of(2022, 01, 20));
+        attributes.put("enable", Boolean.TRUE);
 
-        ReflectionUtils.setField(name, driverRequestDto, "Taxista A");
-        ReflectionUtils.setField(taxIdentifier, driverRequestDto, "77683955060");
-        ReflectionUtils.setField(nationalRegister, driverRequestDto, "123456");
-        ReflectionUtils.setField(birthDate, driverRequestDto, LocalDate.of(1980, 01, 20));
-        ReflectionUtils.setField(licenseDueDate, driverRequestDto, LocalDate.of(2022, 01, 20));
-        ReflectionUtils.setField(licenseNumber, driverRequestDto, "456789");
-        ReflectionUtils.setField(priceKm, driverRequestDto, BigDecimal.TEN);
-        ReflectionUtils.setField(percentualTravel, driverRequestDto, BigDecimal.ONE);
-        ReflectionUtils.setField(enable, driverRequestDto, Boolean.TRUE);
-
-        return driverRequestDto;
+        return createRequestDto(driverRequestDto, attributes);
     }
 }

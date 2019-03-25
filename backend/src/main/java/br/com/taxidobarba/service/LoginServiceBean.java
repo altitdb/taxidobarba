@@ -1,8 +1,5 @@
 package br.com.taxidobarba.service;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +21,13 @@ public class LoginServiceBean implements LoginService {
 
     @Override
     public void login(LoginRequestDTO request) {
-
         User user = getUserByUsername(request.getUsername());
         String passwordRequestEncoded = encoderPasswordRequest(request.getPassword());
         validateUser(user, passwordRequestEncoded);
-        updateLastAccessUser(user);
-
     }
 
     private User getUserByUsername(String username) {
-        Optional<User> user = repository.findByUsername(username);
-        return user
+        return repository.findByUsername(username)
                 .orElseThrow(() -> new AccessDeniedException("Usuario e/ou senha invalidos."));
     }
 
@@ -48,12 +41,6 @@ public class LoginServiceBean implements LoginService {
             throw new AccessDeniedException("Usuario e/ou senha invalidos.");
         }
         LOG.info("Login efetuado com sucesso.");
-    }
-
-    private void updateLastAccessUser(User user) {
-        user.setLastAccess(LocalDateTime.now());
-        repository.save(user);
-        LOG.debug("Data/hora de ultimo acesso atualizados com sucesso.");
     }
 
 }

@@ -1,7 +1,6 @@
 package br.com.taxidobarba.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
@@ -26,41 +25,35 @@ public class CarServiceBean implements CarService {
     @Override
     public void save(CarRequestDTO request) {
         LOG.info("Dados recebidos no request: " + request);
-        
         validateLicensePlate(request.getLicensePlate());
-        
-        Car car = carRequestDtoToCar(request);
         LOG.info("Persistindo carro...");
-        repository.save(car);
+        repository.save(carRequestDtoToEntity(request));
         LOG.info("Carro persistido.");
     }
 
     @Override
     public List<CarResponseDTO> findAll() {
         LOG.info("Buscando todos carros...");
-        List<Car> cars = repository.findAll();
-        LOG.info("Quantidade de carros retornados: " + cars.size());
-        return carRequestDtoToListCarResponseDTO(cars);
+        return carsToListCarResponseDTO(repository.findAll());
         
     }
 
     private void validateLicensePlate(String licensePlate) {
         LOG.info("Validando placa...");
-        Optional<Car> car = repository.findByLicensePlate(licensePlate);
-        car.ifPresent(c -> {
+        repository.findByLicensePlate(licensePlate).ifPresent(c -> {
             throw new BusinessException("Placa já cadastrada.");
         });
         LOG.info("Placa validada!");
     }
 
-    private Car carRequestDtoToCar(CarRequestDTO request) {
+    private Car carRequestDtoToEntity(CarRequestDTO request) {
         return new Car.CarBuilder()
                     .withName(request.getName())
                     .withLicensePlate(request.getLicensePlate())
                     .build();
     }
     
-    private List<CarResponseDTO> carRequestDtoToListCarResponseDTO(List<Car> cars) {
+    private List<CarResponseDTO> carsToListCarResponseDTO(List<Car> cars) {
         return cars.stream()
                    .map(car -> new CarResponseDTO.CarResponseBuilder()
                                .withId(car.getId())
@@ -69,5 +62,4 @@ public class CarServiceBean implements CarService {
                                .build())
                    .collect(Collectors.toList());
     }
-
 }

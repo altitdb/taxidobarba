@@ -22,7 +22,7 @@ public class CarControllerTest extends ControllerTest{
 
     @MockBean
     private CarRepository repository;
-    private CarRequestDTO carRequestDto = CarRequestDTOMock.mockCarRequestDTO();
+    private CarRequestDTO carRequestDto = CarRequestDTOMock.mock();
     
     @Test
     public void shouldSaveCarWithResponseHttpAccepted() {

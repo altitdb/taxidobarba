@@ -28,11 +28,10 @@ public class CarController {
         service.save(request);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-    
+
     @GetMapping(value = "/api/v1/car")
-    public @ResponseBody ResponseEntity<List<CarResponseDTO>> findAll(){
-        List<CarResponseDTO> carsResponseDto = service.findAll();
-        return new ResponseEntity<>(carsResponseDto,HttpStatus.OK);
+    public @ResponseBody ResponseEntity<List<CarResponseDTO>> findAll() {
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
 }

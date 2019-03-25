@@ -13,7 +13,7 @@ public class DriverResponseDTOMock {
                     .withId("ASD121548")
                     .withLicenseDueDate(LocalDate.of(2020, 04, 20))
                     .isEnable(Boolean.TRUE)
-                    .withLicenseNumber("456879")
+                    .withLicenseNumber("123456")
                     .withName("JOSE")
                     .withNationalRegister("45548787878")
                     .withPriceKm(BigDecimal.TEN)
