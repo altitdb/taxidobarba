@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.dto.FuelResquestDTO;
+import br.com.taxidobarba.domain.dto.FuelRequestDTO;
 import br.com.taxidobarba.service.FuelService;
 
 @RestController
@@ -20,7 +20,7 @@ public class FuelController {
     private FuelService service;
     
     @PostMapping(value = "/api/v1/fuel")
-    public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid FuelResquestDTO request){
+    public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid FuelRequestDTO request){
         service.save(request);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
