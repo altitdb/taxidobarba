@@ -13,9 +13,24 @@ export class AppComponent {
 
   pages = [
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'log-in'
+      title: 'Daily Cash',
+      url: '/daily-cash',
+      icon: 'speedometer'
+    },
+    {
+      title: 'Travel Cash',
+      url: '/travel-cash',
+      icon: 'paper-plane'
+    },
+    {
+      title: 'Fuel',
+      url: '/driver',
+      icon: 'thermometer'
+    },
+    {
+      title: 'Card',
+      url: '/card',
+      icon: 'card'
     },
     {
       title: 'Driver',
@@ -23,10 +38,15 @@ export class AppComponent {
       icon: 'person'
     },
     {
+      title: 'Car',
+      url: '/car',
+      icon: 'car'
+    },
+    {
       title: 'About',
       url: '/tabs/about',
       icon: 'information-circle'
-    }
+    },
   ];
 
   constructor(
