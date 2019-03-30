@@ -24,6 +24,8 @@ jobs:
       
       - run: mvn clean install heroku:deploy
       
+      - run: mvn sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN
+
       - store_test_results:
           path: target/surefire-reports
       
