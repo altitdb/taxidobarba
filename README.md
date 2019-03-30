@@ -7,7 +7,7 @@
 
 ## Built With
 
-* [JDK 11](https://www.oracle.com/java/) - Language
+* [JDK 11](https://www.oracle.com/java/)
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Spring Framework](https://spring.io/) - Development Framework
 * [Mongo DB](https://www.mongodb.com/) - Cloud Database
