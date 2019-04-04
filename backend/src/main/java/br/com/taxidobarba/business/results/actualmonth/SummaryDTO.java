@@ -35,4 +35,17 @@ public class SummaryDTO {
             return dto;
         }
     }
+
+    public BigDecimal getNetValue() {
+        return netValue;
+    }
+
+    public BigDecimal getGrossValue() {
+        return grossValue;
+    }
+
+    public BigDecimal getExpectedValue() {
+        return expectedValue;
+    }
+
 }

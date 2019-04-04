@@ -47,4 +47,25 @@ public class ConsumptionDTO {
             return dto;
         }
     }
+
+    public BigDecimal getLitersPerKm() {
+        return litersPerKm;
+    }
+
+    public BigDecimal getAveragePriceSpentPerKm() {
+        return averagePriceSpentPerKm;
+    }
+
+    public BigDecimal getAverageKmPerDay() {
+        return averageKmPerDay;
+    }
+
+    public BigDecimal getAveragePricePerDay() {
+        return averagePricePerDay;
+    }
+
+    public BigDecimal getAveragePriceFuel() {
+        return averagePriceFuel;
+    }
+
 }

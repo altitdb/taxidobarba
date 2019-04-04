@@ -35,4 +35,17 @@ public class KmDTO {
             return dto;
         }
     }
+
+    public BigDecimal getKmRolledCity() {
+        return kmRolledCity;
+    }
+
+    public BigDecimal getKmRolledTravel() {
+        return kmRolledTravel;
+    }
+
+    public BigDecimal getAmountKmRolled() {
+        return amountKmRolled;
+    }
+
 }

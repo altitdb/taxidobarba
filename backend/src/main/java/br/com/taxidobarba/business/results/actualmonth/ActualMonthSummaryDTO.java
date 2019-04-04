@@ -59,4 +59,33 @@ public class ActualMonthSummaryDTO {
             return dto;
         }
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public SummaryDTO getSummary() {
+        return summary;
+    }
+
+    public KmDTO getKm() {
+        return km;
+    }
+
+    public ConsumptionDTO getConsumption() {
+        return consumption;
+    }
+
+    public CardDTO getCard() {
+        return card;
+    }
+
+    public SpentDTO getSpent() {
+        return spent;
+    }
+
+    public List<DriverDTO> getDriver() {
+        return driver;
+    }
+
 }
