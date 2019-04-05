@@ -7,7 +7,7 @@ public class CardDebitDTO {
     private BigDecimal grossValue;
     private BigDecimal taxValue;
     private BigDecimal netValue;
-    
+
     public static class CardDebitBuilder {
 
         private CardDebitDTO dto;
@@ -35,4 +35,17 @@ public class CardDebitDTO {
             return dto;
         }
     }
+
+    public BigDecimal getGrossValue() {
+        return grossValue;
+    }
+
+    public BigDecimal getTaxValue() {
+        return taxValue;
+    }
+
+    public BigDecimal getNetValue() {
+        return netValue;
+    }
+
 }

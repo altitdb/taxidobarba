@@ -33,4 +33,17 @@ public class CardDTO {
             return dto;
         }
     }
+
+    public CardCreditDTO getCredit() {
+        return credit;
+    }
+
+    public CardDebitDTO getDebit() {
+        return debit;
+    }
+
+    public CardSummaryDTO getSummary() {
+        return summary;
+    }
+
 }

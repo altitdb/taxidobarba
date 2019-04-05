@@ -35,4 +35,17 @@ public class CardCreditDTO {
             return dto;
         }
     }
+
+    public BigDecimal getGrossValue() {
+        return grossValue;
+    }
+
+    public BigDecimal getTaxValue() {
+        return taxValue;
+    }
+
+    public BigDecimal getNetValue() {
+        return netValue;
+    }
+
 }

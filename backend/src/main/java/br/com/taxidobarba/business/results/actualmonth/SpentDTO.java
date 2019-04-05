@@ -35,4 +35,17 @@ public class SpentDTO {
             return dto;
         }
     }
+
+    public BigDecimal getFuel() {
+        return fuel;
+    }
+
+    public BigDecimal getOthers() {
+        return others;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
 }

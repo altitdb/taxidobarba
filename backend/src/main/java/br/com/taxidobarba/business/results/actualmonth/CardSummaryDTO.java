@@ -35,4 +35,17 @@ public class CardSummaryDTO {
             return dto;
         }
     }
+
+    public BigDecimal getNetValue() {
+        return netValue;
+    }
+
+    public BigDecimal getTaxValue() {
+        return taxValue;
+    }
+
+    public BigDecimal getPercent() {
+        return percent;
+    }
+
 }

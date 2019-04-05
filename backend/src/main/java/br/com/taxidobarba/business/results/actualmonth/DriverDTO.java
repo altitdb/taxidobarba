@@ -41,4 +41,21 @@ public class DriverDTO {
             return dto;
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public BigDecimal getPercentage() {
+        return percentage;
+    }
+
+    public BigDecimal getAverage() {
+        return average;
+    }
+
 }
