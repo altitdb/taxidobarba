@@ -28,14 +28,9 @@ import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 public class MonthlyGoalServiceBean implements MonthlyGoalService {
 
     private static final Logger LOG = LogManager.getLogger(MonthlyGoalServiceBean.class);
-
     private static final BigDecimal DAILY_GOAL = new BigDecimal("150");
     private static final BigDecimal MONTHLY_GOAL = new BigDecimal("4500");
-    private static final LocalDate FIRST_DAY_OF_ACTUAL_MONTH = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
-    private static final LocalDate LAST_DAY_OF_ACTUAL_MONTH = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
-    private static final LocalDate FIRST_DAY_OF_LAST_MONTH = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
-    private static final LocalDate LAST_DAY_OF_LAST_MONTH = LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
-
+    
     @Autowired
     private CashRegisterCityRepository cashCityRepository;
     @Autowired
@@ -44,6 +39,10 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
     private List<CashRegisterTravel> cashRegisterTravels;
     private Map<LocalDate, BigDecimal> amountActualMonthMap = new HashMap<>();
     private Map<LocalDate, BigDecimal> amountLastMonthMap = new HashMap<>();
+    private LocalDate firstDayOfActualMonth;
+    private LocalDate lastDayOfActualMonth;
+    private LocalDate firstDayOfLastMonth;
+    private LocalDate lastDayOfLastMonth;
 
     @Override
     public MonthlyGoalDTO generate() {
@@ -62,9 +61,14 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
     private void initialize() {
         LOG.info("Inicializando registros...");
 
-        loadCashRegisters(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_ACTUAL_MONTH);
-        amountActualMonthMap = loadAmountPrice(FIRST_DAY_OF_ACTUAL_MONTH, LAST_DAY_OF_ACTUAL_MONTH);
-        amountLastMonthMap = loadAmountPrice(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
+        firstDayOfActualMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());             
+        lastDayOfActualMonth = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());               
+        firstDayOfLastMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
+        lastDayOfLastMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());  
+        
+        loadCashRegisters(firstDayOfLastMonth, lastDayOfActualMonth);
+        amountActualMonthMap = loadAmountPrice(firstDayOfActualMonth, lastDayOfActualMonth);
+        amountLastMonthMap = loadAmountPrice(firstDayOfLastMonth, lastDayOfLastMonth);
 
         LOG.info("Registros inicializados.");
     }
@@ -111,7 +115,7 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
         LOG.info("loadGoal...");
         List<GoalDTO> goals = new ArrayList<>();
         
-        FIRST_DAY_OF_ACTUAL_MONTH.datesUntil(LAST_DAY_OF_ACTUAL_MONTH.plusDays(1), Period.ofDays(1))
+        firstDayOfActualMonth.datesUntil(lastDayOfActualMonth.plusDays(1), Period.ofDays(1))
             .forEach(date -> {
                 
                 BigDecimal goal = DAILY_GOAL.multiply(BigDecimal.valueOf(date.getDayOfMonth()));
@@ -134,10 +138,10 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
 
     private SummaryDTO loadSummary() {
         LOG.info("loadSummary...");
-        int amountDaysOfMonth = LAST_DAY_OF_ACTUAL_MONTH.getDayOfMonth();
+        int amountDaysOfMonth = lastDayOfActualMonth.getDayOfMonth();
         BigDecimal goal = DAILY_GOAL.multiply(BigDecimal.valueOf(amountDaysOfMonth));
-        BigDecimal lastMonth = amountLastMonthMap.get(LAST_DAY_OF_LAST_MONTH);
-        BigDecimal actualMonth = amountActualMonthMap.get(LAST_DAY_OF_ACTUAL_MONTH);
+        BigDecimal lastMonth = amountLastMonthMap.get(lastDayOfLastMonth);
+        BigDecimal actualMonth = amountActualMonthMap.get(lastDayOfActualMonth);
         BigDecimal percentage = (actualMonth.multiply(new BigDecimal(100))).divide(MONTHLY_GOAL, MathContext.DECIMAL32);
         
         return new SummaryDTO.SummaryBuilder()
