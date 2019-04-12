@@ -55,10 +55,10 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
 
         firstDayOfYear.datesUntil(now, Period.ofMonths(1)).forEach(date -> {
 
-            BigDecimal netValueTravel = BigDecimal.ZERO;
-            BigDecimal grossValueTravel = BigDecimal.ZERO;
-            BigDecimal netValueCity = BigDecimal.ZERO;
-            BigDecimal grossValueCity = BigDecimal.ZERO;
+            BigDecimal netValueTravel;
+            BigDecimal grossValueTravel;
+            BigDecimal netValueCity;
+            BigDecimal grossValueCity;
             String month = getFormattedDate(date);
             LocalDate lastDayOfMonth = date.with(TemporalAdjusters.lastDayOfMonth());
 
@@ -115,8 +115,8 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
     
     private AmountDTO loadAmount(List<SummaryDTO> annualSummary) {
         LOG.info("loadAmount...");
-        BigDecimal netValue = BigDecimal.ZERO;
-        BigDecimal grossValue = BigDecimal.ZERO;
+        BigDecimal netValue;
+        BigDecimal grossValue;
         
         netValue = annualSummary.stream()
                            .map(SummaryDTO::getNetValue)
