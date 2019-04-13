@@ -41,7 +41,6 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
     private Map<LocalDate, BigDecimal> amountLastMonthMap = new HashMap<>();
     private LocalDate firstDayOfActualMonth;
     private LocalDate lastDayOfActualMonth;
-    private LocalDate firstDayOfLastMonth;
     private LocalDate lastDayOfLastMonth;
 
     @Override
@@ -63,7 +62,7 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
 
         firstDayOfActualMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());             
         lastDayOfActualMonth = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());               
-        firstDayOfLastMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate firstDayOfLastMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
         lastDayOfLastMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());  
         
         loadCashRegisters(firstDayOfLastMonth, lastDayOfActualMonth);
