@@ -1,11 +1,10 @@
 package br.com.taxidobarba.business.results.monthlyreport;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class ReportDTO {
 
-    private LocalDate date;
+    private String date;
     private BigDecimal value;
     private BigDecimal km;
     private CashRegisterType type;
@@ -19,7 +18,7 @@ public class ReportDTO {
             dto = new ReportDTO();
         }
 
-        public ReportBuilder withDate(LocalDate date) {
+        public ReportBuilder withDate(String date) {
             dto.date = date;
             return this;
         }
@@ -49,7 +48,7 @@ public class ReportDTO {
         }
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
