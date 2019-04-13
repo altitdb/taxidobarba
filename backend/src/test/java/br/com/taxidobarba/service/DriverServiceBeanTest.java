@@ -32,11 +32,6 @@ public class DriverServiceBeanTest {
     private Driver driver;
     private DriverRequestDTO driverRequestDto = DriverResquestDTOMock.mock();
 
-    @Test
-    public void shouldSaveDriver() {
-        service.save(driverRequestDto);
-    }
-
     @Test(expected = BusinessException.class)
     public void shouldValidateDriverWithEqualsAttributes() {
         BDDMockito.given(repository.findByTaxIdentifier(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
