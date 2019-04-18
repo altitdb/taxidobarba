@@ -17,10 +17,7 @@ public class CashRegisterCityRequestDTOMock extends GenericRequestDTOMock {
 
         attributes.put("carId", "asct9547dg41");
         attributes.put("driverId", "Werbn980023lo");
-        attributes.put("priceKmDriver", new BigDecimal(10));
-        attributes.put("km", new BigDecimal(17));
         attributes.put("totalReceived", new BigDecimal(250));
-        attributes.put("difference", new BigDecimal(101));
         attributes.put("date", LocalDate.now());
         attributes.put("startKm", new BigDecimal(5000));
         attributes.put("endKm", new BigDecimal(6000));
@@ -37,10 +34,7 @@ public class CashRegisterCityRequestDTOMock extends GenericRequestDTOMock {
 
         attributes.put("carId", "asct9547dg41");
         attributes.put("driverId", "Werbn980023lo");
-        attributes.put("priceKmDriver", new BigDecimal(10));
-        attributes.put("km", new BigDecimal(17));
         attributes.put("totalReceived", new BigDecimal(250));
-        attributes.put("difference", new BigDecimal(101));
         attributes.put("date", LocalDate.now());
         attributes.put("startKm", new BigDecimal(5000));
         attributes.put("endKm", new BigDecimal(2000));
