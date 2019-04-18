@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.dto.CashRegisterCityRequestDTO;
+import br.com.taxidobarba.domain.dto.CashRegisterCityResponseDTO;
 import br.com.taxidobarba.service.CashRegisterCityService;
 
 @RestController
@@ -20,9 +21,9 @@ public class CashRegisterCityController {
     private CashRegisterCityService service;
 
     @PostMapping(value = "/api/v1/cash/city")
-    public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid CashRegisterCityRequestDTO request) {
-        service.save(request);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    public @ResponseBody ResponseEntity<CashRegisterCityResponseDTO> save(
+            @RequestBody @Valid CashRegisterCityRequestDTO request) {
+        return new ResponseEntity<>(service.save(request), HttpStatus.ACCEPTED);
     }
 
 }
