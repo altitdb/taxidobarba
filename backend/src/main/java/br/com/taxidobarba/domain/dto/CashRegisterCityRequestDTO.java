@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 public class CashRegisterCityRequestDTO {
 
     @NotNull
-    private String carId;
+    private String car;
     @NotNull
-    private String driverId;
+    private String driver;
     @DecimalMin(value = "0.01")
     private BigDecimal totalReceived;
     @NotNull
@@ -21,12 +21,12 @@ public class CashRegisterCityRequestDTO {
     private BigDecimal endKm;
     private BigDecimal otherKm;
 
-    public String getCarId() {
-        return carId;
+    public String getCar() {
+        return car;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public String getDriver() {
+        return driver;
     }
 
     public BigDecimal getTotalReceived() {
@@ -51,9 +51,8 @@ public class CashRegisterCityRequestDTO {
 
     @Override
     public String toString() {
-        return "CashRegisterCityRequestDTO [carId=" + carId + ", driverId=" + driverId + ", totalReceived="
-                + totalReceived + ", date=" + date + ", startKm=" + startKm + ", endKm=" + endKm + ", otherKm="
-                + otherKm + "]";
+        return "CashRegisterCityRequestDTO [car=" + car + ", driver=" + driver + ", totalReceived=" + totalReceived
+                + ", date=" + date + ", startKm=" + startKm + ", endKm=" + endKm + ", otherKm=" + otherKm + "]";
     }
 
 }

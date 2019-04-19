@@ -47,8 +47,8 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
     }
 
     private CashRegisterCity cashRegisterCityRequestDtoToEntity(CashRegisterCityRequestDTO request) {
-        Car car = findCarById(request.getCarId());
-        Driver driver = findDriverById(request.getDriverId());
+        Car car = findCarById(request.getCar());
+        Driver driver = findDriverById(request.getDriver());
 
         BigDecimal priceKmDriver = driver.getPriceKm();
         BigDecimal startKm = request.getStartKm();
@@ -108,7 +108,7 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
     
     private void validateRequest(CashRegisterCityRequestDTO request) {
         validateKm(request.getStartKm(), request.getEndKm());
-        validateRegisterByDateAndDriver(request.getDriverId(), request.getDate());
+        validateRegisterByDateAndDriver(request.getDriver(), request.getDate());
     }
     
     private void validateKm(BigDecimal startKm, BigDecimal endKm) {
