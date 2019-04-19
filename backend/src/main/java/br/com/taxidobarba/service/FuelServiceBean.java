@@ -31,7 +31,7 @@ public class FuelServiceBean implements FuelService{
     
     @Override
     public void save(FuelRequestDTO request) {
-        LOG.info("Dados recebidos no request: " + request);
+        LOG.info("Dados recebidos no request: {}", request);
         LOG.info("Persistindo dados...");
         Fuel fuel = fuelRequestDtoToEntity(request);
         repository.save(fuel);

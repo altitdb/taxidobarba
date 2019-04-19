@@ -88,7 +88,7 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
 
         long end = System.currentTimeMillis();
 
-        LOG.info(String.format("Tempo gasto em loadAnnualSummary: %s ms", (end - begin)));
+        LOG.info("Tempo gasto em loadAnnualSummary: {} ms", (end - begin));
 
         return annualSummaryList;
     }

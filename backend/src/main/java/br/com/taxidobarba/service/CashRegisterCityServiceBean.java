@@ -35,7 +35,7 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
     
     @Override
     public CashRegisterCityResponseDTO save(CashRegisterCityRequestDTO request) {
-        LOG.info("Dados recebidos no request: " + request);
+        LOG.info("Dados recebidos no request: {}", request);
         validateRequest(request);
         CashRegisterCity cashRegisterCity = cashRegisterCityRequestDtoToEntity(request);
         LOG.info("Persistindo cashCity...");

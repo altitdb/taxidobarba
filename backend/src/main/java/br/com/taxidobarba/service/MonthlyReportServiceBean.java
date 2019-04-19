@@ -58,7 +58,7 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
         initialDate = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
         finalDate = LocalDate.now();
 
-        LOG.info(String.format("Periodo utilizado na consulta: %s a %s", initialDate, finalDate));
+        LOG.info("Periodo utilizado na consulta: {} a {}", initialDate, finalDate);
 
         cashRegisterCities = cashRegisterCityRepository.findByDateBetween(initialDate, finalDate);
         cashRegisterTravels = cashRegisterTravelRepository.findByDateBetween(initialDate, finalDate);
