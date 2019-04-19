@@ -13,11 +13,7 @@ public class CashRegisterCityRequestDTO {
     @NotNull
     private String driverId;
     @DecimalMin(value = "0.01")
-    private BigDecimal priceKmDriver;
-    @DecimalMin(value = "0.01")
-    private BigDecimal km;
     private BigDecimal totalReceived;
-    private BigDecimal difference;
     @NotNull
     private LocalDate date;
     private BigDecimal startKm;
@@ -33,20 +29,8 @@ public class CashRegisterCityRequestDTO {
         return driverId;
     }
 
-    public BigDecimal getPriceKmDriver() {
-        return priceKmDriver;
-    }
-
-    public BigDecimal getKm() {
-        return km;
-    }
-
     public BigDecimal getTotalReceived() {
         return totalReceived;
-    }
-
-    public BigDecimal getDifference() {
-        return difference;
     }
 
     public LocalDate getDate() {
@@ -67,9 +51,9 @@ public class CashRegisterCityRequestDTO {
 
     @Override
     public String toString() {
-        return "CashRegisterCityRequestDTO [carId=" + carId + ", driverId=" + driverId + ", priceKmDriver="
-                + priceKmDriver + ", km=" + km + ", totalReceived=" + totalReceived + ", difference=" + difference
-                + ", date=" + date + ", startKm=" + startKm + ", endKm=" + endKm + ", othertKm=" + otherKm + "]";
+        return "CashRegisterCityRequestDTO [carId=" + carId + ", driverId=" + driverId + ", totalReceived="
+                + totalReceived + ", date=" + date + ", startKm=" + startKm + ", endKm=" + endKm + ", otherKm="
+                + otherKm + "]";
     }
 
 }
