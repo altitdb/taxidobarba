@@ -13,42 +13,42 @@ export class AppComponent {
 
   pages = [
     {
-      title: 'Daily Cash',
-      url: '/daily',
+      title: 'Cidade',
+      url: '/city',
       icon: 'speedometer'
     },
     {
-      title: 'Travel Cash',
+      title: 'Viajem',
       url: '/travel',
       icon: 'paper-plane'
     },
     {
-      title: 'Monthly Report',
-      url: '/monthly-report',
-      icon: 'list-box'
-    },
-    {
-      title: 'Fuel',
+      title: 'Combustível',
       url: '/fuel',
       icon: 'thermometer'
     },
     {
-      title: 'Card',
+      title: 'Mensal',
+      url: '/monthly-report',
+      icon: 'list-box'
+    },
+    {
+      title: 'Cartão',
       url: '/card',
       icon: 'card'
     },
     {
-      title: 'Driver',
+      title: 'Motorista',
       url: '/driver',
       icon: 'person'
     },
     {
-      title: 'Car',
+      title: 'Carro',
       url: '/car',
       icon: 'car'
     },
     {
-      title: 'About',
+      title: 'Sobre',
       url: '/tabs/about',
       icon: 'information-circle'
     },

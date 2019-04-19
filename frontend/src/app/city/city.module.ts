@@ -5,8 +5,8 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { IonicModule } from "@ionic/angular";
 
-import { DailyPage } from "./daily.page";
-import { DailyService } from "./daily.service";
+import { CityPage } from "./city.page";
+import { CityService } from "./city.service";
 import { HttpClientModule } from "@angular/common/http";
 import { CarService } from "../service/car.service";
 import { DriverService } from "../service/driver.service";
@@ -14,7 +14,7 @@ import { DriverService } from "../service/driver.service";
 const routes: Routes = [
   {
     path: '',
-    component: DailyPage
+    component: CityPage
   }
 ];
 
@@ -27,7 +27,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  declarations: [DailyPage],
-  providers: [DailyService, DriverService, CarService]
+  declarations: [CityPage],
+  providers: [CityService, DriverService, CarService]
 })
-export class DailyPageModule {}
+export class CityPageModule {}

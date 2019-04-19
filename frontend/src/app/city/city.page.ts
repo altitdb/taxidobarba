@@ -1,15 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { DailyService } from "./daily.service";
+import { CityService } from "./city.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DriverService } from "../service/driver.service";
 import { CarService } from "../service/car.service";
 
 @Component({
-  selector: "app-daily",
-  templateUrl: "./daily.page.html",
-  styleUrls: ["./daily.page.scss"]
+  selector: "app-city",
+  templateUrl: "./city.page.html",
+  styleUrls: ["./city.page.scss"]
 })
-export class DailyPage implements OnInit {
+export class CityPage implements OnInit {
+  
   drivers: Array<Driver>;
   cars: Array<Car>;
   form: FormGroup;
@@ -19,7 +20,7 @@ export class DailyPage implements OnInit {
     private _driverService: DriverService,
     private _carService: CarService,
     private _formBuilder: FormBuilder,
-    private _dailyService: DailyService
+    private _cityService: CityService
   ) {}
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class DailyPage implements OnInit {
   }
 
   save() {
-    this._dailyService.save(this.form.value).subscribe(suc => {
+    this._cityService.save(this.form.value).subscribe(suc => {
       this.response = suc;
     });
   }
