@@ -80,7 +80,7 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
 
     private Map<LocalDate, BigDecimal> loadAmountPrice(LocalDate initialDate, LocalDate finalDate) {
         LOG.info("loadAmountPrice...");
-        LOG.info(String.format("Periodo utilizado: [%s] a [%s]", initialDate, finalDate));
+        LOG.info("Periodo utilizado: {} a {}", initialDate, finalDate);
         
         Map<LocalDate, BigDecimal> amountPriceMap = new HashMap<>();
         LocalDate smallerDate = initialDate.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
@@ -105,7 +105,7 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
         
         long end = System.currentTimeMillis();
         
-        LOG.info(String.format("Tempo gasto em loadAmount: %s ms",(end - begin)));
+        LOG.info("Tempo gasto em loadAmount: {} ms",(end - begin));
         
         return amountPriceMap;
     }

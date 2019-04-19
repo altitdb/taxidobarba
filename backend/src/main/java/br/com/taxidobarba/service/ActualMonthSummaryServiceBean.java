@@ -91,7 +91,7 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
         amountPriceCity = BigDecimal.ZERO;
         amountPriceTravel = BigDecimal.ZERO;
         
-        LOG.info(String.format("Periodo utilizado nas consultas: [%s] a [%s]", initialDate, finalDate));
+        LOG.info("Periodo utilizado nas consultas: {} a {}", initialDate, finalDate);
         
         loadCashRegisterCities(initialDate, finalDate);
         loadCashRegisterTravels(initialDate, finalDate);

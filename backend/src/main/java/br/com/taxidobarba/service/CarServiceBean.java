@@ -24,7 +24,7 @@ public class CarServiceBean implements CarService {
 
     @Override
     public void save(CarRequestDTO request) {
-        LOG.info("Dados recebidos no request: " + request);
+        LOG.info("Dados recebidos no request: {}", request);
         validateLicensePlate(request.getLicensePlate());
         LOG.info("Persistindo carro...");
         repository.save(carRequestDtoToEntity(request));
