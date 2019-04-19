@@ -5,14 +5,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DriverService {
+export class CarService {
 
-  private url = environment.baseUrl + '/api/v1/driver';
+  private url = environment.baseUrl + '/api/v1/car';
 
   constructor(public _http: HttpClient) { }
 
-  public get() {
-    return this._http.get<Array<Driver>>(this.url);
+  public getActive() {
+    return this._http.get<Array<Car>>(this.url);
   }
- 
+  
 }

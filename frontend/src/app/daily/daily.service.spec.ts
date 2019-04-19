@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DriverService } from './driver.service';
+import { DailyService } from './daily.service';
 
-describe('DriverService', () => {
+describe('DailyService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DriverService = TestBed.get(DriverService);
+    const service: DailyService = TestBed.get(DailyService);
     expect(service).toBeTruthy();
   });
 });

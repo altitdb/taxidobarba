@@ -14,17 +14,22 @@ export class AppComponent {
   pages = [
     {
       title: 'Daily Cash',
-      url: '/daily-cash',
+      url: '/daily',
       icon: 'speedometer'
     },
     {
       title: 'Travel Cash',
-      url: '/travel-cash',
+      url: '/travel',
       icon: 'paper-plane'
     },
     {
+      title: 'Monthly Report',
+      url: '/monthly-report',
+      icon: 'list-box'
+    },
+    {
       title: 'Fuel',
-      url: '/driver',
+      url: '/fuel',
       icon: 'thermometer'
     },
     {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DriverService } from './driver.service';
+import { DriverService } from '../service/driver.service';
 
 @Component({
   selector: 'app-driver',

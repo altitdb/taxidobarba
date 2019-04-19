@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DriverPage } from './driver.page';
-import { HttpClientModule } from '@angular/common/http';
-
-import { DriverService } from '../service/driver.service';
+import { FuelPage } from './fuel.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: DriverPage
+    component: FuelPage
   }
 ];
 
@@ -22,12 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    HttpClientModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [DriverPage],
-  providers: [
-    DriverService
-  ]
+  declarations: [FuelPage]
 })
-export class DriverPageModule {}
+export class FuelPageModule {}

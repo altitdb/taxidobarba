@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DriverPage } from './driver.page';
+import { TravelPage } from './travel.page';
 import { HttpClientModule } from '@angular/common/http';
-
 import { DriverService } from '../service/driver.service';
+import { CarService } from '../service/car.service';
+import { TravelService } from './travel.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: DriverPage
+    component: TravelPage
   }
 ];
 
@@ -23,11 +24,14 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
     HttpClientModule
   ],
-  declarations: [DriverPage],
+  declarations: [TravelPage],
   providers: [
-    DriverService
+    TravelService,
+    DriverService,
+    CarService,
   ]
 })
-export class DriverPageModule {}
+export class TravelPageModule {}
