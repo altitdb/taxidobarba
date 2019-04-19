@@ -31,7 +31,7 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
 
     @Override
     public void save(CashRegisterTravelRequestDTO request) {
-        LOG.info("Dados recebidos no request: " + request);
+        LOG.info("Dados recebidos no request: {}", request);
         CashRegisterTravel cashRegisterTravel = cashRegisterTravelRequestDtoToEntity(request);
         LOG.info("Persistindo cashTravel...");
         cashTravelRepository.save(cashRegisterTravel);

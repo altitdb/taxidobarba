@@ -29,7 +29,7 @@ public class DriverServiceBean implements DriverService {
     public void save(DriverRequestDTO request) {
         validateDriverRequest(request);
         Driver driver = driverRequestDTOToEntity(request);
-        LOG.info("Persistindo motorista: " + driver);
+        LOG.info("Persistindo motorista: {}", driver);
         repository.save(driver);
         LOG.info("Motorista persistido.");
 
@@ -43,7 +43,7 @@ public class DriverServiceBean implements DriverService {
 
     @Override
     public DriverResponseDTO findById(String id) {
-        LOG.info("Buscando motorista pelo id: " + id);
+        LOG.info("Buscando motorista pelo id: {}", id);
         Optional<Driver> driver = repository.findById(id);
         return driverToDriverResponseDTO(driver.orElseThrow(() -> new BusinessException("Motorista não localizado.")));
     }
