@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Taxi do Barba
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        Data
+      </ion-col>
+      <ion-col class="ion-text-center">
+        Tipo
+      </ion-col>
+      <ion-col class="ion-text-center">
+        Motorista
+      </ion-col>
+      <ion-col class="ion-text-center">
+        KM
+      </ion-col>
+      <ion-col class="ion-text-center">
+        Valor
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of report">
+      <ion-item-divider color="light">
+        <ion-col class="ion-text-center">
+          {{ item.date }}
+        </ion-col>
+        <ion-col class="ion-text-center">
+          {{ item.type == "CITY" ? "Cidade" : "Viagem" }}
+        </ion-col>
+        <ion-col class="ion-text-center">
+          {{ item.driver && item.driver.split(" ")[0] }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ item.km }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ item.value }}
+        </ion-col>
+      </ion-item-divider>
+    </ion-row>
+  </ion-grid>
+  <ion-item>
+    <div class="ion-text-end">
+      Total {{ amount }}
+    </div>
+  </ion-item>
+</ion-content>

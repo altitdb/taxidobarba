@@ -3,6 +3,7 @@ import { CityService } from "./city.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DriverService } from "../service/driver.service";
 import { CarService } from "../service/car.service";
+import { ConcatSource } from "webpack-sources";
 
 @Component({
   selector: "app-city",
@@ -10,7 +11,6 @@ import { CarService } from "../service/car.service";
   styleUrls: ["./city.page.scss"]
 })
 export class CityPage implements OnInit {
-  
   drivers: Array<Driver>;
   cars: Array<Car>;
   form: FormGroup;
@@ -25,7 +25,7 @@ export class CityPage implements OnInit {
 
   ngOnInit() {
     this.form = this._formBuilder.group({
-      date: [new Date(), Validators.required],
+      date: [new Date().toISOString(), Validators.required],
       driver: [null, Validators.required],
       car: [null, Validators.required],
       startKm: [null, Validators.required],

@@ -23,7 +23,7 @@ export class TravelPage implements OnInit {
 
   ngOnInit() {
     this.form = this._formBuilder.group({
-      date: [new Date(), Validators.required],
+      date: [new Date().toISOString(), Validators.required],
       driver: [null, Validators.required],
       car: [null, Validators.required],
       km: [null, Validators.required],

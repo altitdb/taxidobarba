@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { FuelPage } from './fuel.page';
+import { FuelService } from './fuel.service';
+import { CarService } from '../service/car.service';
+import { DriverService } from '../service/driver.service';
 
 const routes: Routes = [
   {
@@ -19,8 +22,14 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
-  declarations: [FuelPage]
+  declarations: [FuelPage],
+  providers: [
+    FuelService,
+    DriverService,
+    CarService
+  ]
 })
 export class FuelPageModule {}

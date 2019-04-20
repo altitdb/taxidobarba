@@ -8,48 +8,61 @@ class Car {
     name: string;
 }
 
-class CityRequest {
-    car: string;
-    driver: string;
-    totalReceived: DoubleRange;
-    date: Date;
-    startKm: BigInteger;
-    endKm: BigInteger;
-    otherKm: BigInteger;
-}
-
 class CityResponse {
     car: Car;
     driver: Driver;
-    priceKmDriver: DoubleRange;
+    priceKmDriver: number;
     km: BigInteger;
-    price: DoubleRange;
-    totalReceived: DoubleRange;
-    difference: DoubleRange;
+    price: number;
+    totalReceived: number;
+    difference: number;
     date: Date;
     startKm: BigInteger;
     endKm: BigInteger;
     otherKm: BigInteger;
-}
-
-class TravelRequest {
-    car: string;
-    driver: string;
-    price: DoubleRange;
-    city: string;
-    date: Date;
-    km: BigInteger;
 }
 
 class TravelResponse {
     car: Car;
     driver: Driver;
-    percentualDriver: DoubleRange;
-    valueDriver: DoubleRange;
+    percentualDriver: number;
+    valueDriver: number;
     city: string;
-    price: DoubleRange;
-    netValue: DoubleRange;
+    price: number;
+    netValue: number;
     km: BigInteger;
-    ageragePriceKm: DoubleRange;
+    ageragePriceKm: number;
     date: Date;
+}
+
+class FuelResponse {
+    car: Car;
+    driver: Driver;
+    price: number;
+    km: BigInteger;
+    date: Date;
+    liters: number;
+    fuelPrice: number
+}
+
+enum MonthlyType {
+    CITY = 'Cidade',
+    TRAVEL = 'Viagem'
+}
+
+class MonthlyReportItem {
+    date: Date;
+    value: number;
+    km: BigInteger;
+    type: MonthlyType;
+    driver: string;
+}
+
+class Amount {
+    amount: number;
+}
+
+class MonthlyReport {
+    report: Array<MonthlyReportItem>
+    amount: Amount;
 }

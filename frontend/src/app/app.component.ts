@@ -18,7 +18,7 @@ export class AppComponent {
       icon: 'speedometer'
     },
     {
-      title: 'Viajem',
+      title: 'Viagem',
       url: '/travel',
       icon: 'paper-plane'
     },
@@ -29,7 +29,7 @@ export class AppComponent {
     },
     {
       title: 'Mensal',
-      url: '/monthly-report',
+      url: '/monthly',
       icon: 'list-box'
     },
     {

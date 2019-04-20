@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'driver', loadChildren: './driver/driver.module#DriverPageModule' },
   { path: 'city', loadChildren: './city/city.module#CityPageModule' },
   { path: 'travel', loadChildren: './travel/travel.module#TravelPageModule' },
-  { path: 'fuel', loadChildren: './fuel/fuel.module#FuelPageModule' }
+  { path: 'fuel', loadChildren: './fuel/fuel.module#FuelPageModule' },
+  { path: 'monthly', loadChildren: './monthly/monthly.module#MonthlyPageModule' },
 ];
 @NgModule({
   imports: [
