@@ -1,6 +1,7 @@
 package br.com.taxidobarba.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
@@ -69,6 +70,7 @@ public class CashRegisterCityControllerTest extends ControllerTest{
         BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
         BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(car));
         BDDMockito.given(cashRegisterCityRepository.save(ArgumentMatchers.any(CashRegisterCity.class))).willReturn(city);
+        BDDMockito.given(cashRegisterCityRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(city));
         BDDMockito.given(driver.getPriceKm()).willReturn(BigDecimal.TEN);
         BDDMockito.given(driver.getId()).willReturn("123");
         BDDMockito.given(car.getId()).willReturn("123");
@@ -151,4 +153,92 @@ public class CashRegisterCityControllerTest extends ControllerTest{
         }
     }
     
+    @Test
+    public void shouldValidateCashRegisterCityRequestUpdateWithDateAndDriverAlreadyExistingHttpStatusBadRequest() {
+        BDDMockito.given(cashRegisterCityRepository.findByDriverAndDateAndIdNot(ArgumentMatchers.any(Driver.class),
+                ArgumentMatchers.any(LocalDate.class), ArgumentMatchers.any())).willReturn(Optional.of(cashRegisterCity));
+        try {
+            String json = mapper.writeValueAsString(cashRegisterRequestSuccess);
+            mockMvc.perform(put("/api/v1/cash/city/123456")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateCashRegisterCityRequestUpdateStartKmBiggerThenEndKmHttpStatusBadRequest() {
+        try {
+            String json = mapper.writeValueAsString(cashRegisterRequestFail);
+            mockMvc.perform(put("/api/v1/cash/city/123456")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldUpdateCashRegisterCityRequestHttpStatusOk() {
+        try {
+            String json = mapper.writeValueAsString(cashRegisterRequestSuccess);
+            mockMvc.perform(put("/api/v1/cash/city/456987")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateRequestUpdateWithCarIdNonExistentHttpStatusBadRequest() {
+        BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            String json = mapper.writeValueAsString(cashRegisterRequestSuccess);
+            mockMvc.perform(put("/api/v1/cash/city/89564")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateRequestUpdateWithDriverIdNonExistentHttpStatusBadRequest() {
+        BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            String json = mapper.writeValueAsString(cashRegisterRequestSuccess);
+            mockMvc.perform(put("/api/v1/cash/city/45687")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateRequestUpdateWithIdNonExistentHttpStatusBadRequest() {
+        BDDMockito.given(cashRegisterCityRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            String json = mapper.writeValueAsString(cashRegisterRequestSuccess);
+            mockMvc.perform(put("/api/v1/cash/city/45687")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .content(json)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
