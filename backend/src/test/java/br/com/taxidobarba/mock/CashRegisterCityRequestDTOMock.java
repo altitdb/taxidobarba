@@ -15,8 +15,8 @@ public class CashRegisterCityRequestDTOMock extends GenericRequestDTOMock {
 
         Map<String, Object> attributes = new HashMap<>();
 
-        attributes.put("carId", "asct9547dg41");
-        attributes.put("driverId", "Werbn980023lo");
+        attributes.put("car", "asct9547dg41");
+        attributes.put("driver", "Werbn980023lo");
         attributes.put("totalReceived", new BigDecimal(250));
         attributes.put("date", LocalDate.now());
         attributes.put("startKm", new BigDecimal(5000));
@@ -32,8 +32,8 @@ public class CashRegisterCityRequestDTOMock extends GenericRequestDTOMock {
 
         Map<String, Object> attributes = new HashMap<>();
 
-        attributes.put("carId", "asct9547dg41");
-        attributes.put("driverId", "Werbn980023lo");
+        attributes.put("car", "asct9547dg41");
+        attributes.put("driver", "Werbn980023lo");
         attributes.put("totalReceived", new BigDecimal(250));
         attributes.put("date", LocalDate.now());
         attributes.put("startKm", new BigDecimal(5000));

@@ -19,4 +19,6 @@ public interface CashRegisterCityRepository extends MongoRepository<CashRegister
     
     public Optional<CashRegisterCity> findByDriverAndDate(Driver driver, LocalDate date);
 
+    public Optional<CashRegisterCity> findByDriverAndDateAndIdNot(Driver driver, LocalDate date, String id);
+
 }
