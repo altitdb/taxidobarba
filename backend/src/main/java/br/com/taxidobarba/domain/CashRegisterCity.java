@@ -3,11 +3,14 @@ package br.com.taxidobarba.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "cashRegisterCity")
 public class CashRegisterCity {
 
+    @Id
+    private String id;
     private Car car;
     private Driver driver;
     private BigDecimal priceKmDriver;
@@ -83,10 +86,19 @@ public class CashRegisterCity {
             return this;
         }
 
+        public CashRegisterCityBuilder forUpdate(CashRegisterCity cashRegisterCity) {
+            this.cashRegisterCity = cashRegisterCity;
+            return this;
+        }
+
         public CashRegisterCity build() {
             return cashRegisterCity;
         }
 
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Car getCar() {
