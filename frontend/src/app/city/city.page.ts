@@ -3,7 +3,9 @@ import { CityService } from "./city.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DriverService } from "../service/driver.service";
 import { CarService } from "../service/car.service";
-import { ConcatSource } from "webpack-sources";
+import * as moment from 'moment';
+import { ModalController } from "@ionic/angular";
+import { ModalPage } from "./modal/modal.page";
 
 @Component({
   selector: "app-city",
@@ -14,13 +16,13 @@ export class CityPage implements OnInit {
   drivers: Array<Driver>;
   cars: Array<Car>;
   form: FormGroup;
-  response: CityResponse;
 
   constructor(
     private _driverService: DriverService,
     private _carService: CarService,
     private _formBuilder: FormBuilder,
-    private _cityService: CityService
+    private _cityService: CityService,
+    private _modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -38,9 +40,19 @@ export class CityPage implements OnInit {
   }
 
   save() {
+    this.form.value.date = moment(this.form.value.date).format('YYYY-MM-DD');
     this._cityService.save(this.form.value).subscribe(suc => {
-      this.response = suc;
+      this.presentModal(suc);
+      this.form.reset();
     });
+  }
+
+  async presentModal(response: CityResponse) {
+    const modal = await this._modalController.create({
+      component: ModalPage,
+      componentProps: { response }
+    });
+    return await modal.present();
   }
 
   getDrivers() {

@@ -10,10 +10,12 @@ import { CityService } from "./city.service";
 import { HttpClientModule } from "@angular/common/http";
 import { CarService } from "../service/car.service";
 import { DriverService } from "../service/driver.service";
+import { ModalPage } from "./modal/modal.page";
+import { ModalPageModule } from "./modal/modal.module";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: CityPage
   }
 ];
@@ -25,9 +27,11 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalPageModule
   ],
   declarations: [CityPage],
-  providers: [CityService, DriverService, CarService]
+  providers: [CityService, DriverService, CarService],
+  entryComponents: [ModalPage]
 })
 export class CityPageModule {}
