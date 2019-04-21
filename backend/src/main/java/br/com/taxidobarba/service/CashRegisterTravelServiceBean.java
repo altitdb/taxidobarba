@@ -39,8 +39,8 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     }
 
     private CashRegisterTravel cashRegisterTravelRequestDtoToEntity(CashRegisterTravelRequestDTO request) {
-        Car car = findCarById(request.getCarId());
-        Driver driver = findDriverById(request.getDriverId());
+        Car car = findCarById(request.getCar());
+        Driver driver = findDriverById(request.getDriver());
 
         BigDecimal price = request.getPrice();
         BigDecimal percentualDriver = request.getPercentualDriver();
