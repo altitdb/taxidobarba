@@ -80,6 +80,11 @@ public class CashRegisterTravel {
             return this;
         }
 
+        public CashRegisterTravelBuilder forUpdate(CashRegisterTravel cashRegisterTravel) {
+            this.cashRegisterTravel = cashRegisterTravel;
+            return this;
+        }
+        
         public CashRegisterTravel build() {
             return cashRegisterTravel;
         }
