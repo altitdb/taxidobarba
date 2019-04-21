@@ -3,19 +3,15 @@ package br.com.taxidobarba.domain.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 public class CashRegisterTravelRequestDTO {
 
     @NotNull
-    private String carId;
+    private String car;
     @NotNull
-    private String driverId;
-    @DecimalMin(value = "0.01")
-    @DecimalMax(value = "100")
-    private BigDecimal percentualDriver;
+    private String driver;
     private String city;
     @NotNull
     private BigDecimal price;
@@ -23,16 +19,12 @@ public class CashRegisterTravelRequestDTO {
     private BigDecimal km;
     private LocalDate date;
 
-    public String getCarId() {
-        return carId;
+    public String getCar() {
+        return car;
     }
 
-    public String getDriverId() {
-        return driverId;
-    }
-
-    public BigDecimal getPercentualDriver() {
-        return percentualDriver;
+    public String getDriver() {
+        return driver;
     }
 
     public String getCity() {
@@ -53,7 +45,8 @@ public class CashRegisterTravelRequestDTO {
 
     @Override
     public String toString() {
-        return "CashRegisterTravelRequestDTO [carId=" + carId + ", driverId=" + driverId + ", percentualDriver="
-                + percentualDriver + ", city=" + city + ", price=" + price + ", km=" + km + ", date=" + date + "]";
+        return "CashRegisterTravelRequestDTO [car=" + car + ", driver=" + driver + ", city=" + city + ", price=" + price
+                + ", km=" + km + ", date=" + date + "]";
     }
+
 }

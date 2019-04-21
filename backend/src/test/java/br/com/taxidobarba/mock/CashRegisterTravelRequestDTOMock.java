@@ -15,9 +15,8 @@ public class CashRegisterTravelRequestDTOMock extends GenericRequestDTOMock {
 
         Map<String, Object> attributes = new HashMap<>();
 
-        attributes.put("carId", "asct9547dg41");
-        attributes.put("driverId", "Werbn980023lo");
-        attributes.put("percentualDriver", new BigDecimal(10));
+        attributes.put("car", "asct9547dg41");
+        attributes.put("driver", "asct9547dg41");
         attributes.put("city", "Londrina");
         attributes.put("price", new BigDecimal(25));
         attributes.put("km", new BigDecimal(158.6));
