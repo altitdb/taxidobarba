@@ -31,7 +31,7 @@ public class CashRegisterTravelController {
     @PutMapping(value = "/api/v1/cash/travel/{id}")
     public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> update(@PathVariable("id") String id,
             @RequestBody @Valid CashRegisterTravelRequestDTO request) {
-        return new ResponseEntity<>(service.update(id, request), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
     }
 
 }
