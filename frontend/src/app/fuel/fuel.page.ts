@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CarService } from '../service/car.service';
 import { DriverService } from '../service/driver.service';
 import { FuelService } from './fuel.service';
+import * as moment from 'moment';
+import { ModalController } from "@ionic/angular";
+import { ModalPage } from "./modal/modal.page";
 
 @Component({
   selector: 'app-fuel',
@@ -20,7 +23,8 @@ export class FuelPage implements OnInit {
     private _driverService: DriverService,
     private _carService: CarService,
     private _formBuilder: FormBuilder,
-    private _fuelService: FuelService
+    private _fuelService: FuelService,
+    private _modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -37,10 +41,21 @@ export class FuelPage implements OnInit {
   }
 
   save() {
+    this.form.value.date = moment(this.form.value.date).format('YYYY-MM-DD');
     this._fuelService.save(this.form.value).subscribe(suc => {
-      this.response = suc;
+      this.presentModal(suc);
+      this.form.reset();
     });
   }
+
+  async presentModal(response: FuelResponse) {
+    const modal = await this._modalController.create({
+      component: ModalPage,
+      componentProps: { response }
+    });
+    return await modal.present();
+  }
+
 
   getDrivers() {
     this._driverService.getActive().subscribe(suc => {

@@ -13,6 +13,11 @@ export class AppComponent {
 
   pages = [
     {
+      title: 'Home',
+      url: '',
+      icon: 'home'
+    },
+    {
       title: 'Cidade',
       url: '/city',
       icon: 'speedometer'

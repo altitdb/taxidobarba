@@ -9,6 +9,8 @@ import { FuelPage } from './fuel.page';
 import { FuelService } from './fuel.service';
 import { CarService } from '../service/car.service';
 import { DriverService } from '../service/driver.service';
+import { ModalPageModule } from './modal/modal.module';
+import { ModalPage } from './modal/modal.page';
 
 const routes: Routes = [
   {
@@ -23,13 +25,17 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalPageModule
   ],
   declarations: [FuelPage],
   providers: [
     FuelService,
     DriverService,
     CarService
+  ],
+  entryComponents: [
+    ModalPage
   ]
 })
 export class FuelPageModule {}
