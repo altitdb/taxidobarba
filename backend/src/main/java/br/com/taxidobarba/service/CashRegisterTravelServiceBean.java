@@ -12,10 +12,10 @@ import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.CashRegisterTravel;
 import br.com.taxidobarba.domain.CashRegisterTravel.CashRegisterTravelBuilder;
 import br.com.taxidobarba.domain.Driver;
-import br.com.taxidobarba.domain.dto.CarCashRegisterDTO;
+import br.com.taxidobarba.domain.dto.SimpleCarResponseDTO;
 import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
 import br.com.taxidobarba.domain.dto.CashRegisterTravelResponseDTO;
-import br.com.taxidobarba.domain.dto.DriverCashRegisterDTO;
+import br.com.taxidobarba.domain.dto.SimpleDriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
@@ -96,8 +96,8 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     }
 
     private CashRegisterTravelResponseDTO entityToResponseDto(CashRegisterTravel travel) {
-        CarCashRegisterDTO carDto = createCarCashRegisterDTO(travel.getCar());
-        DriverCashRegisterDTO driverDto = createDriverCashRegisterDTO(travel.getDriver());
+        SimpleCarResponseDTO carDto = new SimpleCarResponseDTO(travel.getCar());
+        SimpleDriverResponseDTO driverDto = new SimpleDriverResponseDTO(travel.getDriver());
         
         return new CashRegisterTravelResponseDTO.CashRegisterTravelResponseBuilder()
                 .withAveragePriceKm(travel.getAveragePriceKm())
@@ -111,20 +111,6 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
                 .withPrice(travel.getPrice())
                 .withValueDriver(travel.getValueDriver())
                 .build();
-    }
-    
-    private CarCashRegisterDTO createCarCashRegisterDTO(Car car) {
-        return new CarCashRegisterDTO.CarCashRegisterBuilder()
-                    .withId(car.getId())
-                    .withName(car.getName())
-                    .build();
-    }
-    
-    private DriverCashRegisterDTO createDriverCashRegisterDTO(Driver driver) {
-        return new DriverCashRegisterDTO.DriverCashRegisterBuilder()
-                    .withId(driver.getId())
-                    .withName(driver.getName())
-                    .build();
     }
     
     private BigDecimal calculateValueDriver(BigDecimal price, BigDecimal percentualDriver) {

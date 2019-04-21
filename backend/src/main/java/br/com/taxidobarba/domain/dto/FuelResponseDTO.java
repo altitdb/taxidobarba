@@ -10,8 +10,8 @@ public class FuelResponseDTO {
     private BigDecimal price;
     private BigDecimal fuelPrice;
     private LocalDate date;
-    private CarCashRegisterDTO car;
-    private DriverCashRegisterDTO driver;
+    private SimpleCarResponseDTO car;
+    private SimpleDriverResponseDTO driver;
 
     public static class FuelResponseBuilder {
 
@@ -46,12 +46,12 @@ public class FuelResponseDTO {
             return this;
         }
 
-        public FuelResponseBuilder wihtCar(CarCashRegisterDTO car) {
+        public FuelResponseBuilder wihtCar(SimpleCarResponseDTO car) {
             dto.car = car;
             return this;
         }
 
-        public FuelResponseBuilder withDriver(DriverCashRegisterDTO driver) {
+        public FuelResponseBuilder withDriver(SimpleDriverResponseDTO driver) {
             dto.driver = driver;
             return this;
         }
@@ -82,11 +82,11 @@ public class FuelResponseDTO {
         return date;
     }
 
-    public CarCashRegisterDTO getCar() {
+    public SimpleCarResponseDTO getCar() {
         return car;
     }
 
-    public DriverCashRegisterDTO getDriver() {
+    public SimpleDriverResponseDTO getDriver() {
         return driver;
     }
 
