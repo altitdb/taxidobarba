@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DriverService } from '../service/driver.service';
 import { CarService } from '../service/car.service';
 import { TravelService } from './travel.service';
+import { ModalPageModule } from './modal/modal.module';
+import { ModalPage } from './modal/modal.page';
 
 const routes: Routes = [
   {
@@ -25,13 +27,15 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalPageModule
   ],
   declarations: [TravelPage],
   providers: [
     TravelService,
     DriverService,
     CarService,
-  ]
+  ],
+  entryComponents: [ModalPage]
 })
 export class TravelPageModule {}

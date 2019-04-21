@@ -22,14 +22,14 @@
     <ion-item>
       <ion-label>Motorista</ion-label>
       <ion-select placeholder="Selecione" formControlName="driver">
-        <ion-select-option *ngFor="let item of drivers" value="item.id">{{item.name}}</ion-select-option>
+        <ion-select-option *ngFor="let item of drivers" value="{{item.id}}">{{item.name}}</ion-select-option>
       </ion-select>
     </ion-item>
   
     <ion-item>
       <ion-label>Carro</ion-label>
       <ion-select placeholder="Selecione" formControlName="car">
-        <ion-select-option *ngFor="let item of cars" value="item.id">{{item.name}}</ion-select-option>
+        <ion-select-option *ngFor="let item of cars" value="{{item.id}}">{{item.name}}</ion-select-option>
       </ion-select>
     </ion-item>
   
