@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.Fuel;
-import br.com.taxidobarba.domain.dto.CarCashRegisterDTO;
-import br.com.taxidobarba.domain.dto.DriverCashRegisterDTO;
+import br.com.taxidobarba.domain.dto.SimpleCarResponseDTO;
+import br.com.taxidobarba.domain.dto.SimpleDriverResponseDTO;
 import br.com.taxidobarba.domain.dto.FuelRequestDTO;
 import br.com.taxidobarba.domain.dto.FuelResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
@@ -65,8 +65,8 @@ public class FuelServiceBean implements FuelService{
     }
     
     private FuelResponseDTO entityToResponseDto(Fuel fuel) {
-        CarCashRegisterDTO carDto = createCarCashRegisterDTO(fuel.getCar());
-        DriverCashRegisterDTO driverDto = createDriverCashRegisterDTO(fuel.getDriver());
+        SimpleCarResponseDTO carDto = new SimpleCarResponseDTO(fuel.getCar());
+        SimpleDriverResponseDTO driverDto = new SimpleDriverResponseDTO(fuel.getDriver());
         
         return new FuelResponseDTO.FuelResponseBuilder()
                 .wihtCar(carDto)
@@ -77,20 +77,6 @@ public class FuelServiceBean implements FuelService{
                 .withLiters(fuel.getLiters())
                 .withPrice(fuel.getPrice())
                 .build();
-    }
-    
-    private CarCashRegisterDTO createCarCashRegisterDTO(Car car) {
-        return new CarCashRegisterDTO.CarCashRegisterBuilder()
-                    .withId(car.getId())
-                    .withName(car.getName())
-                    .build();
-    }
-    
-    private DriverCashRegisterDTO createDriverCashRegisterDTO(Driver driver) {
-        return new DriverCashRegisterDTO.DriverCashRegisterBuilder()
-                    .withId(driver.getId())
-                    .withName(driver.getName())
-                    .build();
     }
     
     private Car findCarById(String id) {

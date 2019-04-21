@@ -5,8 +5,8 @@ import java.time.LocalDate;
 
 public class CashRegisterTravelResponseDTO {
 
-    private CarCashRegisterDTO car;
-    private DriverCashRegisterDTO driver;
+    private SimpleCarResponseDTO car;
+    private SimpleDriverResponseDTO driver;
     private BigDecimal percentualDriver;
     private BigDecimal valueDriver;
     private String city;
@@ -24,12 +24,12 @@ public class CashRegisterTravelResponseDTO {
             dto = new CashRegisterTravelResponseDTO();
         }
 
-        public CashRegisterTravelResponseBuilder withCar(CarCashRegisterDTO car) {
+        public CashRegisterTravelResponseBuilder withCar(SimpleCarResponseDTO car) {
             dto.car = car;
             return this;
         }
 
-        public CashRegisterTravelResponseBuilder withDriver(DriverCashRegisterDTO driver) {
+        public CashRegisterTravelResponseBuilder withDriver(SimpleDriverResponseDTO driver) {
             dto.driver = driver;
             return this;
         }
@@ -80,11 +80,11 @@ public class CashRegisterTravelResponseDTO {
 
     }
 
-    public CarCashRegisterDTO getCar() {
+    public SimpleCarResponseDTO getCar() {
         return car;
     }
 
-    public DriverCashRegisterDTO getDriver() {
+    public SimpleDriverResponseDTO getDriver() {
         return driver;
     }
 
