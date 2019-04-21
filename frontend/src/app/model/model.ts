@@ -66,3 +66,19 @@ class MonthlyReport {
     report: Array<MonthlyReportItem>
     amount: Amount;
 }
+
+class AnnualSummaryItem {
+    month: string;
+    grossValue: number;
+    netValue: number;
+}
+
+class AmountAnnualSummary {
+    grossValue: number;
+    netValue: number;
+}
+
+class AnnualSummary {
+    annualSummary: Array<AnnualSummaryItem>;
+    amount: AmountAnnualSummary;   
+}
