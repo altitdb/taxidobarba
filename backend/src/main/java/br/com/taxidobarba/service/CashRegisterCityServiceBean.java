@@ -13,10 +13,10 @@ import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.CashRegisterCity;
 import br.com.taxidobarba.domain.CashRegisterCity.CashRegisterCityBuilder;
 import br.com.taxidobarba.domain.Driver;
-import br.com.taxidobarba.domain.dto.CarCashRegisterDTO;
+import br.com.taxidobarba.domain.dto.SimpleCarResponseDTO;
 import br.com.taxidobarba.domain.dto.CashRegisterCityRequestDTO;
 import br.com.taxidobarba.domain.dto.CashRegisterCityResponseDTO;
-import br.com.taxidobarba.domain.dto.DriverCashRegisterDTO;
+import br.com.taxidobarba.domain.dto.SimpleDriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
@@ -138,8 +138,9 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
     }
     
     private CashRegisterCityResponseDTO entityToResponseDto(CashRegisterCity city) {
-        CarCashRegisterDTO carDto = createCarCashRegisterDTO(city.getCar());
-        DriverCashRegisterDTO driverDto = createDriverCashRegisterDTO(city.getDriver());
+        SimpleCarResponseDTO carDto = new SimpleCarResponseDTO(city.getCar());
+        SimpleDriverResponseDTO driverDto = new SimpleDriverResponseDTO(city.getDriver());
+        
         return new CashRegisterCityResponseDTO.CashRegisterCityResponseBuilder()
                 .withCar(carDto)
                 .withDriver(driverDto)
@@ -154,21 +155,6 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
                 .withTotalReceived(city.getTotalReceived())
                 .build();
     }
-    
-    private CarCashRegisterDTO createCarCashRegisterDTO(Car car) {
-        return new CarCashRegisterDTO.CarCashRegisterBuilder()
-                    .withId(car.getId())
-                    .withName(car.getName())
-                    .build();
-    }
-    
-    private DriverCashRegisterDTO createDriverCashRegisterDTO(Driver driver) {
-        return new DriverCashRegisterDTO.DriverCashRegisterBuilder()
-                    .withId(driver.getId())
-                    .withName(driver.getName())
-                    .build();
-    }
-    
     
     private Car findCarById(String id) {
         LOG.info("Buscando carro...");

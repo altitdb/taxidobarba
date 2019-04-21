@@ -20,9 +20,9 @@ public class FuelRequestDTO {
     @NotNull
     private LocalDate date;
     @NotNull
-    private String carId;
+    private String car;
     @NotNull
-    private String driverId;
+    private String driver;
 
     public BigDecimal getKm() {
         return km;
@@ -40,18 +40,18 @@ public class FuelRequestDTO {
         return date;
     }
 
-    public String getCarId() {
-        return carId;
+    public String getCar() {
+        return car;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public String getDriver() {
+        return driver;
     }
 
     @Override
     public String toString() {
-        return "FuelResquestDTO [km=" + km + ", liters=" + liters + ", price=" + price + ", date=" + date + ", carId="
-                + carId + ", driverId=" + driverId + "]";
+        return "FuelRequestDTO [km=" + km + ", liters=" + liters + ", price=" + price + ", date=" + date + ", car="
+                + car + ", driver=" + driver + "]";
     }
 
 }
