@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.CashRegisterTravel;
+import br.com.taxidobarba.domain.CashRegisterTravel.CashRegisterTravelBuilder;
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.dto.CarCashRegisterDTO;
 import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
@@ -44,8 +45,27 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         
         return entityToResponseDto(cashRegisterTravel);
     }
-
+    
+    @Override
+    public CashRegisterTravelResponseDTO update(String id, CashRegisterTravelRequestDTO request) {
+        LOG.info("Dados recebidos no request: {}", request);
+        
+        CashRegisterTravel travel = findCashRegisterTravelById(id);
+        
+        requestDtoToEntity(travel, request);
+        
+        LOG.info("Persistindo cashTravel...");
+        cashTravelRepository.save(travel);
+        LOG.info("Dados persistidos.");
+        
+        return entityToResponseDto(travel);
+    }
+    
     private CashRegisterTravel requestDtoToEntity(CashRegisterTravelRequestDTO request) {
+        return requestDtoToEntity(null, request);
+    }
+
+    private CashRegisterTravel requestDtoToEntity(CashRegisterTravel travel, CashRegisterTravelRequestDTO request) {
         Car car = findCarById(request.getCar());
         Driver driver = findDriverById(request.getDriver());
 
@@ -56,18 +76,23 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         BigDecimal averagePriceKm = calculateAveragePriceKm(price, km);
         BigDecimal netValue = price.subtract(valueDriver);
 
-        return new CashRegisterTravel.CashRegisterTravelBuilder()
-                                .withCar(car)
-                                .withAveragePriceKm(averagePriceKm)
-                                .withCity(request.getCity())
-                                .withDate(request.getDate())
-                                .withDriver(driver)
-                                .withKm(km)
-                                .withNetValue(netValue)
-                                .withPercentualDriver(percentualDriver)
-                                .withPrice(price)
-                                .withValueDriver(valueDriver)
-                                .build();
+        CashRegisterTravelBuilder builder = new CashRegisterTravelBuilder();
+        
+        if(travel != null) {
+            builder = builder.forUpdate(travel);
+        }
+        
+        return builder.withCar(car)
+                      .withAveragePriceKm(averagePriceKm)
+                      .withCity(request.getCity())
+                      .withDate(request.getDate())
+                      .withDriver(driver)
+                      .withKm(km)
+                      .withNetValue(netValue)
+                      .withPercentualDriver(percentualDriver)
+                      .withPrice(price)
+                      .withValueDriver(valueDriver)
+                      .build();
     }
 
     private CashRegisterTravelResponseDTO entityToResponseDto(CashRegisterTravel travel) {
@@ -120,6 +145,11 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     private Driver findDriverById(String id) {
         LOG.info("Buscando motorista...");
         return driverRepository.findById(id).orElseThrow(() -> new BusinessException("Motorista nao localizado."));
+    }
+    
+    private CashRegisterTravel findCashRegisterTravelById(String id) {
+        LOG.info("Buscando travel...");
+        return cashTravelRepository.findById(id).orElseThrow(() -> new BusinessException("CashRegisterTravel nao localizado."));
     }
 
 }
