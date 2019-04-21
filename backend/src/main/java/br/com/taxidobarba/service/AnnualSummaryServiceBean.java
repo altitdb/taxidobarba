@@ -18,8 +18,10 @@ import br.com.taxidobarba.business.results.annualsummary.AnnualSummaryDTO;
 import br.com.taxidobarba.business.results.annualsummary.SummaryDTO;
 import br.com.taxidobarba.domain.CashRegisterCity;
 import br.com.taxidobarba.domain.CashRegisterTravel;
+import br.com.taxidobarba.domain.Fuel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
+import br.com.taxidobarba.repository.FuelRepository;
 
 @Service
 public class AnnualSummaryServiceBean implements AnnualSummaryService{
@@ -30,6 +32,8 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
     private CashRegisterCityRepository cashRegisterCityRepository;
     @Autowired
     private CashRegisterTravelRepository cashRegisterTravelRepository;
+    @Autowired
+    private FuelRepository fuelRepository;
     
     @Override
     public AnnualSummaryDTO generate() {
@@ -59,11 +63,14 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
             BigDecimal grossValueTravel;
             BigDecimal netValueCity;
             BigDecimal grossValueCity;
+            BigDecimal spent;
             String month = getFormattedDate(date);
             LocalDate lastDayOfMonth = date.with(TemporalAdjusters.lastDayOfMonth());
 
             List<CashRegisterCity> cashRegisterCities = getCashRegistersCities(date, lastDayOfMonth);
             List<CashRegisterTravel> cashRegisterTravels = getCashRegistersTravels(date, lastDayOfMonth);
+            List<Fuel> fuels = getFuels(date, lastDayOfMonth);
+            
             
             grossValueCity = cashRegisterCities.stream()
                                       .map(CashRegisterCity::getTotalReceived)
@@ -72,10 +79,12 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
             grossValueTravel = cashRegisterTravels.stream()
                                          .map(CashRegisterTravel::getPrice)
                                          .reduce(BigDecimal.ZERO, BigDecimal::add);
+            
+            spent = fuels.stream()
+                        .map(Fuel::getPrice)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-            netValueCity = cashRegisterCities.stream()
-                                      .map(CashRegisterCity::getPrice)
-                                      .reduce(BigDecimal.ZERO, BigDecimal::add);
+            netValueCity = grossValueCity.subtract(spent);
             
             netValueTravel =  cashRegisterTravels.stream()
                                          .map(CashRegisterTravel::getNetValue)
@@ -111,6 +120,10 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
     
     private List<CashRegisterTravel> getCashRegistersTravels(LocalDate initialDate, LocalDate finalDate){
         return cashRegisterTravelRepository.findByDateBetween(initialDate, finalDate);
+    }
+    
+    private List<Fuel> getFuels(LocalDate initialDate, LocalDate finalDate){
+        return fuelRepository.findByDateBetween(initialDate, finalDate);
     }
     
     private AmountDTO loadAmount(List<SummaryDTO> annualSummary) {
