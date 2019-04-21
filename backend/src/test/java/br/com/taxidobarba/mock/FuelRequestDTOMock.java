@@ -19,8 +19,8 @@ public class FuelRequestDTOMock extends GenericRequestDTOMock{
         attributes.put("liters", BigDecimal.TEN);
         attributes.put("price", BigDecimal.ONE);
         attributes.put("date", LocalDate.now());
-        attributes.put("carId", "aptoy548erfd21");
-        attributes.put("driverId", "aptoy548erfd21");
+        attributes.put("car", "aptoy548erfd21");
+        attributes.put("driver", "aptoy548erfd21");
         
         return createRequestDto(fuelRequestDTO, attributes);
 

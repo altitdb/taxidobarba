@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.Fuel;
+import br.com.taxidobarba.domain.dto.CarCashRegisterDTO;
+import br.com.taxidobarba.domain.dto.DriverCashRegisterDTO;
 import br.com.taxidobarba.domain.dto.FuelRequestDTO;
+import br.com.taxidobarba.domain.dto.FuelResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
@@ -30,17 +33,21 @@ public class FuelServiceBean implements FuelService{
     private DriverRepository driverRepository;
     
     @Override
-    public void save(FuelRequestDTO request) {
+    public FuelResponseDTO save(FuelRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
+        
         LOG.info("Persistindo dados...");
-        Fuel fuel = fuelRequestDtoToEntity(request);
+        Fuel fuel = requestDtoToEntity(request);
         repository.save(fuel);
         LOG.info("Dados persistidos.");
+        
+        return entityToResponseDto(fuel);
+        
     }
     
-    private Fuel fuelRequestDtoToEntity(FuelRequestDTO request) {
-        Car car = findCarById(request.getCarId());
-        Driver driver = findDriverById(request.getDriverId());
+    private Fuel requestDtoToEntity(FuelRequestDTO request) {
+        Car car = findCarById(request.getCar());
+        Driver driver = findDriverById(request.getDriver());
         
         BigDecimal price = request.getPrice();
         BigDecimal liters = request.getLiters();
@@ -55,6 +62,35 @@ public class FuelServiceBean implements FuelService{
                 .withLiters(liters)
                 .withPrice(price)
                 .build();
+    }
+    
+    private FuelResponseDTO entityToResponseDto(Fuel fuel) {
+        CarCashRegisterDTO carDto = createCarCashRegisterDTO(fuel.getCar());
+        DriverCashRegisterDTO driverDto = createDriverCashRegisterDTO(fuel.getDriver());
+        
+        return new FuelResponseDTO.FuelResponseBuilder()
+                .wihtCar(carDto)
+                .withDate(fuel.getDate())
+                .withDriver(driverDto)
+                .withFuelPrice(fuel.getFuelPrice())
+                .withKm(fuel.getKm())
+                .withLiters(fuel.getLiters())
+                .withPrice(fuel.getPrice())
+                .build();
+    }
+    
+    private CarCashRegisterDTO createCarCashRegisterDTO(Car car) {
+        return new CarCashRegisterDTO.CarCashRegisterBuilder()
+                    .withId(car.getId())
+                    .withName(car.getName())
+                    .build();
+    }
+    
+    private DriverCashRegisterDTO createDriverCashRegisterDTO(Driver driver) {
+        return new DriverCashRegisterDTO.DriverCashRegisterBuilder()
+                    .withId(driver.getId())
+                    .withName(driver.getName())
+                    .build();
     }
     
     private Car findCarById(String id) {

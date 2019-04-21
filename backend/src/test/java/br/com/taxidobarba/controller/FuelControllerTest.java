@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Optional;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -34,15 +35,21 @@ public class FuelControllerTest extends ControllerTest {
     private DriverRepository driverRepository;
     @MockBean
     private FuelRepository repository;
-    private FuelRequestDTO fuelRequest = FuelRequestDTOMock.mock();
+    private FuelRequestDTO fuelRequest;
     @Mock
     private Car car;
     @Mock
     private Driver driver;
     
+    @Before
+    public void init() {
+        fuelRequest = FuelRequestDTOMock.mock();
+        BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
+        BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(car));
+    }
+    
     @Test
     public void shouldValidateRequestWithCarIdNonExistentHttpStatusBadRequest() {
-        BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
         BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
         try {
             String json = mapper.writeValueAsString(fuelRequest);
@@ -58,7 +65,6 @@ public class FuelControllerTest extends ControllerTest {
     
     @Test
     public void shouldValidateRequestWithDriverIdNonExistentHttpStatusBadRequest() {
-        BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(car));
         BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
         try {
             String json = mapper.writeValueAsString(fuelRequest);
@@ -74,8 +80,6 @@ public class FuelControllerTest extends ControllerTest {
     
     @Test
     public void shouldSaveFueltHttpStatusAccepted() {
-        BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(car));
-        BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
         try {
             String json = mapper.writeValueAsString(fuelRequest);
             mockMvc.perform(post("/api/v1/fuel")
