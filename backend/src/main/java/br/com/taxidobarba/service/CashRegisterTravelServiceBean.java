@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.CashRegisterTravel;
 import br.com.taxidobarba.domain.Driver;
+import br.com.taxidobarba.domain.dto.CarCashRegisterDTO;
 import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
+import br.com.taxidobarba.domain.dto.CashRegisterTravelResponseDTO;
+import br.com.taxidobarba.domain.dto.DriverCashRegisterDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
@@ -30,20 +33,24 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     private CashRegisterTravelRepository cashTravelRepository;
 
     @Override
-    public void save(CashRegisterTravelRequestDTO request) {
+    public CashRegisterTravelResponseDTO save(CashRegisterTravelRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
-        CashRegisterTravel cashRegisterTravel = cashRegisterTravelRequestDtoToEntity(request);
+        
+        CashRegisterTravel cashRegisterTravel = requestDtoToEntity(request);
+        
         LOG.info("Persistindo cashTravel...");
         cashTravelRepository.save(cashRegisterTravel);
         LOG.info("Dados persistidos.");
+        
+        return entityToResponseDto(cashRegisterTravel);
     }
 
-    private CashRegisterTravel cashRegisterTravelRequestDtoToEntity(CashRegisterTravelRequestDTO request) {
+    private CashRegisterTravel requestDtoToEntity(CashRegisterTravelRequestDTO request) {
         Car car = findCarById(request.getCar());
         Driver driver = findDriverById(request.getDriver());
 
         BigDecimal price = request.getPrice();
-        BigDecimal percentualDriver = request.getPercentualDriver();
+        BigDecimal percentualDriver = driver.getPercentualTravel();
         BigDecimal km = request.getKm();
         BigDecimal valueDriver = calculateValueDriver(price, percentualDriver);
         BigDecimal averagePriceKm = calculateAveragePriceKm(price, km);
@@ -63,6 +70,38 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
                                 .build();
     }
 
+    private CashRegisterTravelResponseDTO entityToResponseDto(CashRegisterTravel travel) {
+        CarCashRegisterDTO carDto = createCarCashRegisterDTO(travel.getCar());
+        DriverCashRegisterDTO driverDto = createDriverCashRegisterDTO(travel.getDriver());
+        
+        return new CashRegisterTravelResponseDTO.CashRegisterTravelResponseBuilder()
+                .withAveragePriceKm(travel.getAveragePriceKm())
+                .withCar(carDto)
+                .withCity(travel.getCity())
+                .withDate(travel.getDate())
+                .withDriver(driverDto)
+                .withKm(travel.getKm())
+                .withNetValue(travel.getNetValue())
+                .withPercentualDriver(travel.getPercentualDriver())
+                .withPrice(travel.getPrice())
+                .withValueDriver(travel.getValueDriver())
+                .build();
+    }
+    
+    private CarCashRegisterDTO createCarCashRegisterDTO(Car car) {
+        return new CarCashRegisterDTO.CarCashRegisterBuilder()
+                    .withId(car.getId())
+                    .withName(car.getName())
+                    .build();
+    }
+    
+    private DriverCashRegisterDTO createDriverCashRegisterDTO(Driver driver) {
+        return new DriverCashRegisterDTO.DriverCashRegisterBuilder()
+                    .withId(driver.getId())
+                    .withName(driver.getName())
+                    .build();
+    }
+    
     private BigDecimal calculateValueDriver(BigDecimal price, BigDecimal percentualDriver) {
         LOG.info("Calculando valor motorista...");
         return price.multiply((percentualDriver).divide(new BigDecimal(100), MathContext.DECIMAL32));
