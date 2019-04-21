@@ -82,3 +82,23 @@ class AnnualSummary {
     annualSummary: Array<AnnualSummaryItem>;
     amount: AmountAnnualSummary;   
 }
+
+class MonthlyGoalItem {
+    date: Date;
+    goal: number;
+    lastMonth: number;
+    actualMonth: number;
+    percentage: number;
+}
+
+class MonthGoalSummary {
+    goal: number;
+    lastMonth: number;
+    actualMonth: number;
+    percentage: number;
+}
+
+class MonthlyGoal {
+    goal: Array<MonthlyGoalItem>;
+    summary: MonthGoalSummary;
+}

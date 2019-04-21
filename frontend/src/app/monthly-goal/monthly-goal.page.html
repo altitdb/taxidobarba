@@ -1,9 +1,70 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>monthly-goal</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Taxi do Barba
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        Data
+      </ion-col>
+      <ion-col class="ion-text-center">
+        Meta
+      </ion-col>
+      <ion-col class="ion-text-center">
+        Anterior
+      </ion-col>
+      <ion-col class="ion-text-center">
+        Atual
+      </ion-col>
+      <ion-col class="ion-text-center">
+        %
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of report">
+      <ion-item-divider color="light">
+        <ion-col class="ion-text-center">
+          {{ item.date }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ item.goal }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ item.lastMonth }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ item.actualMonth }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ item.percentage }}
+        </ion-col>
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider color="light">
+        <ion-col class="ion-text-center">
+          Total
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ summary && summary.goal }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ summary && summary.lastMonth }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ summary && summary.actualMonth }}
+        </ion-col>
+        <ion-col class="ion-text-end">
+          {{ summary && summary.percentage }}
+        </ion-col>
+      </ion-item-divider>
+    </ion-row>
+  </ion-grid>
 </ion-content>
