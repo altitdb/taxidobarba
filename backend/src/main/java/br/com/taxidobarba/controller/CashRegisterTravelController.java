@@ -5,7 +5,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,12 @@ public class CashRegisterTravelController {
     public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> save(
             @RequestBody @Valid CashRegisterTravelRequestDTO request) {
         return new ResponseEntity<>(service.save(request), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping(value = "/api/v1/cash/travel/{id}")
+    public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> update(@PathVariable("id") String id,
+            @RequestBody @Valid CashRegisterTravelRequestDTO request) {
+        return new ResponseEntity<>(service.update(request), HttpStatus.ACCEPTED);
     }
 
 }
