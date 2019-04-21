@@ -7,6 +7,6 @@ public interface CashRegisterTravelService {
 
     public CashRegisterTravelResponseDTO save(CashRegisterTravelRequestDTO request);
 
-    public CashRegisterTravelResponseDTO update(CashRegisterTravelRequestDTO request);
+    public CashRegisterTravelResponseDTO update(String id, CashRegisterTravelRequestDTO request);
 
 }
