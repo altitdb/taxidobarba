@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 
 public class AmountDTO {
 
-    private BigDecimal amount;
+    private BigDecimal grossValue;
+    private BigDecimal netValue;
 
     public static class AmountBuilder {
 
@@ -14,8 +15,13 @@ public class AmountDTO {
             dto = new AmountDTO();
         }
 
-        public AmountBuilder withAmount(BigDecimal amount) {
-            dto.amount = amount;
+        public AmountBuilder withGrossValue(BigDecimal grossValue) {
+            dto.grossValue = grossValue;
+            return this;
+        }
+
+        public AmountBuilder withNetValue(BigDecimal netValue) {
+            dto.netValue = netValue;
             return this;
         }
 
@@ -25,8 +31,12 @@ public class AmountDTO {
 
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getGrossValue() {
+        return grossValue;
+    }
+
+    public BigDecimal getNetValue() {
+        return netValue;
     }
 
 }

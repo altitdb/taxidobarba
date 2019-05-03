@@ -14,6 +14,7 @@ import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
+import br.com.taxidobarba.repository.FuelRepository;
 import br.com.taxidobarba.service.MonthlyReportService;
 
 @RunWith(SpringRunner.class)
@@ -28,6 +29,8 @@ public class MonthlyReportControllerTest extends ControllerTest {
     private CarRepository carRepository;
     @MockBean
     private DriverRepository driverRepository;
+    @MockBean
+    private FuelRepository fuelRepository;
     
     @Test
     public void shouldReturnHttpStatusOk() {

@@ -22,8 +22,10 @@ import br.com.taxidobarba.business.results.monthlyreport.MonthlyReportDTO;
 import br.com.taxidobarba.business.results.monthlyreport.ReportDTO;
 import br.com.taxidobarba.domain.CashRegisterCity;
 import br.com.taxidobarba.domain.CashRegisterTravel;
+import br.com.taxidobarba.domain.Fuel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
+import br.com.taxidobarba.repository.FuelRepository;
 
 @Service
 public class MonthlyReportServiceBean implements MonthlyReportService {
@@ -34,15 +36,18 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
     private CashRegisterCityRepository cashRegisterCityRepository;
     @Autowired
     private CashRegisterTravelRepository cashRegisterTravelRepository;
+    @Autowired
+    private FuelRepository fuelRepository;
     private List<CashRegisterCity> cashRegisterCities;
     private List<CashRegisterTravel> cashRegisterTravels;
+    private List<Fuel> fuels;
     private LocalDate initialDate;
     private LocalDate finalDate;
 
     @Override
-    public MonthlyReportDTO generate() {
+    public MonthlyReportDTO generate(Integer month, Integer year) {
         LOG.info("generate...");
-        initialize();
+        initialize(month, year);
         List<ReportDTO> report = loadReport();
         AmountDTO amount = loadAmount(report);
 
@@ -52,16 +57,25 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
                     .build();
     }
 
-    private void initialize() {
+    private void initialize(Integer month, Integer year) {
         LOG.info("initialize...");
+        
+        if(month == null || month > 12) {
+            month = LocalDate.now().getMonthValue();
+        }
 
-        initialDate = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
-        finalDate = LocalDate.now();
+        if(year == null) {
+            year = LocalDate.now().getYear();
+        }
+        
+        initialDate = LocalDate.of(year, month, 1);
+        finalDate = initialDate.with(TemporalAdjusters.lastDayOfMonth());
 
         LOG.info("Periodo utilizado na consulta: {} a {}", initialDate, finalDate);
 
         cashRegisterCities = cashRegisterCityRepository.findByDateBetween(initialDate, finalDate);
         cashRegisterTravels = cashRegisterTravelRepository.findByDateBetween(initialDate, finalDate);
+        fuels = fuelRepository.findByDateBetween(initialDate, finalDate);
     }
 
     private List<ReportDTO> loadReport() {
@@ -75,11 +89,16 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
     
     private AmountDTO loadAmount(List<ReportDTO> reports) {
         LOG.info("loadAmount...");
-        BigDecimal amount = reports.stream()
+        BigDecimal grossValue = reports.stream()
+                                   .filter(report -> report.getType() != CashRegisterType.FUEL)
                                    .map(ReportDTO::getValue)
                                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        BigDecimal spent = calculateSpent(reports);
+        
         return new AmountDTO.AmountBuilder()
-                        .withAmount(amount)
+                        .withGrossValue(grossValue)
+                        .withNetValue(grossValue.subtract(spent))
                         .build();
     }
 
@@ -91,6 +110,7 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
         cashRegisterCities.stream()
          .forEach(city -> {
             ReportDTO dto = new ReportDTO.ReportBuilder()
+                    .withId(city.getId())
                     .withDate(dateFormatted(city.getDate()))
                     .withDriver(city.getDriver().getName())
                     .withKm(city.getKm())
@@ -104,6 +124,7 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
         cashRegisterTravels.stream()
          .forEach(travel ->{
              ReportDTO dto = new ReportDTO.ReportBuilder()
+                     .withId(travel.getId())
                      .withDate(dateFormatted(travel.getDate()))
                      .withDriver(travel.getDriver().getName())
                      .withKm(travel.getKm())
@@ -113,6 +134,20 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
              
              reports.add(dto);
          });
+        
+        fuels.stream()
+            .forEach(fuel -> {
+                ReportDTO dto = new ReportDTO.ReportBuilder()
+                        .withId(fuel.getId())
+                        .withDate(dateFormatted(fuel.getDate()))
+                        .withDriver(fuel.getDriver().getName())
+                        .withKm(fuel.getKm())
+                        .withType(CashRegisterType.FUEL)
+                        .withValue(fuel.getPrice())
+                        .build();
+                
+                reports.add(dto);
+            });
         
         return reports;
     }
@@ -136,6 +171,32 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
                         
                 })
             );
+    }
+    
+    private BigDecimal calculateSpent(List<ReportDTO> reports) {
+        
+        List<String> travelIds = reports.stream()
+                                    .filter(report -> report.getType().equals(CashRegisterType.TRAVEL))
+                                    .map(ReportDTO::getId)
+                                    .collect(Collectors.toList());
+        
+        BigDecimal fuelValue = reports.stream()
+                                      .filter(report -> report.getType().equals(CashRegisterType.FUEL))
+                                      .map(ReportDTO::getValue)
+                                      .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        List<CashRegisterTravel> travels = cashRegisterTravelRepository.findByIdIn(travelIds);
+        
+        BigDecimal travelValue = travels.stream()
+                                        .map(CashRegisterTravel::getNetValue)
+                                        .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        BigDecimal cityValue = reports.stream()
+                                      .filter(report -> report.getType().equals(CashRegisterType.CITY))
+                                      .map(ReportDTO::getValue)
+                                      .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        return travelValue.add(cityValue).add(fuelValue);
     }
     
     private List<ReportDTO> orderedReports(List<ReportDTO> reports) {

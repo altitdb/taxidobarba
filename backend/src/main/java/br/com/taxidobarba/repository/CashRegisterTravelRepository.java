@@ -14,5 +14,7 @@ public interface CashRegisterTravelRepository extends MongoRepository<CashRegist
 
     @Query(value = "{ 'date' : {$gte : ?0, $lte: ?1 }}")
     public List<CashRegisterTravel> findByDateBetween(LocalDate initialDate, LocalDate finalDate);
+    
+    public List<CashRegisterTravel> findByIdIn(List<String> ids);
 
 }

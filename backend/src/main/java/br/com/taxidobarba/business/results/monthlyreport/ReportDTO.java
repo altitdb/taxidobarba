@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class ReportDTO {
 
+    private String id;
     private String date;
     private BigDecimal value;
     private BigDecimal km;
@@ -18,6 +19,11 @@ public class ReportDTO {
             dto = new ReportDTO();
         }
 
+        public ReportBuilder withId(String id) {
+            dto.id = id;
+            return this;
+        }
+        
         public ReportBuilder withDate(String date) {
             dto.date = date;
             return this;
@@ -48,6 +54,10 @@ public class ReportDTO {
         }
     }
 
+    public String getId() {
+        return id;
+    }
+    
     public String getDate() {
         return date;
     }
