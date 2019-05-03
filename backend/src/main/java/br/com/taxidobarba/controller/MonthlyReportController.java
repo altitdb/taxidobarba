@@ -18,8 +18,9 @@ public class MonthlyReportController {
     private MonthlyReportService service;
 
     @GetMapping(value = "/api/v1/monthly-report")
-    public @ResponseBody ResponseEntity<MonthlyReportDTO> generate(@RequestParam("month") Integer month,
-            @RequestParam("year") Integer year) {
+    public @ResponseBody ResponseEntity<MonthlyReportDTO> generate(
+            @RequestParam(value = "month", required = false) Integer month,
+            @RequestParam(value = "year", required = false) Integer year) {
         return new ResponseEntity<>(service.generate(month, year), HttpStatus.OK);
     }
 }
