@@ -188,15 +188,10 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
         List<CashRegisterTravel> travels = cashRegisterTravelRepository.findByIdIn(travelIds);
         
         BigDecimal travelValue = travels.stream()
-                                        .map(CashRegisterTravel::getNetValue)
+                                        .map(CashRegisterTravel::getValueDriver)
                                         .reduce(BigDecimal.ZERO, BigDecimal::add);
         
-        BigDecimal cityValue = reports.stream()
-                                      .filter(report -> report.getType().equals(CashRegisterType.CITY))
-                                      .map(ReportDTO::getValue)
-                                      .reduce(BigDecimal.ZERO, BigDecimal::add);
-        
-        return travelValue.add(cityValue).add(fuelValue);
+        return travelValue.add(fuelValue);
     }
     
     private List<ReportDTO> orderedReports(List<ReportDTO> reports) {
