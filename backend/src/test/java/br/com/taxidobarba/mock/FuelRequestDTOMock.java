@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.taxidobarba.domain.dto.FuelRequestDTO;
+import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
 
 public class FuelRequestDTOMock extends GenericRequestDTOMock{
 

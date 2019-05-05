@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.taxidobarba.domain.Car;
-import br.com.taxidobarba.domain.dto.CarRequestDTO;
+import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.mock.CarRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;

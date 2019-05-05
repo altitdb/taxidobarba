@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.taxidobarba.domain.dto.DriverRequestDTO;
+import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
 
 public class DriverResquestDTOMock extends GenericRequestDTOMock{
 

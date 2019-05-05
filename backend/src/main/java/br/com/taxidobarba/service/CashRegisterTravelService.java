@@ -1,7 +1,7 @@
 package br.com.taxidobarba.service;
 
-import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
-import br.com.taxidobarba.domain.dto.CashRegisterTravelResponseDTO;
+import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
+import br.com.taxidobarba.domain.response.dto.CashRegisterTravelResponseDTO;
 
 public interface CashRegisterTravelService {
 

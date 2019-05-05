@@ -1,4 +1,4 @@
-package br.com.taxidobarba.domain.dto;
+package br.com.taxidobarba.domain.response.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

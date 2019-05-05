@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
+import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
 
 public class CashRegisterTravelRequestDTOMock extends GenericRequestDTOMock {
 

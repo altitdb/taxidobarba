@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.dto.FuelRequestDTO;
-import br.com.taxidobarba.domain.dto.FuelResponseDTO;
+import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
+import br.com.taxidobarba.domain.response.dto.FuelResponseDTO;
 import br.com.taxidobarba.service.FuelService;
 
 @RestController

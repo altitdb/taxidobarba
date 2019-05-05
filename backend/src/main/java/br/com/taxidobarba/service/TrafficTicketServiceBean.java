@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.Driver;
 import br.com.taxidobarba.domain.TrafficTicket;
-import br.com.taxidobarba.domain.dto.TrafficTicketRequestDTO;
+import br.com.taxidobarba.domain.request.dto.TrafficTicketRequestDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;

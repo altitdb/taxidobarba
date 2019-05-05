@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.taxidobarba.domain.dto.DriverRequestDTO;
-import br.com.taxidobarba.domain.dto.DriverResponseDTO;
+import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
+import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 
 public interface DriverService {
 

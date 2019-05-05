@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.dto.DriverRequestDTO;
-import br.com.taxidobarba.domain.dto.DriverResponseDTO;
+import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
+import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 import br.com.taxidobarba.service.DriverService;
 
 @RestController

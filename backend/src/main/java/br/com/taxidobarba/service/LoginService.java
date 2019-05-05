@@ -1,6 +1,6 @@
 package br.com.taxidobarba.service;
 
-import br.com.taxidobarba.domain.dto.LoginRequestDTO;
+import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 
 public interface LoginService {
 

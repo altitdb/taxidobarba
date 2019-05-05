@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.dto.TrafficTicketRequestDTO;
+import br.com.taxidobarba.domain.request.dto.TrafficTicketRequestDTO;
 import br.com.taxidobarba.service.TrafficTicketService;
 
 @RestController

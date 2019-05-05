@@ -14,8 +14,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.taxidobarba.domain.Driver;
-import br.com.taxidobarba.domain.dto.DriverRequestDTO;
-import br.com.taxidobarba.domain.dto.DriverResponseDTO;
+import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
+import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
 import br.com.taxidobarba.repository.DriverRepository;
