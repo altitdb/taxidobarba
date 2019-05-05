@@ -15,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.taxidobarba.domain.User;
-import br.com.taxidobarba.domain.dto.LoginRequestDTO;
+import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 import br.com.taxidobarba.mock.LoginRequestDTOMock;
 import br.com.taxidobarba.mock.UserMock;
 import br.com.taxidobarba.repository.UserRepository;

@@ -3,7 +3,7 @@ package br.com.taxidobarba.mock;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.taxidobarba.domain.dto.LoginRequestDTO;
+import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 
 public class LoginRequestDTOMock extends GenericRequestDTOMock {
 

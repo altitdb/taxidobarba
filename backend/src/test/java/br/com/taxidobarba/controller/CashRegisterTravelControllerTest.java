@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.CashRegisterTravel;
 import br.com.taxidobarba.domain.Driver;
-import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
+import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
 import br.com.taxidobarba.mock.CashRegisterTravelRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;

@@ -3,7 +3,7 @@ package br.com.taxidobarba.mock;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.taxidobarba.domain.dto.DriverResponseDTO;
+import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 
 public class DriverResponseDTOMock {
 

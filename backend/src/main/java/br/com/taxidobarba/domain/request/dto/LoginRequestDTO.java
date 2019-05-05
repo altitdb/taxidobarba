@@ -1,4 +1,4 @@
-package br.com.taxidobarba.domain.dto;
+package br.com.taxidobarba.domain.request.dto;
 
 import javax.validation.constraints.NotEmpty;
 

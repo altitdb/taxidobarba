@@ -1,7 +1,7 @@
 package br.com.taxidobarba.service;
 
-import br.com.taxidobarba.domain.dto.FuelRequestDTO;
-import br.com.taxidobarba.domain.dto.FuelResponseDTO;
+import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
+import br.com.taxidobarba.domain.response.dto.FuelResponseDTO;
 
 public interface FuelService {
 

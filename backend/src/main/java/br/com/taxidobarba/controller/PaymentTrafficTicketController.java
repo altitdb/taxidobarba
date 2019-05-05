@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
-import br.com.taxidobarba.domain.response.dto.FuelResponseDTO;
-import br.com.taxidobarba.service.FuelService;
+import br.com.taxidobarba.domain.request.dto.PaymentTrafficTicketRequestDTO;
+import br.com.taxidobarba.service.PaymentTrafficTicketService;
 
 @RestController
-public class FuelController {
+public class PaymentTrafficTicketController {
 
     @Autowired
-    private FuelService service;
-
-    @PostMapping(value = "/api/v1/fuel")
-    public @ResponseBody ResponseEntity<FuelResponseDTO> save(@RequestBody @Valid FuelRequestDTO request) {
-        return new ResponseEntity<>(service.save(request), HttpStatus.ACCEPTED);
+    private PaymentTrafficTicketService service;
+    
+    @PostMapping(value = "/api/v1/traffic-ticket/payment")
+    public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid PaymentTrafficTicketRequestDTO request){
+        service.save(request);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
+    
 }

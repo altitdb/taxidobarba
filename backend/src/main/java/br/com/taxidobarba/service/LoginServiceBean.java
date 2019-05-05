@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.taxidobarba.domain.User;
-import br.com.taxidobarba.domain.dto.LoginRequestDTO;
+import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 import br.com.taxidobarba.exception.AccessDeniedException;
 import br.com.taxidobarba.repository.UserRepository;
 import br.com.taxidobarba.utils.EncoderUtils;

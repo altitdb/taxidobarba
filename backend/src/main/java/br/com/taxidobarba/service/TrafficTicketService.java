@@ -1,6 +1,6 @@
 package br.com.taxidobarba.service;
 
-import br.com.taxidobarba.domain.dto.TrafficTicketRequestDTO;
+import br.com.taxidobarba.domain.request.dto.TrafficTicketRequestDTO;
 
 public interface TrafficTicketService {
 

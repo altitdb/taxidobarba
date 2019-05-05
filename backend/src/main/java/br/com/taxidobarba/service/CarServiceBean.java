@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.taxidobarba.domain.Car;
-import br.com.taxidobarba.domain.dto.CarRequestDTO;
-import br.com.taxidobarba.domain.dto.CarResponseDTO;
+import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
+import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 

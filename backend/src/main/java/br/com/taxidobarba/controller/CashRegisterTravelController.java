@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.dto.CashRegisterTravelRequestDTO;
-import br.com.taxidobarba.domain.dto.CashRegisterTravelResponseDTO;
+import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
+import br.com.taxidobarba.domain.response.dto.CashRegisterTravelResponseDTO;
 import br.com.taxidobarba.service.CashRegisterTravelService;
 
 @RestController

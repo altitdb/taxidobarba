@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.taxidobarba.domain.dto.CarRequestDTO;
-import br.com.taxidobarba.domain.dto.CarResponseDTO;
+import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
+import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
 import br.com.taxidobarba.service.CarService;
 
 @RestController
