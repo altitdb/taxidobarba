@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,6 +22,7 @@ import br.com.taxidobarba.domain.Fuel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.FuelRepository;
+import br.com.taxidobarba.service.spec.AnnualSummaryService;
 
 @Service
 public class AnnualSummaryServiceBean implements AnnualSummaryService{

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.monthlygoal.MonthlyGoalDTO;
-import br.com.taxidobarba.service.MonthlyGoalService;
+import br.com.taxidobarba.service.spec.MonthlyGoalService;
 
 @RestController
 public class MonthlyGoalController {

@@ -23,7 +23,7 @@ import br.com.taxidobarba.domain.request.dto.PaymentTrafficTicketRequestDTO;
 import br.com.taxidobarba.mock.PaymentTrafficTicketRequestDTOMock;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.PaymentTrafficTicketService;
+import br.com.taxidobarba.service.spec.PaymentTrafficTicketService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { PaymentTrafficTicketController.class, PaymentTrafficTicketService.class })

@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.spec;
 
 import br.com.taxidobarba.business.results.monthlyreport.MonthlyReportDTO;
 

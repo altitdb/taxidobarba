@@ -1,5 +1,6 @@
 package br.com.taxidobarba.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,8 +23,9 @@ import br.com.taxidobarba.domain.request.dto.TrafficTicketRequestDTO;
 import br.com.taxidobarba.mock.TrafficTicketRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
+import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.TrafficTicketService;
+import br.com.taxidobarba.service.spec.TrafficTicketService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { TrafficTicketController.class, TrafficTicketService.class })
@@ -35,6 +37,8 @@ public class TrafficTicketControllerTest extends ControllerTest{
     private DriverRepository driverRepository;
     @MockBean
     private TrafficTicketRepository trafficTicketRepository;
+    @MockBean
+    private PaymentTrafficTicketRepository paymentTrafficTicketRepository;
     @Mock
     private Car car;
     @Mock
@@ -103,6 +107,30 @@ public class TrafficTicketControllerTest extends ControllerTest{
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(status().isAccepted());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldReturnAllByOpenedStatusHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/traffic-ticket?status=OPENED")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldReturnAllByPaidStatusHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/traffic-ticket?status=PAID")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
         } catch (Exception e) {
             e.printStackTrace();
         }

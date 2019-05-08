@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +9,7 @@ import br.com.taxidobarba.domain.User;
 import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 import br.com.taxidobarba.exception.AccessDeniedException;
 import br.com.taxidobarba.repository.UserRepository;
+import br.com.taxidobarba.service.spec.LoginService;
 import br.com.taxidobarba.utils.EncoderUtils;
 
 @Service

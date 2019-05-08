@@ -27,7 +27,7 @@ import br.com.taxidobarba.mock.CashRegisterCityRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.CashRegisterCityServiceBean;
+import br.com.taxidobarba.service.impl.CashRegisterCityServiceBean;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = {CashRegisterCityController.class, CashRegisterCityServiceBean.class})

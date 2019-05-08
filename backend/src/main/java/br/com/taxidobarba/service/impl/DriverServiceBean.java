@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +16,7 @@ import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
 import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.DriverRepository;
+import br.com.taxidobarba.service.spec.DriverService;
 
 @Service
 public class DriverServiceBean implements DriverService {

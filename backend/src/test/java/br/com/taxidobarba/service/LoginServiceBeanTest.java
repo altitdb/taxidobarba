@@ -14,6 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 import br.com.taxidobarba.exception.AccessDeniedException;
 import br.com.taxidobarba.repository.UserRepository;
+import br.com.taxidobarba.service.impl.LoginServiceBean;
+import br.com.taxidobarba.service.spec.LoginService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { UserRepository.class, LoginRequestDTO.class, LoginServiceBean.class })

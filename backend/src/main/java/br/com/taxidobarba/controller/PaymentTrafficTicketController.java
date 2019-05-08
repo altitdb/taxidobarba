@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.PaymentTrafficTicketRequestDTO;
-import br.com.taxidobarba.service.PaymentTrafficTicketService;
+import br.com.taxidobarba.service.spec.PaymentTrafficTicketService;
 
 @RestController
 public class PaymentTrafficTicketController {

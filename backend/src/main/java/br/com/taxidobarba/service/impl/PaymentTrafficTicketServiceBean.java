@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,6 +15,7 @@ import br.com.taxidobarba.domain.request.dto.PaymentTrafficTicketRequestDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
+import br.com.taxidobarba.service.spec.PaymentTrafficTicketService;
 
 @Service
 public class PaymentTrafficTicketServiceBean implements PaymentTrafficTicketService{

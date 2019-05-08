@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -23,6 +23,7 @@ import br.com.taxidobarba.domain.CashRegisterCity;
 import br.com.taxidobarba.domain.CashRegisterTravel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
+import br.com.taxidobarba.service.spec.MonthlyGoalService;
 
 @Service
 public class MonthlyGoalServiceBean implements MonthlyGoalService {
