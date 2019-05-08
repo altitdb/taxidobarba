@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -19,6 +19,7 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
+import br.com.taxidobarba.service.spec.FuelService;
 
 @Service
 public class FuelServiceBean implements FuelService{

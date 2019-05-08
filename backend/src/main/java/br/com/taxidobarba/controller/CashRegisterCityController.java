@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.CashRegisterCityRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CashRegisterCityResponseDTO;
-import br.com.taxidobarba.service.CashRegisterCityService;
+import br.com.taxidobarba.service.spec.CashRegisterCityService;
 
 @RestController
 public class CashRegisterCityController {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
-import br.com.taxidobarba.service.LoginService;
+import br.com.taxidobarba.service.spec.LoginService;
 
 @RestController
 public class LoginController {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.annualsummary.AnnualSummaryDTO;
-import br.com.taxidobarba.service.AnnualSummaryService;
+import br.com.taxidobarba.service.spec.AnnualSummaryService;
 
 @RestController
 public class AnnualSummaryController {

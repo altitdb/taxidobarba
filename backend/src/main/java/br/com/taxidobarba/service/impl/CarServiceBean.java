@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +13,7 @@ import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
+import br.com.taxidobarba.service.spec.CarService;
 
 @Service
 public class CarServiceBean implements CarService {

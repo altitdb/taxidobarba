@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.actualmonth.ActualMonthSummaryDTO;
-import br.com.taxidobarba.service.ActualMonthSummaryService;
+import br.com.taxidobarba.service.spec.ActualMonthSummaryService;
 
 @RestController
 public class ActualMonthSummaryController {

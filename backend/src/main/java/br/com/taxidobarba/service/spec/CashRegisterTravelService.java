@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.spec;
 
 import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CashRegisterTravelResponseDTO;

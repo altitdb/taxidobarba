@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service;
+package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -34,6 +34,7 @@ import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
+import br.com.taxidobarba.service.spec.ActualMonthSummaryService;
 
 @Service
 public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService {

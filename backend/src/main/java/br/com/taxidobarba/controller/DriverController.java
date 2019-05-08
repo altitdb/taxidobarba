@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
 import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
-import br.com.taxidobarba.service.DriverService;
+import br.com.taxidobarba.service.spec.DriverService;
 
 @RestController
 public class DriverController {

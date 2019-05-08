@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
 import br.com.taxidobarba.domain.response.dto.FuelResponseDTO;
-import br.com.taxidobarba.service.FuelService;
+import br.com.taxidobarba.service.spec.FuelService;
 
 @RestController
 public class FuelController {

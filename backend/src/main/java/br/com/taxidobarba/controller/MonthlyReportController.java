@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.monthlyreport.MonthlyReportDTO;
-import br.com.taxidobarba.service.MonthlyReportService;
+import br.com.taxidobarba.service.spec.MonthlyReportService;
 
 @RestController
 public class MonthlyReportController {

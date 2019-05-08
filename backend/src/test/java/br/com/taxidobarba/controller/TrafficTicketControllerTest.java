@@ -23,7 +23,7 @@ import br.com.taxidobarba.mock.TrafficTicketRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.TrafficTicketService;
+import br.com.taxidobarba.service.spec.TrafficTicketService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { TrafficTicketController.class, TrafficTicketService.class })
