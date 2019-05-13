@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MonthlyService } from './monthly.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-monthly',
@@ -8,8 +9,9 @@ import { MonthlyService } from './monthly.service';
 })
 export class MonthlyPage implements OnInit {
 
+  datetime: string = new Date().toISOString();
   report: Array<MonthlyReportItem>;
-  amount: number;
+  amount: Amount;
 
   constructor(private _monthlyService: MonthlyService) { }
 
@@ -18,12 +20,16 @@ export class MonthlyPage implements OnInit {
   }
 
   getDrivers() {
-    this._monthlyService.get()
+    const month = moment(this.datetime).format("MM");
+    const year = moment(this.datetime).format("YYYY");
+    this._monthlyService.get(month, year)
        .subscribe(suc => {
           this.report = suc.report;
-          this.amount = suc.amount.amount;
+          this.amount = suc.amount;
         });
   }
 
-
+  filterDate() {
+    this.getDrivers();
+  }
 }

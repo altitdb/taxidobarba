@@ -11,8 +11,8 @@ export class MonthlyService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  public get() {
-    return this._httpClient.get<MonthlyReport>(this.url);
+  public get(month, year) {
+    return this._httpClient.get<MonthlyReport>(this.url + "?month=" + month + "&year=" + year);
   }
 
 }

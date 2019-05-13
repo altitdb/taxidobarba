@@ -59,7 +59,8 @@ class MonthlyReportItem {
 }
 
 class Amount {
-    amount: number;
+    grossValue: number;
+    netValue: number;
 }
 
 class MonthlyReport {
