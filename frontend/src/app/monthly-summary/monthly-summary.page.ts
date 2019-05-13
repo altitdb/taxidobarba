@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MonthlySummaryService } from './monthly-summary.service';
 
 @Component({
   selector: 'app-monthly-summary',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonthlySummaryPage implements OnInit {
 
-  constructor() { }
+  report: MonthlySummary;
+
+  constructor(private _monthlySummaryService: MonthlySummaryService) { }
 
   ngOnInit() {
+    this.getReport();
+  }
+
+  getReport() {
+    this._monthlySummaryService.get().subscribe(suc => {
+      this.report = suc;
+    });
   }
 
 }

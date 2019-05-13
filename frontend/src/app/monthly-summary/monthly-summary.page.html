@@ -1,9 +1,136 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>monthly-summary</ion-title>
+    <ion-title>Taxi do Barba</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-item> Mês {{ report.date }} </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Resumo</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
+      <ion-item> Valor bruto: {{ report.summary.grossValue }} </ion-item>
+      <ion-item> Valor líquido: {{ report.summary.netValue }} </ion-item>
+      <ion-item> Valor esperado: {{ report.summary.expectedValue }} </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>KM Rodados</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item> KM Cidade: {{ report.km.kmRolledCity }} </ion-item>
+      <ion-item> KM Viagem: {{ report.km.kmRolledTravel }} </ion-item>
+      <ion-item> KM Total: {{ report.km.amountKmRolled }} </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Consumo</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item> KM por Litro: {{ report.consumption.litersPerKm }} </ion-item>
+      <ion-item>
+        KM Médio por Dia: {{ report.consumption.averageKmPerDay }}
+      </ion-item>
+      <ion-item>
+        Preço Médio por KM: {{ report.consumption.averagePriceSpentPerKm }}
+      </ion-item>
+      <ion-item>
+        Preço Médio por Litro: {{ report.consumption.averagePriceFuel }}
+      </ion-item>
+      <ion-item>
+        Valor Médio por Dia: {{ report.consumption.averagePricePerDay }}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Cartões</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Débito</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item> Valor Bruto: {{ report.card.debit.grossValue }} </ion-item>
+          <ion-item> Valor Taxa: {{ report.card.debit.taxValue }} </ion-item>
+          <ion-item> Valor Líquido: {{ report.card.debit.netValue }} </ion-item>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Crédito</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            Valor Bruto: {{ report.card.credit.grossValue }}
+          </ion-item>
+          <ion-item> Valor Taxa: {{ report.card.credit.taxValue }} </ion-item>
+          <ion-item>
+            Valor Líquido: {{ report.card.credit.netValue }}
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Resumo</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            Valor Líquido: {{ report.card.summary.netValue }}
+          </ion-item>
+          <ion-item> Valor Taxa: {{ report.card.summary.taxValue }} </ion-item>
+          <ion-item>
+            Percentual Recebimento: {{ report.card.summary.percent }}
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Gastos</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item> Combustível: {{ report.spent.fuel }} </ion-item>
+      <ion-item> Outros: {{ report.spent.others }} </ion-item>
+      <ion-item> Total: {{ report.spent.amount }} </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Motoristas</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card *ngFor="let item of report.driver">
+        <ion-card-header>
+          <ion-card-title>{{ item.name }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item> Média Diária: {{ item.average }} </ion-item>
+          <ion-item> Valor Total: {{ item.amount }} </ion-item>
+          <ion-item> Percentual: {{ item.percentage }} </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
