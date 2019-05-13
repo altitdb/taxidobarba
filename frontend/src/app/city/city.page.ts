@@ -3,29 +3,32 @@ import { CityService } from "./city.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DriverService } from "../service/driver.service";
 import { CarService } from "../service/car.service";
-import * as moment from 'moment';
+import * as moment from "moment";
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "./modal/modal.page";
 import { ActivatedRoute } from "@angular/router";
+import { CommonCashRegister } from "../page/common-cash-register.page";
 
 @Component({
   selector: "app-city",
   templateUrl: "./city.page.html",
   styleUrls: ["./city.page.scss"]
 })
-export class CityPage implements OnInit {
+export class CityPage extends CommonCashRegister implements OnInit {
   drivers: Array<Driver>;
   cars: Array<Car>;
   form: FormGroup;
 
   constructor(
-    private _driverService: DriverService,
-    private _carService: CarService,
+    public _driverService: DriverService,
+    public _carService: CarService,
     private _formBuilder: FormBuilder,
     private _cityService: CityService,
     private _modalController: ModalController,
     private _route: ActivatedRoute
-  ) {}
+  ) {
+    super(_driverService, _carService);
+  }
 
   ngOnInit() {
     this.form = this._formBuilder.group({
@@ -43,7 +46,7 @@ export class CityPage implements OnInit {
   }
 
   updateForm() {
-    let id = this._route.snapshot.paramMap.get('id');
+    let id = this._route.snapshot.paramMap.get("id");
     this._cityService.get(id).subscribe(suc => {
       this.form.value.date = suc.date;
       this.form.value.driver = this.formatObject(suc.driver);
@@ -63,7 +66,7 @@ export class CityPage implements OnInit {
   }
 
   save() {
-    this.form.value.date = moment(this.form.value.date).format('YYYY-MM-DD');
+    this.form.value.date = moment(this.form.value.date).format("YYYY-MM-DD");
     this._cityService.save(this.form.value).subscribe(suc => {
       this.presentModal(suc);
       this.form.reset();
@@ -76,17 +79,5 @@ export class CityPage implements OnInit {
       componentProps: { response }
     });
     return await modal.present();
-  }
-
-  getDrivers() {
-    this._driverService.getActive().subscribe(suc => {
-      this.drivers = suc;
-    });
-  }
-
-  getCars() {
-    this._carService.getActive().subscribe(suc => {
-      this.cars = suc;
-    });
   }
 }

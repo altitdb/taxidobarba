@@ -7,13 +7,14 @@ import * as moment from 'moment';
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "./modal/modal.page";
 import { ActivatedRoute } from '@angular/router';
+import { CommonCashRegister } from '../page/common-cash-register.page';
 
 @Component({
   selector: 'app-fuel',
   templateUrl: './fuel.page.html',
   styleUrls: ['./fuel.page.scss'],
 })
-export class FuelPage implements OnInit {
+export class FuelPage extends CommonCashRegister implements OnInit {
 
   drivers: Array<Driver>;
   cars: Array<Car>;
@@ -21,13 +22,15 @@ export class FuelPage implements OnInit {
   response: FuelResponse;
 
   constructor(
-    private _driverService: DriverService,
-    private _carService: CarService,
+    public _driverService: DriverService,
+    public _carService: CarService,
     private _formBuilder: FormBuilder,
     private _fuelService: FuelService,
     private _modalController: ModalController,
     private _route: ActivatedRoute
-  ) {}
+  ) {
+    super(_driverService, _carService);
+  }
 
   ngOnInit() {
     this.form = this._formBuilder.group({
@@ -55,13 +58,6 @@ export class FuelPage implements OnInit {
     });
   }
 
-  formatObject(object) {
-    if (object === null) {
-      return null;
-    }
-    return object.id;
-  }
-  
   save() {
     this.form.value.date = moment(this.form.value.date).format('YYYY-MM-DD');
     this._fuelService.save(this.form.value).subscribe(suc => {
@@ -76,19 +72,6 @@ export class FuelPage implements OnInit {
       componentProps: { response }
     });
     return await modal.present();
-  }
-
-
-  getDrivers() {
-    this._driverService.getActive().subscribe(suc => {
-      this.drivers = suc;
-    });
-  }
-
-  getCars() {
-    this._carService.getActive().subscribe(suc => {
-      this.cars = suc;
-    });
   }
 
 }
