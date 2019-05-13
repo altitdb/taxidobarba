@@ -8,13 +8,24 @@ import { environment } from 'src/environments/environment';
 export class FuelService {
 
   url = environment.baseUrl + '/api/v1/fuel';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private _httpClient: HttpClient) { }
 
   save(data) {
-    const HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._httpClient.post<FuelResponse>(this.url, data, {
-      headers: HEADERS
+    if (data.id === null) {
+      return this._httpClient.post<FuelResponse>(this.url, data, {
+        headers: this.headers
+      });
+    }
+    return this._httpClient.put<FuelResponse>(this.url, data, {
+      headers: this.headers
+    });
+  }
+
+  get(id) {
+    return this._httpClient.get<FuelResponse>(`${this.url}/${id}`, {
+      headers: this.headers
     });
   }
 

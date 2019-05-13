@@ -6,6 +6,7 @@ import { CarService } from "../service/car.service";
 import * as moment from 'moment';
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "./modal/modal.page";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-city",
@@ -22,7 +23,8 @@ export class CityPage implements OnInit {
     private _carService: CarService,
     private _formBuilder: FormBuilder,
     private _cityService: CityService,
-    private _modalController: ModalController
+    private _modalController: ModalController,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,27 @@ export class CityPage implements OnInit {
     });
     this.getDrivers();
     this.getCars();
+    this.updateForm();
+  }
+
+  updateForm() {
+    let id = this._route.snapshot.paramMap.get('id');
+    this._cityService.get(id).subscribe(suc => {
+      this.form.value.date = suc.date;
+      this.form.value.driver = this.formatObject(suc.driver);
+      this.form.value.car = this.formatObject(suc.car);
+      this.form.value.startKm = suc.startKm;
+      this.form.value.endKm = suc.endKm;
+      this.form.value.otherKm = suc.otherKm;
+      this.form.value.totalReceived = suc.totalReceived;
+    });
+  }
+
+  formatObject(object) {
+    if (object === null) {
+      return null;
+    }
+    return object.id;
   }
 
   save() {

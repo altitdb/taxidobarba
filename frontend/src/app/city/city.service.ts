@@ -13,7 +13,19 @@ export class CityService {
 
   save(data) {
     const HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._httpClient.post<CityResponse>(this.url, data, {
+    if (data.id === null) {
+      return this._httpClient.post<CityResponse>(this.url, data, {
+        headers: HEADERS
+      });
+    }
+    return this._httpClient.put<CityResponse>(this.url, data, {
+      headers: HEADERS
+    });
+  }
+
+  get(id) {
+    const HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._httpClient.get<CityResponse>(`${this.url}/${id}`, {
       headers: HEADERS
     });
   }

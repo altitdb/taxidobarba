@@ -26,10 +26,10 @@
         Motorista
       </ion-col>
       <ion-col class="ion-text-center">
-        KM
+        Valor
       </ion-col>
       <ion-col class="ion-text-center">
-        Valor
+        Editar
       </ion-col>
     </ion-row>
     <ion-row *ngFor="let item of report">
@@ -38,16 +38,18 @@
           {{ item.date }}
         </ion-col>
         <ion-col class="ion-text-center">
-          {{ item.type == "CITY" ? "Cidade" : "Viagem" }}
+          {{ item.type }}
         </ion-col>
         <ion-col class="ion-text-center">
-          {{ item.driver && item.driver.split(" ")[0] }}
-        </ion-col>
-        <ion-col class="ion-text-end">
-          {{ item.km }}
+          {{ item.id === null ? '' : item.driver.split(" ")[0] }}
         </ion-col>
         <ion-col class="ion-text-end">
           {{ item.value }}
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button (click)="update(item.id, item.type)" [disabled]="item.id === null">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-button>
         </ion-col>
       </ion-item-divider>
     </ion-row>

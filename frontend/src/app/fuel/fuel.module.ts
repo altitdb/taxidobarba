@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: '',
     component: FuelPage
+  },
+  {
+    path: ':id',
+    component: FuelPage
   }
 ];
 

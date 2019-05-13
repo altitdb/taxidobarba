@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: '',
     component: TravelPage
+  },
+  {
+    path: ':id',
+    component: TravelPage
   }
 ];
 

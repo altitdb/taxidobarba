@@ -9,6 +9,7 @@ class Car {
 }
 
 class CityResponse {
+    id: string;
     car: Car;
     driver: Driver;
     priceKmDriver: number;
@@ -23,6 +24,7 @@ class CityResponse {
 }
 
 class TravelResponse {
+    id: string;
     car: Car;
     driver: Driver;
     percentualDriver: number;
@@ -36,6 +38,7 @@ class TravelResponse {
 }
 
 class FuelResponse {
+    id: string;
     car: Car;
     driver: Driver;
     price: number;

@@ -6,6 +6,7 @@ import { FuelService } from './fuel.service';
 import * as moment from 'moment';
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "./modal/modal.page";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-fuel',
@@ -24,7 +25,8 @@ export class FuelPage implements OnInit {
     private _carService: CarService,
     private _formBuilder: FormBuilder,
     private _fuelService: FuelService,
-    private _modalController: ModalController
+    private _modalController: ModalController,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -38,8 +40,28 @@ export class FuelPage implements OnInit {
     });
     this.getDrivers();
     this.getCars();
+    this.updateForm();
   }
 
+  updateForm() {
+    let id = this._route.snapshot.paramMap.get('id');
+    this._fuelService.get(id).subscribe(suc => {
+      this.form.value.date = suc.date;
+      this.form.value.driver = this.formatObject(suc.driver);
+      this.form.value.car = this.formatObject(suc.car);
+      this.form.value.km = suc.km;
+      this.form.value.price = suc.price;
+      this.form.value.liters = suc.liters;
+    });
+  }
+
+  formatObject(object) {
+    if (object === null) {
+      return null;
+    }
+    return object.id;
+  }
+  
   save() {
     this.form.value.date = moment(this.form.value.date).format('YYYY-MM-DD');
     this._fuelService.save(this.form.value).subscribe(suc => {
