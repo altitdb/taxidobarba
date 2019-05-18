@@ -1,12 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>br.com.taxidobarba</groupId>
-  <artifactId>taxidobarba</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Taxi do Barba</name>
-  <packaging>jar</packaging>
+	<groupId>br.com.taxidobarba</groupId>
+	<artifactId>taxidobarba</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Taxi do Barba</name>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -108,7 +109,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -144,15 +145,16 @@
 					</includes>
 					<jdkVersion>11</jdkVersion>
 					<processTypes>
-						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/taxidobarba.jar</web>
+						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar
+							target/taxidobarba.jar</web>
 					</processTypes>
 				</configuration>
 			</plugin>
 			<plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.6.0.1398</version>
-            </plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -214,17 +216,17 @@
 			</dependency>
 
 			<!-- Spring Security -->
-			<!--<dependency>
-				<groupId>org.springframework.security.oauth.boot</groupId>
-				<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-				<version>${spring.security.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.bouncycastle</groupId>
-						<artifactId>bcpkix-jdk15on</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>-->
+			<!--<dependency> <groupId>org.springframework.security.oauth.boot</groupId> 
+				<artifactId>spring-security-oauth2-autoconfigure</artifactId> <version>${spring.security.version}</version> 
+				<exclusions> <exclusion> <groupId>org.bouncycastle</groupId> <artifactId>bcpkix-jdk15on</artifactId> 
+				</exclusion> </exclusions> </dependency> -->
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-xml</artifactId>
+				<version>2.9.8</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -324,20 +326,19 @@
 		</dependency>
 
 		<!-- Spring Security -->
-		<!--<dependency>
+		<!--<dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
+			</dependency> <dependency> <groupId>org.springframework.security.oauth.boot</groupId> 
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId> </dependency> -->
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-		</dependency> -->
-
-		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
