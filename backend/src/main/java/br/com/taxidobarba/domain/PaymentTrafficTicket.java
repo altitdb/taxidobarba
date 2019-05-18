@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "paymentTrafficTicket")
@@ -11,6 +12,7 @@ public class PaymentTrafficTicket {
 
     @Id
     private String id;
+    @DBRef
     private TrafficTicket trafficTicket;
     private BigDecimal value;
     private LocalDate date;

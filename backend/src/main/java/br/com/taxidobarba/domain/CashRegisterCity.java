@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "cashRegisterCity")
@@ -11,7 +12,9 @@ public class CashRegisterCity {
 
     @Id
     private String id;
+    @DBRef
     private Car car;
+    @DBRef
     private Driver driver;
     private BigDecimal priceKmDriver;
     private BigDecimal km;
