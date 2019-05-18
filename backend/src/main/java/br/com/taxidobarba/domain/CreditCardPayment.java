@@ -1,7 +1,7 @@
 package br.com.taxidobarba.domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,8 +21,8 @@ public class CreditCardPayment {
     private BigDecimal discountValue;
     private BigDecimal feeValue;
     private BigDecimal netValue;
-    private LocalDate transactionDate;
-    private LocalDate compensationDate;
+    private ZonedDateTime transactionDate;
+    private ZonedDateTime compensationDate;
     private Integer plots;
     private String userCode;
     private String saleCode;
@@ -40,11 +40,6 @@ public class CreditCardPayment {
 
         public CreditCardPaymentBuilder() {
             payment = new CreditCardPayment();
-        }
-
-        public CreditCardPaymentBuilder withId(String id) {
-            payment.id = id;
-            return this;
         }
 
         public CreditCardPaymentBuilder withTransactionId(String transactionId) {
@@ -97,12 +92,12 @@ public class CreditCardPayment {
             return this;
         }
 
-        public CreditCardPaymentBuilder withTransactionDate(LocalDate transactionDate) {
+        public CreditCardPaymentBuilder withTransactionDate(ZonedDateTime transactionDate) {
             payment.transactionDate = transactionDate;
             return this;
         }
 
-        public CreditCardPaymentBuilder withCompensationDate(LocalDate compensationDate) {
+        public CreditCardPaymentBuilder withCompensationDate(ZonedDateTime compensationDate) {
             payment.compensationDate = compensationDate;
             return this;
         }
@@ -211,11 +206,11 @@ public class CreditCardPayment {
         return netValue;
     }
 
-    public LocalDate getTransactionDate() {
+    public ZonedDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public LocalDate getCompensationDate() {
+    public ZonedDateTime getCompensationDate() {
         return compensationDate;
     }
 
