@@ -28,8 +28,8 @@ public class FuelController {
     }
     
     @GetMapping(value = "/api/v1/fuel/{id}")
-    public @ResponseBody ResponseEntity<FuelResponseDTO> findById(@PathVariable String id){
-        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    public @ResponseBody ResponseEntity<FuelResponseDTO> find(@PathVariable String id){
+        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
     }
 
 }

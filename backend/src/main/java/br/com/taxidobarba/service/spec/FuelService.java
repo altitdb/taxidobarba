@@ -7,6 +7,6 @@ public interface FuelService {
 
     public FuelResponseDTO save(FuelRequestDTO request);
 
-    public FuelResponseDTO findById(String id);
+    public FuelResponseDTO find(String id);
     
 }
