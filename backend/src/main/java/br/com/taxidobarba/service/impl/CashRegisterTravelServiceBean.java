@@ -62,6 +62,13 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         return entityToResponseDto(travel);
     }
     
+    @Override
+    public CashRegisterTravelResponseDTO find(String id) {
+        LOG.info("Buscando travel por id: {}", id);
+        CashRegisterTravel cashRegisterTravel = cashTravelRepository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
+        return entityToResponseDto(cashRegisterTravel);
+    }
+    
     private CashRegisterTravel requestDtoToEntity(CashRegisterTravelRequestDTO request) {
         return requestDtoToEntity(null, request);
     }

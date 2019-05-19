@@ -1,8 +1,10 @@
 package br.com.taxidobarba.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -18,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.Driver;
+import br.com.taxidobarba.domain.Fuel;
 import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
 import br.com.taxidobarba.mock.FuelRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
@@ -44,8 +47,17 @@ public class FuelControllerTest extends ControllerTest {
     @Before
     public void init() {
         fuelRequest = FuelRequestDTOMock.mock();
+        Fuel fuel = new Fuel.FuelBuilder()
+                    .wihtCar(car)
+                    .withDriver(driver)
+                    .withFuelPrice(BigDecimal.ONE)
+                    .withKm(BigDecimal.ONE)
+                    .withLiters(BigDecimal.ONE)
+                    .withPrice(BigDecimal.ONE)
+                    .build();
         BDDMockito.given(driverRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(driver));
         BDDMockito.given(carRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(car));
+        BDDMockito.given(repository.findById(ArgumentMatchers.anyString())).willReturn(Optional.of(fuel));
     }
     
     @Test
@@ -87,6 +99,29 @@ public class FuelControllerTest extends ControllerTest {
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(status().isAccepted());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldReturnFuelResponseDTOWithHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/fuel/123")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateRequestWithFuelIdNonExistentHttpStatusBadRequest() {
+        BDDMockito.given(repository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            mockMvc.perform(post("/api/v1/fuel/123")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
         } catch (Exception e) {
             e.printStackTrace();
         }

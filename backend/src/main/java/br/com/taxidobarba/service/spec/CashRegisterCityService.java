@@ -9,4 +9,6 @@ public interface CashRegisterCityService {
 
     public CashRegisterCityResponseDTO update(String id, CashRegisterCityRequestDTO request);
 
+    public CashRegisterCityResponseDTO find(String id);
+
 }
