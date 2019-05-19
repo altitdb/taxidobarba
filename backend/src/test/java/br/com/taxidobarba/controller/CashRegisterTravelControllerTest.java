@@ -2,6 +2,7 @@ package br.com.taxidobarba.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
@@ -161,7 +162,7 @@ public class CashRegisterTravelControllerTest extends ControllerTest{
     }
     
     @Test
-    public void shouldSaveCashRegisterTravelRequestUpdateHttpStatusAccepted() {
+    public void shouldSaveCashRegisterTravelRequestUpdateHttpStatusOk() {
         try {
             String json = mapper.writeValueAsString(cashRegisterRequest);
             mockMvc.perform(put("/api/v1/cash/travel/123")
@@ -169,6 +170,29 @@ public class CashRegisterTravelControllerTest extends ControllerTest{
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldReturnTravelResponseDTOHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/cash/travel/123")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateRequestWithTravelIdNonExistentHttpStatusBadRequest() {
+        BDDMockito.given(cashRegisterTravelRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            mockMvc.perform(get("/api/v1/cash/travel/123")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
         } catch (Exception e) {
             e.printStackTrace();
         }
