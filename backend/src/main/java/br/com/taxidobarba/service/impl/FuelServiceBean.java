@@ -46,6 +46,14 @@ public class FuelServiceBean implements FuelService{
         
     }
     
+    @Override
+    public FuelResponseDTO findById(String id) {
+        LOG.info("Buscando fuel por id: {}", id);
+        Fuel fuel = repository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
+        return entityToResponseDto(fuel);
+    }
+
+    
     private Fuel requestDtoToEntity(FuelRequestDTO request) {
         Car car = findCarById(request.getCar());
         Driver driver = findDriverById(request.getDriver());
