@@ -69,6 +69,13 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
         return entityToResponseDto(cashRegisterCity);
     }
     
+    @Override
+    public CashRegisterCityResponseDTO find(String id) {
+        LOG.info("Buscando city por id: {}", id);
+        CashRegisterCity cashRegisterCity = cashCityRepository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
+        return entityToResponseDto(cashRegisterCity);
+    }
+    
     /**
      * Request validator
      * @param request requisition to be validated
