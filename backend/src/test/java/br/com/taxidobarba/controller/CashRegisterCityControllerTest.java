@@ -2,6 +2,7 @@ package br.com.taxidobarba.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
@@ -237,6 +238,29 @@ public class CashRegisterCityControllerTest extends ControllerTest{
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldValidateRequestWithIdNonExistentHttpStatusBadRequest() {
+        BDDMockito.given(cashRegisterCityRepository.findById(ArgumentMatchers.anyString())).willReturn(Optional.empty());
+        try {
+            mockMvc.perform(get("/api/v1/cash/city/45687")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isBadRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldReturnTravelResponseDTOHttpStatusOk() {
+        try {
+            mockMvc.perform(get("/api/v1/cash/city/45687")
+                    .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(status().isOk());
         } catch (Exception e) {
             e.printStackTrace();
         }
