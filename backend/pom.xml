@@ -145,8 +145,7 @@
 					</includes>
 					<jdkVersion>11</jdkVersion>
 					<processTypes>
-						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar
-							target/taxidobarba.jar</web>
+						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/taxidobarba.jar</web>
 					</processTypes>
 				</configuration>
 			</plugin>
