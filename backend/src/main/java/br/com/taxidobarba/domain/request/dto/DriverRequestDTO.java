@@ -12,6 +12,7 @@ public class DriverRequestDTO {
 
     @NotEmpty
     private String name;
+    private String fullName;
     @NotEmpty
     @CPF(message = "CPF invalido")
     private String taxIdentifier;
@@ -32,6 +33,10 @@ public class DriverRequestDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     public String getTaxIdentifier() {

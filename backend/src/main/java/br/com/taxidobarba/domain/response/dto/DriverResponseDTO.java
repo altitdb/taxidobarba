@@ -7,6 +7,7 @@ public class DriverResponseDTO {
 
     private String id;
     private String name;
+    private String fullName;
     private String taxIdentifier;
     private String nationalRegister;
     private LocalDate birthDate;
@@ -31,6 +32,11 @@ public class DriverResponseDTO {
 
         public DriverResponseBuilder withName(String name) {
             dto.name = name;
+            return this;
+        }
+
+        public DriverResponseBuilder withFullName(String fullName) {
+            dto.fullName = fullName;
             return this;
         }
 
@@ -85,6 +91,10 @@ public class DriverResponseDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     public String getTaxIdentifier() {

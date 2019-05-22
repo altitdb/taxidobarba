@@ -12,6 +12,7 @@ public class Driver {
     @Id
     private String id;
     private String name;
+    private String fullName;
     private String taxIdentifier;
     private String nationalRegister;
     private LocalDate birthDate;
@@ -31,6 +32,11 @@ public class Driver {
 
         public DriverBuilder withName(String name) {
             driver.name = name;
+            return this;
+        }
+
+        public DriverBuilder withFullName(String fullName) {
+            driver.fullName = fullName;
             return this;
         }
 
@@ -87,6 +93,10 @@ public class Driver {
         return name;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
     public String getTaxIdentifier() {
         return taxIdentifier;
     }
@@ -121,9 +131,10 @@ public class Driver {
 
     @Override
     public String toString() {
-        return "Driver [id=" + id + ", name=" + name + ", taxIdentifier=" + taxIdentifier + ", nationalRegister="
-                + nationalRegister + ", birthDate=" + birthDate + ", licenseNumber=" + licenseNumber
-                + ", licenseDueDate=" + licenseDueDate + ", priceKm=" + priceKm + ", enable=" + enable + "]";
+        return "Driver [id=" + id + ", name=" + name + ", fullName=" + fullName + ", taxIdentifier=" + taxIdentifier
+                + ", nationalRegister=" + nationalRegister + ", birthDate=" + birthDate + ", licenseNumber="
+                + licenseNumber + ", licenseDueDate=" + licenseDueDate + ", priceKm=" + priceKm + ", percentualTravel="
+                + percentualTravel + ", enable=" + enable + "]";
     }
 
     @Override
@@ -150,5 +161,5 @@ public class Driver {
             return false;
         return true;
     }
-    
+
 }
