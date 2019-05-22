@@ -86,6 +86,7 @@ public class DriverServiceBean implements DriverService {
     private Driver driverRequestDTOToEntity(DriverRequestDTO request) {
         return new Driver.DriverBuilder()
                          .withName(request.getName())
+                         .withFullName(request.getFullName())
                          .withBirthDate(request.getBirthDate())
                          .withLicenseDueDate(request.getLicenseDueDate())
                          .withLicenseNumber(request.getLicenseNumber())

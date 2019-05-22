@@ -16,6 +16,7 @@ public class DriverResquestDTOMock extends GenericRequestDTOMock{
         Map<String, Object> attributes = new HashMap<>();
 
         attributes.put("name", "Taxista A");
+        attributes.put("fullName", "Taxista A da Silva");
         attributes.put("taxIdentifier", "77683955060");
         attributes.put("nationalRegister", "123456");
         attributes.put("birthDate", LocalDate.of(1980, 01, 20));
