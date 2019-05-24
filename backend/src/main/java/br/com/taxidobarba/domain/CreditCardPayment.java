@@ -1,7 +1,7 @@
 package br.com.taxidobarba.domain;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,8 +21,8 @@ public class CreditCardPayment {
     private BigDecimal discountValue;
     private BigDecimal feeValue;
     private BigDecimal netValue;
-    private Instant transactionDate;
-    private Instant compensationDate;
+    private LocalDateTime transactionDate;
+    private LocalDateTime compensationDate;
     private Integer plots;
     private String userCode;
     private String saleCode;
@@ -92,12 +92,12 @@ public class CreditCardPayment {
             return this;
         }
 
-        public CreditCardPaymentBuilder withTransactionDate(Instant transactionDate) {
+        public CreditCardPaymentBuilder withTransactionDate(LocalDateTime transactionDate) {
             payment.transactionDate = transactionDate;
             return this;
         }
 
-        public CreditCardPaymentBuilder withCompensationDate(Instant compensationDate) {
+        public CreditCardPaymentBuilder withCompensationDate(LocalDateTime compensationDate) {
             payment.compensationDate = compensationDate;
             return this;
         }
@@ -206,11 +206,11 @@ public class CreditCardPayment {
         return netValue;
     }
 
-    public Instant getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public Instant getCompensationDate() {
+    public LocalDateTime getCompensationDate() {
         return compensationDate;
     }
 

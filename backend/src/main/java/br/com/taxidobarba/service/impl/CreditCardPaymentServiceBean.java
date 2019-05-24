@@ -2,8 +2,8 @@ package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
-import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class CreditCardPaymentServiceBean implements CreditCardPaymentService {
         .forEach(item -> {
             CreditCardPayment cardPayment = new CreditCardPayment.CreditCardPaymentBuilder()
                     .withAmountTaxInstallment(toBigDecimal(item.getAmountTaxInstallment()))
-                    .withCompensationDate(toInstant(item.getCompensationDate()))
+                    .withCompensationDate(toLocalDateTime(item.getCompensationDate()))
                     .withCustomerName(item.getCustomerName())
                     .withDiscountValue(toBigDecimal(item.getDiscountValue()))
                     .withFeeValue(toBigDecimal(item.getFeeValue()))
@@ -68,7 +68,7 @@ public class CreditCardPaymentServiceBean implements CreditCardPaymentService {
                     .withSaleCode(item.getSaleCode())
                     .withSerialReader(item.getSerialReader())
                     .withTicketPrice(toBigDecimal(item.getTicketPrice()))
-                    .withTransactionDate(toInstant(item.getTransactionDate()))
+                    .withTransactionDate(toLocalDateTime(item.getTransactionDate()))
                     .withTransactionId(item.getTransactionId())
                     .withTransactionType(item.getTransactionType())
                     .withTypeCard(item.getTypeCard())
@@ -126,11 +126,11 @@ public class CreditCardPaymentServiceBean implements CreditCardPaymentService {
         return Integer.valueOf(value);
     }
 
-    private Instant toInstant(String value) {
+    private LocalDateTime toLocalDateTime(String value) {
         if (StringUtils.isBlank(value))
             return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        return LocalDateTime.parse(value, formatter).toInstant(ZoneOffset.UTC);
+        return LocalDateTime.ofInstant(LocalDateTime.parse(value, formatter).toInstant(ZoneOffset.UTC), ZoneId.of("America/Sao_Paulo"));
     }
 
 }
