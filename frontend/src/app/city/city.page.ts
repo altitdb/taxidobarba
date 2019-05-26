@@ -49,13 +49,15 @@ export class CityPage extends CommonCashRegister implements OnInit {
     let id = this._route.snapshot.paramMap.get("id");
     if (id !== null) {
       this._cityService.get(id).subscribe(suc => {
-        this.form.value.date = suc.date;
-        this.form.value.driver = this.formatObject(suc.driver);
-        this.form.value.car = this.formatObject(suc.car);
-        this.form.value.startKm = suc.startKm;
-        this.form.value.endKm = suc.endKm;
-        this.form.value.otherKm = suc.otherKm;
-        this.form.value.totalReceived = suc.totalReceived;
+        this.form.patchValue({
+          date: suc.date,
+          driver: this.formatObject(suc.driver),
+          car: this.formatObject(suc.car),
+          startKm: suc.startKm,
+          endKm: suc.endKm,
+          otherKm: suc.otherKm,
+          totalReceived: suc.totalReceived
+        });
       });
     }
   }

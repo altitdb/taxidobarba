@@ -49,12 +49,14 @@ export class FuelPage extends CommonCashRegister implements OnInit {
     let id = this._route.snapshot.paramMap.get("id");
     if (id !== null) {
       this._fuelService.get(id).subscribe(suc => {
-        this.form.value.date = suc.date;
-        this.form.value.driver = this.formatObject(suc.driver);
-        this.form.value.car = this.formatObject(suc.car);
-        this.form.value.km = suc.km;
-        this.form.value.price = suc.price;
-        this.form.value.liters = suc.liters;
+        this.form.patchValue({
+          data: suc.date,
+          driver: this.formatObject(suc.driver),
+          car: this.formatObject(suc.car),
+          km: suc.km,
+          price: suc.price,
+          liters: suc.liters
+        });
       });
     }
   }
