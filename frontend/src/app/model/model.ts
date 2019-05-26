@@ -48,10 +48,24 @@ class FuelResponse {
   fuelPrice: number;
 }
 
+class TrafficTicketResponse{
+  car: Car;
+  driver: Driver;
+  value: number;
+  paidValue: number;
+  status: TrafficTicketStatus;
+  dueDate: Date;
+}
+
 enum MonthlyType {
   CITY = "Cidade",
   TRAVEL = "Viagem",
   FUEL = "Combustível"
+}
+
+enum TrafficTicketStatus{
+  OPENED = "Aberto",
+  PAID = "Pago"
 }
 
 class MonthlyReportItem {

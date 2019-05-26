@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'monthly', loadChildren: './monthly/monthly.module#MonthlyPageModule' },
   { path: 'annual-summary', loadChildren: './annual-summary/annual-summary.module#AnnualSummaryPageModule' },
   { path: 'monthly-summary', loadChildren: './monthly-summary/monthly-summary.module#MonthlySummaryPageModule' },
-  { path: 'monthly-goal', loadChildren: './monthly-goal/monthly-goal.module#MonthlyGoalPageModule' },
+  { path: 'monthly-goal', loadChildren: './monthly-goal/monthly-goal.module#MonthlyGoalPageModule' },  { path: 'traffic-ticket', loadChildren: './traffic-ticket/traffic-ticket.module#TrafficTicketPageModule' },
+
 ];
 @NgModule({
   imports: [
