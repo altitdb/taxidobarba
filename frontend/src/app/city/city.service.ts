@@ -13,7 +13,7 @@ export class CityService {
 
   save(data) {
     const HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
-    if (data.id === null) {
+    if (data.id === undefined) {
       return this._httpClient.post<CityResponse>(this.url, data, {
         headers: HEADERS
       });

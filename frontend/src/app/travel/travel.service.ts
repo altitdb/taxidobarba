@@ -13,7 +13,7 @@ export class TravelService {
   constructor(private _httpClient: HttpClient) { }
 
   save(data) {
-    if (data.id === null) {
+    if (data.id === undefined) {
       return this._httpClient.post<TravelResponse>(this.url, data, {
         headers: this.HEADERS
       });
