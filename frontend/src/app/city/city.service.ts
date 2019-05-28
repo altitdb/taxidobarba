@@ -8,25 +8,24 @@ import { environment } from 'src/environments/environment';
 export class CityService {
 
   url = environment.baseUrl + '/api/v1/cash/city';
+  HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private _httpClient: HttpClient) { }
 
   save(data) {
-    const HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
     if (data.id === undefined) {
       return this._httpClient.post<CityResponse>(this.url, data, {
-        headers: HEADERS
+        headers: this.HEADERS
       });
     }
     return this._httpClient.put<CityResponse>(this.url, data, {
-      headers: HEADERS
+      headers: this.HEADERS
     });
   }
 
   get(id) {
-    const HEADERS = new HttpHeaders().set('Content-Type', 'application/json');
     return this._httpClient.get<CityResponse>(`${this.url}/${id}`, {
-      headers: HEADERS
+      headers: this.HEADERS
     });
   }
 }
