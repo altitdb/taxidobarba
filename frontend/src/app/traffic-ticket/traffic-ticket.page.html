@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Taxi do Barba
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [formGroup]="form">
+  
+  <ion-item>
+    <ion-label>Motorista</ion-label>
+    <ion-select placeholder="Selecione" formControlName="driver">
+      <ion-select-option *ngFor="let item of drivers" value="{{item.id}}">{{item.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Carro</ion-label>
+    <ion-select placeholder="Selecione" formControlName="car">
+      <ion-select-option *ngFor="let item of cars" value="{{item.id}}">{{item.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Valor</ion-label>
+    <ion-input type="number" formControlName="value"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data de Vencimento</ion-label>
+    <ion-datetime
+      display-format="DD/MM/YYYY"
+      picker-format="DD/MM/YYYY"
+      formControlName="dueDate"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pontos</ion-label>
+    <ion-input type="number" formControlName="points"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="form.reset()">Limpar</ion-button>
+    <ion-button (click)="save()" [disabled]="!form.valid">Salvar</ion-button>
+  </ion-item>
+</ion-content>

@@ -53,6 +53,11 @@ export class AppComponent {
       icon: 'car'
     },
     {
+      title: 'Multas',
+      url: '/traffic-ticket',
+      icon: 'filing'
+    },
+    {
       title: 'Sobre',
       url: '/tabs/about',
       icon: 'information-circle'
