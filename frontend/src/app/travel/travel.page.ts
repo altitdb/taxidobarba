@@ -57,6 +57,7 @@ export class TravelPage extends CommonCashRegister implements OnInit {
           price: suc.price,
           city: suc.city
         });
+        this.form.value.id = suc.id;
       });
     }
   }

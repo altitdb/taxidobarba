@@ -57,6 +57,7 @@ export class FuelPage extends CommonCashRegister implements OnInit {
           price: suc.price,
           liters: suc.liters
         });
+        this.form.value.id = suc.id;
       });
     }
   }

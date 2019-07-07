@@ -58,6 +58,7 @@ export class CityPage extends CommonCashRegister implements OnInit {
           otherKm: suc.otherKm,
           totalReceived: suc.totalReceived
         });
+        this.form.value.id = suc.id;
       });
     }
   }
