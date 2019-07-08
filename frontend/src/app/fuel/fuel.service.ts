@@ -13,12 +13,13 @@ export class FuelService {
   constructor(private _httpClient: HttpClient) { }
 
   save(data) {
-    if (data.id === null) {
-      return this._httpClient.post<FuelResponse>(this.url, data, {
-        headers: this.headers
-      });
-    }
-    return this._httpClient.put<FuelResponse>(this.url, data, {
+    return this._httpClient.post<FuelResponse>(this.url, data, {
+      headers: this.headers
+    });
+  }
+
+  update(id, data) {
+    return this._httpClient.put<FuelResponse>(`${this.url}/${id}`, data, {
       headers: this.headers
     });
   }

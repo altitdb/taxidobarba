@@ -57,17 +57,24 @@ export class TravelPage extends CommonCashRegister implements OnInit {
           price: suc.price,
           city: suc.city
         });
-        this.form.value.id = suc.id;
       });
     }
   }
 
   save() {
     this.form.value.date = moment(this.form.value.date).format("YYYY-MM-DD");
-    this._travelService.save(this.form.value).subscribe(suc => {
-      this.presentModal(suc);
-      this.form.reset();
-    });
+    let id = this._route.snapshot.paramMap.get("id");
+    if (id === null) {
+      this._travelService.save(this.form.value).subscribe(suc => {
+        this.presentModal(suc);
+        this.form.reset();
+      });
+    } else {
+      this._travelService.update(id, this.form.value).subscribe(suc => {
+        this.presentModal(suc);
+        this.form.reset();
+      });
+    }
   }
 
   async presentModal(response: TravelResponse) {

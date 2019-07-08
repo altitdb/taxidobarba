@@ -57,17 +57,25 @@ export class FuelPage extends CommonCashRegister implements OnInit {
           price: suc.price,
           liters: suc.liters
         });
-        this.form.value.id = suc.id;
       });
     }
   }
 
   save() {
     this.form.value.date = moment(this.form.value.date).format("YYYY-MM-DD");
-    this._fuelService.save(this.form.value).subscribe(suc => {
-      this.presentModal(suc);
-      this.form.reset();
-    });
+    let id = this._route.snapshot.paramMap.get("id");
+    if (id === null) {
+      this._fuelService.save(this.form.value).subscribe(suc => {
+        this.presentModal(suc);
+        this.form.reset();
+      });
+    } else {
+      this._fuelService.update(id, this.form.value).subscribe(suc => {
+        this.presentModal(suc);
+        this.form.reset();
+      });
+    }
+    
   }
 
   async presentModal(response: FuelResponse) {

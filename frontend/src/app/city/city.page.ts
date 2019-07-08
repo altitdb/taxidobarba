@@ -58,7 +58,6 @@ export class CityPage extends CommonCashRegister implements OnInit {
           otherKm: suc.otherKm,
           totalReceived: suc.totalReceived
         });
-        this.form.value.id = suc.id;
       });
     }
   }
@@ -72,10 +71,19 @@ export class CityPage extends CommonCashRegister implements OnInit {
 
   save() {
     this.form.value.date = moment(this.form.value.date).format("YYYY-MM-DD");
-    this._cityService.save(this.form.value).subscribe(suc => {
-      this.presentModal(suc);
-      this.form.reset();
-    });
+    let id = this._route.snapshot.paramMap.get("id");
+    if (id === null) {
+      this._cityService.save(this.form.value).subscribe(suc => {
+        this.presentModal(suc);
+        this.form.reset();
+      });
+    } else {
+      this._cityService.update(id, this.form.value).subscribe(suc => {
+        this.presentModal(suc);
+        this.form.reset();
+      });
+    }
+    
   }
 
   async presentModal(response: CityResponse) {

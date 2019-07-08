@@ -125,7 +125,7 @@ class MonthlyGoal {
 class ValueMonthlySummary {
   netValue: number;
   grossValue: number;
-  expectedValue: number;
+  averageDayValue: number;
 }
 
 class KmMonthlySummary {

@@ -13,12 +13,13 @@ export class TravelService {
   constructor(private _httpClient: HttpClient) { }
 
   save(data) {
-    if (data.id === undefined) {
-      return this._httpClient.post<TravelResponse>(this.url, data, {
-        headers: this.HEADERS
-      });
-    }
-    return this._httpClient.put<TravelResponse>(this.url, data, {
+    return this._httpClient.post<TravelResponse>(this.url, data, {
+      headers: this.HEADERS
+    });
+  }
+
+  update(id, data) {
+    return this._httpClient.put<TravelResponse>(`${this.url}/${id}`, data, {
       headers: this.HEADERS
     });
   }
