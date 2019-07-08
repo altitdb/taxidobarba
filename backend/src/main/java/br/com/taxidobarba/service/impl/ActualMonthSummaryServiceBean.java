@@ -113,7 +113,7 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
         BigDecimal netValue = BigDecimal.ZERO;
         BigDecimal grossValue = BigDecimal.ZERO;
         BigDecimal totalPrice = BigDecimal.ZERO;
-        BigDecimal expectedValue;
+        BigDecimal averageDayValue;
 
         for (CashRegisterCity city : cashRegisterCities) {
             netValue = netValue.add(city.getPrice());
@@ -127,14 +127,14 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
             totalPrice = totalPrice.add(travel.getPrice());
         }
 
-        expectedValue = amountWorkedDays > 0
+        averageDayValue = amountWorkedDays > 0
                 ? totalPrice.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL32)
                 : BigDecimal.ZERO;
 
         return new SummaryDTO.SummaryBuilder()
                              .withNetValue(netValue)
                              .withGrossValue(grossValue)
-                             .withExpectedValue(expectedValue)
+                             .withAverageDayValue(averageDayValue)
                              .build();
     }
     

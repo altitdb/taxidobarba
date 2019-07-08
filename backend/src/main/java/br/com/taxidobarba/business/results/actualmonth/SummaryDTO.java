@@ -6,7 +6,7 @@ public class SummaryDTO {
 
     private BigDecimal netValue;
     private BigDecimal grossValue;
-    private BigDecimal expectedValue;
+    private BigDecimal averageDayValue;
 
     public static class SummaryBuilder {
 
@@ -26,8 +26,8 @@ public class SummaryDTO {
             return this;
         }
 
-        public SummaryBuilder withExpectedValue(BigDecimal expectedValue) {
-            dto.expectedValue = expectedValue;
+        public SummaryBuilder withAverageDayValue(BigDecimal averageDayValue) {
+            dto.averageDayValue = averageDayValue;
             return this;
         }
 
@@ -45,7 +45,7 @@ public class SummaryDTO {
     }
 
     public BigDecimal getExpectedValue() {
-        return expectedValue;
+        return averageDayValue;
     }
 
 }
