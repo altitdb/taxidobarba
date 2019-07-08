@@ -44,7 +44,7 @@ public class SummaryDTO {
         return grossValue;
     }
 
-    public BigDecimal getExpectedValue() {
+    public BigDecimal getAverageDayValue() {
         return averageDayValue;
     }
 
