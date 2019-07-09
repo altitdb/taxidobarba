@@ -2,6 +2,7 @@ package br.com.taxidobarba.service.impl;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,10 +20,9 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.spec.FuelService;
 
 @Service
-public class FuelServiceBean implements FuelService{
+public class FuelServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(FuelServiceBean.class);
     
@@ -33,12 +33,11 @@ public class FuelServiceBean implements FuelService{
     @Autowired
     private DriverRepository driverRepository;
     
-    @Override
     public FuelResponseDTO save(FuelRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         
         LOG.info("Persistindo dados...");
-        Fuel fuel = requestDtoToEntity(request);
+        Fuel fuel = requestDtoToEntity(null, request);
         repository.save(fuel);
         LOG.info("Dados persistidos.");
         
@@ -46,15 +45,23 @@ public class FuelServiceBean implements FuelService{
         
     }
     
-    @Override
     public FuelResponseDTO find(String id) {
-        LOG.info("Buscando fuel por id: {}", id);
-        Fuel fuel = repository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
+        Fuel fuel = findById(id);
         return entityToResponseDto(fuel);
     }
 
+
+    public FuelResponseDTO update(String id, FuelRequestDTO request) {
+    	LOG.info("Dados recebidos no request: {}", request);
+    	Fuel fuel = findById(id);
+    	requestDtoToEntity(fuel, request);
+    	LOG.debug("Persistindo dados...");
+    	repository.save(fuel);
+    	LOG.debug("Dados persistidos.");
+    	return entityToResponseDto(fuel);
+    }
     
-    private Fuel requestDtoToEntity(FuelRequestDTO request) {
+    private Fuel requestDtoToEntity(Fuel fuel, FuelRequestDTO request) {
         Car car = findCarById(request.getCar());
         Driver driver = findDriverById(request.getDriver());
         
@@ -62,7 +69,13 @@ public class FuelServiceBean implements FuelService{
         BigDecimal liters = request.getLiters();
         BigDecimal fuelPrice = price.divide(liters, MathContext.DECIMAL32);
         
-        return new Fuel.FuelBuilder()
+        Fuel.FuelBuilder builder = new Fuel.FuelBuilder();
+        
+        if(Objects.nonNull(fuel)) {
+        	builder.forUpdate(fuel);
+        }
+        
+		return builder
                 .wihtCar(car)
                 .withDate(request.getDate())
                 .withDriver(driver)
@@ -88,6 +101,12 @@ public class FuelServiceBean implements FuelService{
                 .build();
     }
     
+    private Fuel findById(String id) {
+    	LOG.info("Buscando fuel por id: {}", id);
+    	Fuel fuel = repository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
+    	return fuel;
+    }
+    
     private Car findCarById(String id) {
         LOG.info("Buscando carro...");
         return carRepository.findById(id).orElseThrow(() -> new BusinessException("Carro nao localizado."));
@@ -97,5 +116,6 @@ public class FuelServiceBean implements FuelService{
         LOG.info("Buscando motorista...");
         return driverRepository.findById(id).orElseThrow(() -> new BusinessException("Motorista nao localizado."));
     }
+
 
 }
