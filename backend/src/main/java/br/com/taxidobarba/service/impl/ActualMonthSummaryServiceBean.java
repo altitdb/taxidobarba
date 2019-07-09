@@ -171,7 +171,7 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
         }
         
         if(amountWorkedDays > 0) {
-            averageKmPerDay = amountKmRolled.divide(BigDecimal.valueOf(amountWorkedDays));
+            averageKmPerDay = amountKmRolled.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL32);
             averagePricePerDay = (amountPriceCity.add(amountPriceTravel)).divide(BigDecimal.valueOf(amountWorkedDays),MathContext.DECIMAL32);
         }
 
@@ -319,7 +319,7 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
     
     private void loadAmountKmRolled() {
         LOG.info("loadAmountKmRolled...");
-        amountKmRolled = kmRolledCity.add(amountKmRolled);
+        amountKmRolled = kmRolledCity.add(kmRolledTravel);
     }
     
     private void loadAmountWorkedDays() {
