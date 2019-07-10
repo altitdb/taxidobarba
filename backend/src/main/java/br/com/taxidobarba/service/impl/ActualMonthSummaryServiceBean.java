@@ -157,16 +157,14 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
         BigDecimal averageKmPerDay = BigDecimal.ZERO;
         BigDecimal averagePricePerDay = BigDecimal.ZERO;
         BigDecimal averagePriceFuel = BigDecimal.ZERO;
-        Set<LocalDate> setSuppliedDays = new HashSet<>();
 
         for (Fuel fuel : fuels) {
-            setSuppliedDays.add(fuel.getDate());
             amountLiters = amountLiters.add(fuel.getLiters());
             amountPriceFuel = amountPriceFuel.add(fuel.getPrice());
         }
 
         if(amountKmRolled.compareTo(BigDecimal.ZERO) > 0) {
-            litersPerKm = amountLiters.divide(amountKmRolled, MathContext.DECIMAL32);
+            litersPerKm = amountKmRolled.divide(amountLiters, MathContext.DECIMAL32);
             averagePriceSpentPerKm = amountPriceFuel.divide(amountKmRolled, MathContext.DECIMAL32);
         }
         
@@ -175,8 +173,8 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
             averagePricePerDay = (amountPriceCity.add(amountPriceTravel)).divide(BigDecimal.valueOf(amountWorkedDays),MathContext.DECIMAL32);
         }
 
-        if(!setSuppliedDays.isEmpty()) {
-            averagePriceFuel = amountPriceFuel.divide(BigDecimal.valueOf(setSuppliedDays.size()), MathContext.DECIMAL32);
+        if(amountLiters.compareTo(BigDecimal.ZERO) > 0) {
+            averagePriceFuel = amountPriceFuel.divide(amountLiters, MathContext.DECIMAL32);
         }
         
         return new ConsumptionDTO.ConsumptionBuilder()
@@ -186,6 +184,7 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
                                  .withAveragePricePerDay(averagePricePerDay)
                                  .withAveragePriceFuel(averagePriceFuel)
                                  .build();
+
     }
     
     private CardDTO loadCard() {
