@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.actualmonth.ActualMonthSummaryDTO;
-import br.com.taxidobarba.service.spec.ActualMonthSummaryService;
+import br.com.taxidobarba.service.impl.ActualMonthSummaryServiceBean;
 
 @RestController
 public class ActualMonthSummaryController {
 
     @Autowired
-    private ActualMonthSummaryService service;
+    private ActualMonthSummaryServiceBean service;
 
     @GetMapping(value = "/api/v1/actual-month-summary")
     public @ResponseBody ResponseEntity<ActualMonthSummaryDTO> generate() {
