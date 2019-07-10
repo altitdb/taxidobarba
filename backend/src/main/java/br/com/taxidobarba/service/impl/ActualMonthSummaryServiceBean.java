@@ -34,10 +34,9 @@ import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.spec.ActualMonthSummaryService;
 
 @Service
-public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService {
+public class ActualMonthSummaryServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(ActualMonthSummaryServiceBean.class);
 
@@ -59,7 +58,6 @@ public class ActualMonthSummaryServiceBean implements ActualMonthSummaryService 
     private BigDecimal amountPriceCity;
     private BigDecimal amountPriceTravel;
 
-    @Override
     public ActualMonthSummaryDTO generate() {
         initialize();
         

@@ -15,10 +15,10 @@ import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.spec.ActualMonthSummaryService;
+import br.com.taxidobarba.service.impl.ActualMonthSummaryServiceBean;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { ActualMonthSummaryController.class, ActualMonthSummaryService.class })
+@WebMvcTest(value = { ActualMonthSummaryController.class, ActualMonthSummaryServiceBean.class })
 public class ActualMonthSummaryControllerTest extends ControllerTest{
 
     @MockBean
