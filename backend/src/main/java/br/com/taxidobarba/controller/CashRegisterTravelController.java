@@ -4,13 +4,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
@@ -20,24 +19,24 @@ import br.com.taxidobarba.service.CashRegisterTravelServiceBean;
 @RestController
 public class CashRegisterTravelController {
 
-    @Autowired
-    private CashRegisterTravelServiceBean service;
+	@Autowired
+	private CashRegisterTravelServiceBean service;
 
-    @PostMapping(value = "/api/v1/cash/travel")
-    public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> save(
-            @RequestBody @Valid CashRegisterTravelRequestDTO request) {
-        return new ResponseEntity<>(service.save(request), HttpStatus.ACCEPTED);
-    }
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/api/v1/cash/travel")
+	public CashRegisterTravelResponseDTO save(@RequestBody @Valid CashRegisterTravelRequestDTO request) {
+		return service.save(request);
+	}
 
-    @PutMapping(value = "/api/v1/cash/travel/{id}")
-    public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> update(@PathVariable("id") String id,
-            @RequestBody @Valid CashRegisterTravelRequestDTO request) {
-        return new ResponseEntity<>(service.update(id, request), HttpStatus.OK);
-    }
-    
-    @GetMapping(value = "/api/v1/cash/travel/{id}")
-    public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> find(@PathVariable String id){
-        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
-    }
+	@PutMapping("/api/v1/cash/travel/{id}")
+	public CashRegisterTravelResponseDTO update(@PathVariable("id") String id,
+			@RequestBody @Valid CashRegisterTravelRequestDTO request) {
+		return service.update(id, request);
+	}
+
+	@GetMapping("/api/v1/cash/travel/{id}")
+	public CashRegisterTravelResponseDTO find(@PathVariable String id) {
+		return service.find(id);
+	}
 
 }

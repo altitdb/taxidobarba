@@ -51,7 +51,7 @@ public class DriverControllerTest extends ControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isCreated());
         } catch (Exception e) {
             e.printStackTrace();
         }

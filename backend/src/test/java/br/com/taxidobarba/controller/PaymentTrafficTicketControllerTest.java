@@ -81,12 +81,12 @@ public class PaymentTrafficTicketControllerTest extends ControllerTest {
     @Test
     public void shouldValidateRequestWithPartialValueGreaterThanTheTrafficTicketHttpStatusBadRequest() {
         try {
-            String json = mapper.writeValueAsString(trafficTicketRequestDtoMockSuccess);
+            String json = mapper.writeValueAsString(trafficTicketRequestDtoMockFail);
             mockMvc.perform(post("/api/v1/traffic-ticket/payment")
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isBadRequest());
             
             try {
                 
@@ -116,7 +116,7 @@ public class PaymentTrafficTicketControllerTest extends ControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isCreated());
         } catch (Exception e) {
             e.printStackTrace();
         }
