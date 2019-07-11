@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,17 +13,15 @@ import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
-import br.com.taxidobarba.service.spec.CarService;
 
 @Service
-public class CarServiceBean implements CarService {
+public class CarServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CarServiceBean.class);
 
     @Autowired
     private CarRepository repository;
 
-    @Override
     public void save(CarRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         validateLicensePlate(request.getLicensePlate());
@@ -32,7 +30,6 @@ public class CarServiceBean implements CarService {
         LOG.info("Carro persistido.");
     }
 
-    @Override
     public List<CarResponseDTO> findAll() {
         LOG.info("Buscando todos carros...");
         return carsToListCarResponseDTO(repository.findAll());

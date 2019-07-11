@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.monthlygoal.MonthlyGoalDTO;
-import br.com.taxidobarba.service.spec.MonthlyGoalService;
+import br.com.taxidobarba.service.MonthlyGoalServiceBean;
 
 @RestController
 public class MonthlyGoalController {
 
     @Autowired
-    private MonthlyGoalService service;
+    private MonthlyGoalServiceBean service;
     
     @GetMapping(value = "/api/v1/monthly-goal")
     public @ResponseBody ResponseEntity<MonthlyGoalDTO> generate(){

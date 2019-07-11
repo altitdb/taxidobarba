@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -20,10 +20,9 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.spec.CashRegisterTravelService;
 
 @Service
-public class CashRegisterTravelServiceBean implements CashRegisterTravelService {
+public class CashRegisterTravelServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CashRegisterTravelServiceBean.class);
 
@@ -34,7 +33,6 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     @Autowired
     private CashRegisterTravelRepository cashTravelRepository;
 
-    @Override
     public CashRegisterTravelResponseDTO save(CashRegisterTravelRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         
@@ -47,7 +45,6 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         return entityToResponseDto(cashRegisterTravel);
     }
     
-    @Override
     public CashRegisterTravelResponseDTO update(String id, CashRegisterTravelRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         
@@ -62,7 +59,6 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         return entityToResponseDto(travel);
     }
     
-    @Override
     public CashRegisterTravelResponseDTO find(String id) {
         LOG.info("Buscando travel por id: {}", id);
         CashRegisterTravel cashRegisterTravel = cashTravelRepository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));

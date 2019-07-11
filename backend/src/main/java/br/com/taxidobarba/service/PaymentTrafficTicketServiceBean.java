@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,10 +15,9 @@ import br.com.taxidobarba.domain.request.dto.PaymentTrafficTicketRequestDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.spec.PaymentTrafficTicketService;
 
 @Service
-public class PaymentTrafficTicketServiceBean implements PaymentTrafficTicketService{
+public class PaymentTrafficTicketServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(PaymentTrafficTicketServiceBean.class);
     
@@ -27,7 +26,6 @@ public class PaymentTrafficTicketServiceBean implements PaymentTrafficTicketServ
     @Autowired
     private PaymentTrafficTicketRepository paymentTrafficTicketRepository;
     
-    @Override
     public void save(PaymentTrafficTicketRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         

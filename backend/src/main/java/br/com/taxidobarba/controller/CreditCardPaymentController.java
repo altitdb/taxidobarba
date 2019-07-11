@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.taxidobarba.service.spec.CreditCardPaymentService;
+import br.com.taxidobarba.service.CreditCardPaymentServiceBean;
 
 @RestController
 public class CreditCardPaymentController {
     
     @Autowired
-    private CreditCardPaymentService service;
+    private CreditCardPaymentServiceBean service;
     
     @PostMapping(value = "/api/v1/credit-card")
     public @ResponseBody ResponseEntity<HttpStatus> save(@RequestParam MultipartFile file){

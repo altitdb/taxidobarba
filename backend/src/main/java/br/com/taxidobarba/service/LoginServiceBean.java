@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,18 +9,16 @@ import br.com.taxidobarba.domain.User;
 import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 import br.com.taxidobarba.exception.AccessDeniedException;
 import br.com.taxidobarba.repository.UserRepository;
-import br.com.taxidobarba.service.spec.LoginService;
 import br.com.taxidobarba.utils.EncoderUtils;
 
 @Service
-public class LoginServiceBean implements LoginService {
+public class LoginServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(LoginServiceBean.class);
 
     @Autowired
     private UserRepository repository;
 
-    @Override
     public void login(LoginRequestDTO request) {
         User user = getUserByUsername(request.getUsername());
         String passwordRequestEncoded = encoderPasswordRequest(request.getPassword());

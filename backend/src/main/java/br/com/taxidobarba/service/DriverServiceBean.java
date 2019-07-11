@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.taxidobarba.domain.Driver;
@@ -16,17 +14,15 @@ import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
 import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.spec.DriverService;
 
 @Service
-public class DriverServiceBean implements DriverService {
+public class DriverServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(DriverServiceBean.class);
 
     @Autowired
     private DriverRepository repository;
 
-    @Override
     public void save(DriverRequestDTO request) {
         validateDriverRequest(request);
         Driver driver = driverRequestDTOToEntity(request);
@@ -36,22 +32,15 @@ public class DriverServiceBean implements DriverService {
 
     }
 
-    @Override
     public List<DriverResponseDTO> findAll() {
         LOG.info("Buscando todos motoristas...");
         return driversToListDriverResponseDTO(repository.findAll());
     }
 
-    @Override
     public DriverResponseDTO findById(String id) {
         LOG.info("Buscando motorista pelo id: {}", id);
         Optional<Driver> driver = repository.findById(id);
         return driverToDriverResponseDTO(driver.orElseThrow(() -> new BusinessException("Motorista não localizado.")));
-    }
-
-    @Override
-    public ResponseEntity<HttpStatus> delete(String id) {
-        return null;
     }
 
     private void validateDriverRequest(DriverRequestDTO request) {

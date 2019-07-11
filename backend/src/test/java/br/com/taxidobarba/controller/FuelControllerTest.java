@@ -26,7 +26,7 @@ import br.com.taxidobarba.mock.FuelRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.impl.FuelServiceBean;
+import br.com.taxidobarba.service.FuelServiceBean;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { FuelController.class, FuelServiceBean.class })

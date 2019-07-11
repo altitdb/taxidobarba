@@ -15,10 +15,10 @@ import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.spec.MonthlyReportService;
+import br.com.taxidobarba.service.MonthlyReportServiceBean;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { MonthlyReportController.class, MonthlyReportService.class })
+@WebMvcTest(value = { MonthlyReportController.class, MonthlyReportServiceBean.class })
 public class MonthlyReportControllerTest extends ControllerTest {
 
     @MockBean

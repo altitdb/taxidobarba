@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.mock.CarRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
-import br.com.taxidobarba.service.impl.CarServiceBean;
+import br.com.taxidobarba.service.CarServiceBean;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = {CarController.class, CarServiceBean.class})

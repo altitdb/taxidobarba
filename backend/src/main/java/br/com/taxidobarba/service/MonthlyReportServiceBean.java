@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,10 +26,9 @@ import br.com.taxidobarba.domain.Fuel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.spec.MonthlyReportService;
 
 @Service
-public class MonthlyReportServiceBean implements MonthlyReportService {
+public class MonthlyReportServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(MonthlyReportServiceBean.class);
 
@@ -45,7 +44,6 @@ public class MonthlyReportServiceBean implements MonthlyReportService {
     private LocalDate initialDate;
     private LocalDate finalDate;
 
-    @Override
     public MonthlyReportDTO generate(Integer month, Integer year) {
         LOG.info("generate...");
         initialize(month, year);

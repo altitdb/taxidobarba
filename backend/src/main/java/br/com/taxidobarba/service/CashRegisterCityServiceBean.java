@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -21,10 +21,9 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.spec.CashRegisterCityService;
 
 @Service
-public class CashRegisterCityServiceBean implements CashRegisterCityService {
+public class CashRegisterCityServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CashRegisterCityServiceBean.class);
     
@@ -35,7 +34,6 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
     @Autowired
     private CashRegisterCityRepository cashCityRepository;
     
-    @Override
     public CashRegisterCityResponseDTO save(CashRegisterCityRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         
@@ -49,7 +47,6 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
         return entityToResponseDto(cashRegisterCity);
     }
 
-    @Override
     public CashRegisterCityResponseDTO update(String id, CashRegisterCityRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         
@@ -69,18 +66,12 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
         return entityToResponseDto(cashRegisterCity);
     }
     
-    @Override
     public CashRegisterCityResponseDTO find(String id) {
         LOG.info("Buscando city por id: {}", id);
         CashRegisterCity cashRegisterCity = cashCityRepository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
         return entityToResponseDto(cashRegisterCity);
     }
     
-    /**
-     * Request validator
-     * @param request requisition to be validated
-     * @param  isUpdate true if change, false if new record
-    */
     private void validateRequest(CashRegisterCityRequestDTO request, boolean isUpdate) {
         validateKm(request.getStartKm(), request.getEndKm());
         LOG.debug("isUpdate? {}", isUpdate);

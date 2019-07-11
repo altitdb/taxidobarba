@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
-import br.com.taxidobarba.service.spec.CarService;
+import br.com.taxidobarba.service.CarServiceBean;
 
 @RestController
 public class CarController {
 
     @Autowired
-    private CarService service;
+    private CarServiceBean service;
 
     @PostMapping(value = "/api/v1/car")
     public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid CarRequestDTO request) {

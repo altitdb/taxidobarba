@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.taxidobarba.domain.enumerated.TrafficTicketStatus;
 import br.com.taxidobarba.domain.request.dto.TrafficTicketRequestDTO;
 import br.com.taxidobarba.domain.response.dto.TrafficTicketResponseDTO;
-import br.com.taxidobarba.service.spec.TrafficTicketService;
+import br.com.taxidobarba.service.TrafficTicketServiceBean;
 
 @RestController
 public class TrafficTicketController {
 
     @Autowired
-    private TrafficTicketService service;
+    private TrafficTicketServiceBean service;
 
     @PostMapping(value = "/api/v1/traffic-ticket")
     public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid TrafficTicketRequestDTO request) {

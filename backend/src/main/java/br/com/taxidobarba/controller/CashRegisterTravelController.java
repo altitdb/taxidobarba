@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.CashRegisterTravelRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CashRegisterTravelResponseDTO;
-import br.com.taxidobarba.service.spec.CashRegisterTravelService;
+import br.com.taxidobarba.service.CashRegisterTravelServiceBean;
 
 @RestController
 public class CashRegisterTravelController {
 
     @Autowired
-    private CashRegisterTravelService service;
+    private CashRegisterTravelServiceBean service;
 
     @PostMapping(value = "/api/v1/cash/travel")
     public @ResponseBody ResponseEntity<CashRegisterTravelResponseDTO> save(

@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,10 +27,9 @@ import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.spec.TrafficTicketService;
 
 @Service
-public class TrafficTicketServiceBean implements TrafficTicketService {
+public class TrafficTicketServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(TrafficTicketServiceBean.class);
     
@@ -43,7 +42,6 @@ public class TrafficTicketServiceBean implements TrafficTicketService {
     @Autowired
     private PaymentTrafficTicketRepository paymentTrafficTicketRepository;
 
-    @Override
     public void save(TrafficTicketRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         
@@ -54,7 +52,6 @@ public class TrafficTicketServiceBean implements TrafficTicketService {
         LOG.info("Dados persistidos.");
     }
 
-    @Override
     public List<TrafficTicketResponseDTO> findAll(TrafficTicketStatus status) {
         List<TrafficTicket> allTrafficTickets = trafficTicketRepository.findAll();
         List<TrafficTicketResponseDTO> trafficTicketResponseDtos = entityToResponseDto(allTrafficTickets);

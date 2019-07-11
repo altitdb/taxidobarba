@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.monthlyreport.MonthlyReportDTO;
-import br.com.taxidobarba.service.spec.MonthlyReportService;
+import br.com.taxidobarba.service.MonthlyReportServiceBean;
 
 @RestController
 public class MonthlyReportController {
 
     @Autowired
-    private MonthlyReportService service;
+    private MonthlyReportServiceBean service;
 
     @GetMapping(value = "/api/v1/monthly-report")
     public @ResponseBody ResponseEntity<MonthlyReportDTO> generate(

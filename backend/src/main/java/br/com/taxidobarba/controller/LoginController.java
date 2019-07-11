@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
-import br.com.taxidobarba.service.spec.LoginService;
+import br.com.taxidobarba.service.LoginServiceBean;
 
 @RestController
 public class LoginController {
 
     @Autowired
-    private LoginService service;
+    private LoginServiceBean service;
 
     @PostMapping(value = "/api/v1/login")
     public @ResponseBody ResponseEntity<HttpStatus> login(@RequestBody @Valid LoginRequestDTO request) {

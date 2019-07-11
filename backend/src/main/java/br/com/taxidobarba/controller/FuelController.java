@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.FuelRequestDTO;
 import br.com.taxidobarba.domain.response.dto.FuelResponseDTO;
-import br.com.taxidobarba.service.impl.FuelServiceBean;
+import br.com.taxidobarba.service.FuelServiceBean;
 
 @RestController
 public class FuelController {
