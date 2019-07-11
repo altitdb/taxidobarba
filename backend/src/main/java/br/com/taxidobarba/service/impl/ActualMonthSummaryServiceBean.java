@@ -125,6 +125,10 @@ public class ActualMonthSummaryServiceBean {
             totalPrice = totalPrice.add(travel.getPrice());
         }
 
+        for (Fuel fuel : fuels) {
+        	netValue = netValue.subtract(fuel.getPrice());
+		}
+        
         averageDayValue = amountWorkedDays > 0
                 ? totalPrice.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL32)
                 : BigDecimal.ZERO;
