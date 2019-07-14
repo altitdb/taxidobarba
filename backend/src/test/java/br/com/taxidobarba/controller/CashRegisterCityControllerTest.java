@@ -29,10 +29,10 @@ import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.service.CashRegisterCityServiceBean;
-import br.com.taxidobarba.validator.RequestValidator;
+import br.com.taxidobarba.validator.CashRegisterCityValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = {CashRegisterCityController.class, RequestValidator.class, CashRegisterCityServiceBean.class})
+@WebMvcTest(value = {CashRegisterCityController.class, CashRegisterCityValidator.class, CashRegisterCityServiceBean.class})
 public class CashRegisterCityControllerTest extends ControllerTest{
 
     @MockBean
