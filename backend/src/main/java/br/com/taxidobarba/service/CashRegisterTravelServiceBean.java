@@ -20,6 +20,7 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
+import br.com.taxidobarba.validator.RequestValidator;
 
 @Service
 public class CashRegisterTravelServiceBean {
@@ -32,9 +33,12 @@ public class CashRegisterTravelServiceBean {
     private DriverRepository driverRepository;
     @Autowired
     private CashRegisterTravelRepository cashTravelRepository;
+    @Autowired
+    private RequestValidator<CashRegisterTravelRequestDTO> validator;
 
     public CashRegisterTravelResponseDTO save(CashRegisterTravelRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
+        
+        validator.validateOnSave(request);
         
         CashRegisterTravel cashRegisterTravel = requestDtoToEntity(request);
         
@@ -46,7 +50,8 @@ public class CashRegisterTravelServiceBean {
     }
     
     public CashRegisterTravelResponseDTO update(String id, CashRegisterTravelRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
+        
+        validator.validateOnUpdate(request, id);
         
         CashRegisterTravel travel = findCashRegisterTravelById(id);
         
