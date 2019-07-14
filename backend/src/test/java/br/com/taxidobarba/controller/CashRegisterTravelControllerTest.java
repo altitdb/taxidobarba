@@ -1,8 +1,8 @@
 package br.com.taxidobarba.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
@@ -29,9 +29,10 @@ import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.service.CashRegisterTravelServiceBean;
+import br.com.taxidobarba.validator.CashRegisterTravelValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = {CashRegisterTravelController.class, CashRegisterTravelServiceBean.class})
+@WebMvcTest(value = {CashRegisterTravelController.class, CashRegisterTravelValidator.class, CashRegisterTravelServiceBean.class})
 public class CashRegisterTravelControllerTest extends ControllerTest{
 
     @MockBean
