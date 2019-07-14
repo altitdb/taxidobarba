@@ -19,9 +19,10 @@ import br.com.taxidobarba.domain.response.dto.DriverResponseDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
 import br.com.taxidobarba.repository.DriverRepository;
+import br.com.taxidobarba.validator.DriverValidator;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { DriverRepository.class, DriverServiceBean.class })
+@SpringBootTest(classes = { DriverRepository.class, DriverServiceBean.class, DriverValidator.class })
 public class DriverServiceBeanTest {
 
     @MockBean

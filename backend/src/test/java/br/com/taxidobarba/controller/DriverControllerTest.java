@@ -21,9 +21,10 @@ import br.com.taxidobarba.domain.request.dto.DriverRequestDTO;
 import br.com.taxidobarba.mock.DriverResquestDTOMock;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.service.DriverServiceBean;
+import br.com.taxidobarba.validator.DriverValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { DriverController.class, DriverServiceBean.class })
+@WebMvcTest(value = { DriverController.class, DriverServiceBean.class, DriverValidator.class })
 public class DriverControllerTest extends ControllerTest {
 
     @MockBean
