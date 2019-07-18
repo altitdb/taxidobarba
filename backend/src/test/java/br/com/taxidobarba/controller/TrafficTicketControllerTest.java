@@ -26,9 +26,10 @@ import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
 import br.com.taxidobarba.service.TrafficTicketServiceBean;
+import br.com.taxidobarba.validator.TrafficTicketValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { TrafficTicketController.class, TrafficTicketServiceBean.class })
+@WebMvcTest(value = { TrafficTicketController.class, TrafficTicketServiceBean.class, TrafficTicketValidator.class })
 public class TrafficTicketControllerTest extends ControllerTest{
 
     @MockBean
