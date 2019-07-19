@@ -17,9 +17,10 @@ import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.mock.CarRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
+import br.com.taxidobarba.validator.CarValidator;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { CarRepository.class, CarServiceBean.class })
+@SpringBootTest(classes = { CarRepository.class, CarServiceBean.class, CarValidator.class })
 public class CarServiceBeanTest {
 
     @MockBean
