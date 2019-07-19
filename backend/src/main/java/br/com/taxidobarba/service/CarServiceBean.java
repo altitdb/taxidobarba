@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
-import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
+import br.com.taxidobarba.validator.RequestValidator;
 
 @Service
 public class CarServiceBean {
@@ -20,28 +20,23 @@ public class CarServiceBean {
     private static final Logger LOG = LogManager.getLogger(CarServiceBean.class);
 
     @Autowired
-    private CarRepository repository;
+    private CarRepository carRepository;
+    @Autowired
+    private RequestValidator<CarRequestDTO> validator;
 
     public void save(CarRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
-        validateLicensePlate(request.getLicensePlate());
-        LOG.info("Persistindo carro...");
-        repository.save(carRequestDtoToEntity(request));
-        LOG.info("Carro persistido.");
+        
+        validator.validateOnSave(request);
+        
+        LOG.debug("Persistindo carro...");
+        carRepository.save(carRequestDtoToEntity(request));
+        LOG.debug("Carro persistido.");
     }
 
     public List<CarResponseDTO> findAll() {
-        LOG.info("Buscando todos carros...");
-        return carsToListCarResponseDTO(repository.findAll());
+        LOG.debug("Buscando todos carros...");
+        return carsToListCarResponseDTO(carRepository.findAll());
         
-    }
-
-    private void validateLicensePlate(String licensePlate) {
-        LOG.info("Validando placa...");
-        repository.findByLicensePlate(licensePlate).ifPresent(c -> {
-            throw new BusinessException("Placa já cadastrada.");
-        });
-        LOG.info("Placa validada!");
     }
 
     private Car carRequestDtoToEntity(CarRequestDTO request) {
