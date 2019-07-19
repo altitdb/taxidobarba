@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -20,10 +20,10 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.spec.CashRegisterTravelService;
+import br.com.taxidobarba.validator.RequestValidator;
 
 @Service
-public class CashRegisterTravelServiceBean implements CashRegisterTravelService {
+public class CashRegisterTravelServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CashRegisterTravelServiceBean.class);
 
@@ -33,10 +33,12 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
     private DriverRepository driverRepository;
     @Autowired
     private CashRegisterTravelRepository cashTravelRepository;
+    @Autowired
+    private RequestValidator<CashRegisterTravelRequestDTO> validator;
 
-    @Override
     public CashRegisterTravelResponseDTO save(CashRegisterTravelRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
+        
+        validator.validateOnSave(request);
         
         CashRegisterTravel cashRegisterTravel = requestDtoToEntity(request);
         
@@ -47,9 +49,9 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         return entityToResponseDto(cashRegisterTravel);
     }
     
-    @Override
     public CashRegisterTravelResponseDTO update(String id, CashRegisterTravelRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
+        
+        validator.validateOnUpdate(request, id);
         
         CashRegisterTravel travel = findCashRegisterTravelById(id);
         
@@ -62,7 +64,6 @@ public class CashRegisterTravelServiceBean implements CashRegisterTravelService 
         return entityToResponseDto(travel);
     }
     
-    @Override
     public CashRegisterTravelResponseDTO find(String id) {
         LOG.info("Buscando travel por id: {}", id);
         CashRegisterTravel cashRegisterTravel = cashTravelRepository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));

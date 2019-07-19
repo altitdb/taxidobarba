@@ -15,7 +15,7 @@ import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.impl.ActualMonthSummaryServiceBean;
+import br.com.taxidobarba.service.ActualMonthSummaryServiceBean;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { ActualMonthSummaryController.class, ActualMonthSummaryServiceBean.class })

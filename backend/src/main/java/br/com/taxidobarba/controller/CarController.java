@@ -6,32 +6,31 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
-import br.com.taxidobarba.service.spec.CarService;
+import br.com.taxidobarba.service.CarServiceBean;
 
 @RestController
 public class CarController {
 
-    @Autowired
-    private CarService service;
+	@Autowired
+	private CarServiceBean service;
 
-    @PostMapping(value = "/api/v1/car")
-    public @ResponseBody ResponseEntity<HttpStatus> save(@RequestBody @Valid CarRequestDTO request) {
-        service.save(request);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    }
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/api/v1/car")
+	public void save(@RequestBody @Valid CarRequestDTO request) {
+		service.save(request);
+	}
 
-    @GetMapping(value = "/api/v1/car")
-    public @ResponseBody ResponseEntity<List<CarResponseDTO>> findAll() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
-    }
+	@GetMapping("/api/v1/car")
+	public List<CarResponseDTO> findAll() {
+		return service.findAll();
+	}
 
 }

@@ -14,10 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.mock.CarRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
-import br.com.taxidobarba.service.impl.CarServiceBean;
+import br.com.taxidobarba.service.CarServiceBean;
+import br.com.taxidobarba.validator.CarValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = {CarController.class, CarServiceBean.class})
+@WebMvcTest(value = {CarController.class, CarServiceBean.class, CarValidator.class })
 public class CarControllerTest extends ControllerTest{
 
     @MockBean
@@ -32,7 +33,7 @@ public class CarControllerTest extends ControllerTest{
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isCreated());
         } catch (Exception e) {
             e.printStackTrace();
         }

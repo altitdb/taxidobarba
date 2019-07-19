@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -26,17 +26,15 @@ import br.com.taxidobarba.domain.dto.CreditCardPaymentDTO;
 import br.com.taxidobarba.domain.dto.CreditCardPaymentDTOs;
 import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CreditCardPaymentRepository;
-import br.com.taxidobarba.service.spec.CreditCardPaymentService;
 
 @Service
-public class CreditCardPaymentServiceBean implements CreditCardPaymentService {
+public class CreditCardPaymentServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CreditCardPaymentServiceBean.class);
 
     @Autowired
     private CreditCardPaymentRepository creditCardPaymentRepository;
 
-    @Override
     public void save(MultipartFile file) {
         LOG.info("Tamanho total do arquivo recebido na request: {} bytes", file.getSize());
         creditCardPaymentRepository.saveAll(requestToEntity(file));

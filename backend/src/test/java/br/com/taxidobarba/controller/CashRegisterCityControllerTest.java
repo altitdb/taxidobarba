@@ -1,8 +1,8 @@
 package br.com.taxidobarba.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
@@ -28,10 +28,11 @@ import br.com.taxidobarba.mock.CashRegisterCityRequestDTOMock;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.impl.CashRegisterCityServiceBean;
+import br.com.taxidobarba.service.CashRegisterCityServiceBean;
+import br.com.taxidobarba.validator.CashRegisterCityValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = {CashRegisterCityController.class, CashRegisterCityServiceBean.class})
+@WebMvcTest(value = {CashRegisterCityController.class, CashRegisterCityValidator.class, CashRegisterCityServiceBean.class})
 public class CashRegisterCityControllerTest extends ControllerTest{
 
     @MockBean
@@ -117,7 +118,7 @@ public class CashRegisterCityControllerTest extends ControllerTest{
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isCreated());
         } catch (Exception e) {
             e.printStackTrace();
         }

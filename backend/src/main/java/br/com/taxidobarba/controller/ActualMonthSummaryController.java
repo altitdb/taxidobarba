@@ -1,14 +1,11 @@
 package br.com.taxidobarba.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.taxidobarba.business.results.actualmonth.ActualMonthSummaryDTO;
-import br.com.taxidobarba.service.impl.ActualMonthSummaryServiceBean;
+import br.com.taxidobarba.service.ActualMonthSummaryServiceBean;
 
 @RestController
 public class ActualMonthSummaryController {
@@ -16,9 +13,9 @@ public class ActualMonthSummaryController {
     @Autowired
     private ActualMonthSummaryServiceBean service;
 
-    @GetMapping(value = "/api/v1/actual-month-summary")
-    public @ResponseBody ResponseEntity<ActualMonthSummaryDTO> generate() {
-        return new ResponseEntity<>(service.generate(), HttpStatus.OK);
+    @GetMapping("/api/v1/actual-month-summary")
+    public ActualMonthSummaryDTO generate() {
+        return service.generate();
     }
 
 }

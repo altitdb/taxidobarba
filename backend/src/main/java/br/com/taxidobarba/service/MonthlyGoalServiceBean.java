@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -23,10 +23,9 @@ import br.com.taxidobarba.domain.CashRegisterCity;
 import br.com.taxidobarba.domain.CashRegisterTravel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
-import br.com.taxidobarba.service.spec.MonthlyGoalService;
 
 @Service
-public class MonthlyGoalServiceBean implements MonthlyGoalService {
+public class MonthlyGoalServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(MonthlyGoalServiceBean.class);
     private static final BigDecimal DAILY_GOAL = new BigDecimal("150");
@@ -44,7 +43,6 @@ public class MonthlyGoalServiceBean implements MonthlyGoalService {
     private LocalDate lastDayOfActualMonth;
     private LocalDate lastDayOfLastMonth;
 
-    @Override
     public MonthlyGoalDTO generate() {
         LOG.info("generate...");
         

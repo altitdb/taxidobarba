@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,40 +11,32 @@ import org.springframework.stereotype.Service;
 import br.com.taxidobarba.domain.Car;
 import br.com.taxidobarba.domain.request.dto.CarRequestDTO;
 import br.com.taxidobarba.domain.response.dto.CarResponseDTO;
-import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
-import br.com.taxidobarba.service.spec.CarService;
+import br.com.taxidobarba.validator.RequestValidator;
 
 @Service
-public class CarServiceBean implements CarService {
+public class CarServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CarServiceBean.class);
 
     @Autowired
-    private CarRepository repository;
+    private CarRepository carRepository;
+    @Autowired
+    private RequestValidator<CarRequestDTO> validator;
 
-    @Override
     public void save(CarRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
-        validateLicensePlate(request.getLicensePlate());
-        LOG.info("Persistindo carro...");
-        repository.save(carRequestDtoToEntity(request));
-        LOG.info("Carro persistido.");
-    }
-
-    @Override
-    public List<CarResponseDTO> findAll() {
-        LOG.info("Buscando todos carros...");
-        return carsToListCarResponseDTO(repository.findAll());
         
+        validator.validateOnSave(request);
+        
+        LOG.debug("Persistindo carro...");
+        carRepository.save(carRequestDtoToEntity(request));
+        LOG.debug("Carro persistido.");
     }
 
-    private void validateLicensePlate(String licensePlate) {
-        LOG.info("Validando placa...");
-        repository.findByLicensePlate(licensePlate).ifPresent(c -> {
-            throw new BusinessException("Placa já cadastrada.");
-        });
-        LOG.info("Placa validada!");
+    public List<CarResponseDTO> findAll() {
+        LOG.debug("Buscando todos carros...");
+        return carsToListCarResponseDTO(carRepository.findAll());
+        
     }
 
     private Car carRequestDtoToEntity(CarRequestDTO request) {

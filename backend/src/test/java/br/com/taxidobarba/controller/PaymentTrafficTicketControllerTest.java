@@ -23,10 +23,11 @@ import br.com.taxidobarba.domain.request.dto.PaymentTrafficTicketRequestDTO;
 import br.com.taxidobarba.mock.PaymentTrafficTicketRequestDTOMock;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.spec.PaymentTrafficTicketService;
+import br.com.taxidobarba.service.PaymentTrafficTicketServiceBean;
+import br.com.taxidobarba.validator.PaymentTrafficTicketValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { PaymentTrafficTicketController.class, PaymentTrafficTicketService.class })
+@WebMvcTest(value = { PaymentTrafficTicketController.class, PaymentTrafficTicketServiceBean.class, PaymentTrafficTicketValidator.class })
 public class PaymentTrafficTicketControllerTest extends ControllerTest {
 
     @MockBean
@@ -81,12 +82,12 @@ public class PaymentTrafficTicketControllerTest extends ControllerTest {
     @Test
     public void shouldValidateRequestWithPartialValueGreaterThanTheTrafficTicketHttpStatusBadRequest() {
         try {
-            String json = mapper.writeValueAsString(trafficTicketRequestDtoMockSuccess);
+            String json = mapper.writeValueAsString(trafficTicketRequestDtoMockFail);
             mockMvc.perform(post("/api/v1/traffic-ticket/payment")
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isBadRequest());
             
             try {
                 
@@ -116,7 +117,7 @@ public class PaymentTrafficTicketControllerTest extends ControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isCreated());
         } catch (Exception e) {
             e.printStackTrace();
         }

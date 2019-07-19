@@ -1,8 +1,7 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,10 +26,10 @@ import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.spec.TrafficTicketService;
+import br.com.taxidobarba.validator.RequestValidator;
 
 @Service
-public class TrafficTicketServiceBean implements TrafficTicketService {
+public class TrafficTicketServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(TrafficTicketServiceBean.class);
     
@@ -42,31 +41,30 @@ public class TrafficTicketServiceBean implements TrafficTicketService {
     private TrafficTicketRepository trafficTicketRepository;
     @Autowired
     private PaymentTrafficTicketRepository paymentTrafficTicketRepository;
+    @Autowired
+    private RequestValidator<TrafficTicketRequestDTO> validator;
 
-    @Override
     public void save(TrafficTicketRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
         
-        validateRequest(request);
+        validator.validateOnSave(request);
         
-        LOG.info("Persistindo dados...");
+        LOG.debug("Persistindo dados...");
         trafficTicketRepository.save(requestToEntity(request));
-        LOG.info("Dados persistidos.");
+        LOG.debug("Dados persistidos.");
     }
 
-    @Override
     public List<TrafficTicketResponseDTO> findAll(TrafficTicketStatus status) {
         List<TrafficTicket> allTrafficTickets = trafficTicketRepository.findAll();
         List<TrafficTicketResponseDTO> trafficTicketResponseDtos = entityToResponseDto(allTrafficTickets);
         
         if(status != null) {
-            LOG.info("Buscando multas pelo status {}", status);
+            LOG.debug("Buscando multas pelo status {}", status);
             return trafficTicketResponseDtos.stream()
                             .filter(dto -> dto.getStatus().equals(status))
                             .collect(Collectors.toList());
         }
         
-        LOG.info("Status não informado, retornando todos os registros...");
+        LOG.debug("Status não informado, retornando todos os registros...");
         
         return trafficTicketResponseDtos;
     }
@@ -107,15 +105,6 @@ public class TrafficTicketServiceBean implements TrafficTicketService {
         return trafficTicketResponseDtos;
     }
 
-    private void validateRequest(TrafficTicketRequestDTO request) {
-        final Integer[] points = {3, 4, 5, 7};
-        
-        if(!Arrays.asList(points).contains(request.getPoints())) {
-            throw new BusinessException("Valor inválido para pontos. Valores válidos: " + Arrays.asList(points));
-        }
-        
-    }
-
     private TrafficTicket requestToEntity(TrafficTicketRequestDTO request) {
         Car car = findCarById(request.getCar());
         Driver driver = findDriverById(request.getDriver());
@@ -130,12 +119,12 @@ public class TrafficTicketServiceBean implements TrafficTicketService {
     }
 
     private Car findCarById(String id) {
-        LOG.info("Buscando carro...");
+        LOG.debug("Buscando carro...");
         return carRepository.findById(id).orElseThrow(() -> new BusinessException("Carro nao localizado."));
     }
 
     private Driver findDriverById(String id) {
-        LOG.info("Buscando motorista...");
+        LOG.debug("Buscando motorista...");
         return driverRepository.findById(id).orElseThrow(() -> new BusinessException("Motorista nao localizado."));
     }
 }

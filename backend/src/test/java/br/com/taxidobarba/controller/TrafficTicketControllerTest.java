@@ -25,10 +25,11 @@ import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.DriverRepository;
 import br.com.taxidobarba.repository.PaymentTrafficTicketRepository;
 import br.com.taxidobarba.repository.TrafficTicketRepository;
-import br.com.taxidobarba.service.spec.TrafficTicketService;
+import br.com.taxidobarba.service.TrafficTicketServiceBean;
+import br.com.taxidobarba.validator.TrafficTicketValidator;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = { TrafficTicketController.class, TrafficTicketService.class })
+@WebMvcTest(value = { TrafficTicketController.class, TrafficTicketServiceBean.class, TrafficTicketValidator.class })
 public class TrafficTicketControllerTest extends ControllerTest{
 
     @MockBean
@@ -106,7 +107,7 @@ public class TrafficTicketControllerTest extends ControllerTest{
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                     .content(json)
                     .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isCreated());
         } catch (Exception e) {
             e.printStackTrace();
         }

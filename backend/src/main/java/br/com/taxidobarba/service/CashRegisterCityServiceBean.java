@@ -1,8 +1,7 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.time.LocalDate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,10 +20,10 @@ import br.com.taxidobarba.exception.BusinessException;
 import br.com.taxidobarba.repository.CarRepository;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.DriverRepository;
-import br.com.taxidobarba.service.spec.CashRegisterCityService;
+import br.com.taxidobarba.validator.RequestValidator;
 
 @Service
-public class CashRegisterCityServiceBean implements CashRegisterCityService {
+public class CashRegisterCityServiceBean {
 
     private static final Logger LOG = LogManager.getLogger(CashRegisterCityServiceBean.class);
     
@@ -34,78 +33,40 @@ public class CashRegisterCityServiceBean implements CashRegisterCityService {
     private DriverRepository driverRepository;
     @Autowired
     private CashRegisterCityRepository cashCityRepository;
+    @Autowired
+    private RequestValidator<CashRegisterCityRequestDTO> validator;
     
-    @Override
     public CashRegisterCityResponseDTO save(CashRegisterCityRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
         
-        validateRequest(request, false);
+        validator.validateOnSave(request);
+        
         CashRegisterCity cashRegisterCity = requestDtoToEntity(request);
         
-        LOG.info("Persistindo cashCity...");
+        LOG.debug("Persistindo cashCity...");
         cashCityRepository.save(cashRegisterCity);
-        LOG.info("Dados persistidos.");
+        LOG.debug("Dados persistidos.");
         
         return entityToResponseDto(cashRegisterCity);
     }
 
-    @Override
     public CashRegisterCityResponseDTO update(String id, CashRegisterCityRequestDTO request) {
-        LOG.info("Dados recebidos no request: {}", request);
         
-        validateRequest(request, true);
+        validator.validateOnUpdate(request, id);
+        
         CashRegisterCity cashRegisterCity = findCashRegisterCityById(id);
         requestDtoToEntity(cashRegisterCity, request);
         
-        LOG.info("Validando dados alterados...");
-        String driver = cashRegisterCity.getDriver().getId();
-        LocalDate date = cashRegisterCity.getDate();
-        String cashRegisterId = cashRegisterCity.getId();
-        validateRegisterByDateAndDriverAndId(driver, date, cashRegisterId);
-        LOG.info("Dados validados.");
-        
+        LOG.debug("Persistindo cashCity...");
         cashCityRepository.save(cashRegisterCity);
+        LOG.debug("Dados persistidos.");
         
         return entityToResponseDto(cashRegisterCity);
     }
     
-    @Override
     public CashRegisterCityResponseDTO find(String id) {
         LOG.info("Buscando city por id: {}", id);
         CashRegisterCity cashRegisterCity = cashCityRepository.findById(id).orElseThrow(() -> new BusinessException("Registro não encontrado."));
         return entityToResponseDto(cashRegisterCity);
-    }
-    
-    /**
-     * Request validator
-     * @param request requisition to be validated
-     * @param  isUpdate true if change, false if new record
-    */
-    private void validateRequest(CashRegisterCityRequestDTO request, boolean isUpdate) {
-        validateKm(request.getStartKm(), request.getEndKm());
-        LOG.debug("isUpdate? {}", isUpdate);
-        if (!isUpdate) {
-            validateRegisterByDateAndDriver(request.getDriver(), request.getDate());
-        }
-    }
-    
-    private void validateKm(BigDecimal startKm, BigDecimal endKm) {
-        if (startKm.compareTo(endKm) > 0)
-            throw new BusinessException("KM inicial nao pode ser maior que KM final.");
-    }
-    
-    private void validateRegisterByDateAndDriver(String driverId, LocalDate date) {
-        Driver driver = findDriverById(driverId);
-        cashCityRepository.findByDriverAndDate(driver, date).ifPresent(city -> {
-            throw new BusinessException("Ja existe um registro para essa data e motorista");
-        });
-    }
-    
-    private void validateRegisterByDateAndDriverAndId(String driverId, LocalDate date, String cashRegisterId) {
-        Driver driver = findDriverById(driverId);
-        cashCityRepository.findByDriverAndDateAndIdNot(driver, date, cashRegisterId).ifPresent(city -> {
-            throw new BusinessException("Ja existe um registro para essa data e motorista");
-        });
     }
     
     private CashRegisterCity requestDtoToEntity(CashRegisterCityRequestDTO request) {

@@ -1,4 +1,4 @@
-package br.com.taxidobarba.service.impl;
+package br.com.taxidobarba.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,10 +22,9 @@ import br.com.taxidobarba.domain.Fuel;
 import br.com.taxidobarba.repository.CashRegisterCityRepository;
 import br.com.taxidobarba.repository.CashRegisterTravelRepository;
 import br.com.taxidobarba.repository.FuelRepository;
-import br.com.taxidobarba.service.spec.AnnualSummaryService;
 
 @Service
-public class AnnualSummaryServiceBean implements AnnualSummaryService{
+public class AnnualSummaryServiceBean{
 
     private static final Logger LOG = LogManager.getLogger(AnnualSummaryServiceBean.class);
     
@@ -36,7 +35,6 @@ public class AnnualSummaryServiceBean implements AnnualSummaryService{
     @Autowired
     private FuelRepository fuelRepository;
     
-    @Override
     public AnnualSummaryDTO generate() {
         LOG.info("generate...");
         

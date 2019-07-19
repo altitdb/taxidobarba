@@ -19,7 +19,7 @@ import br.com.taxidobarba.domain.request.dto.LoginRequestDTO;
 import br.com.taxidobarba.mock.LoginRequestDTOMock;
 import br.com.taxidobarba.mock.UserMock;
 import br.com.taxidobarba.repository.UserRepository;
-import br.com.taxidobarba.service.impl.LoginServiceBean;
+import br.com.taxidobarba.service.LoginServiceBean;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = { LoginController.class, LoginServiceBean.class })
