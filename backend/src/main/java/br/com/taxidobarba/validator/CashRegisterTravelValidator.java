@@ -16,7 +16,7 @@ public class CashRegisterTravelValidator extends CashRegisterValidator
     public void validateOnSave(CashRegisterTravelRequestDTO request) {
         LOG.info("Dados recebidos no request: {}", request);
         validateCar(request.getCar());
-        validateDriver(request.getCar());
+        validateDriver(request.getDriver());
     }
 
     @Override
@@ -25,7 +25,7 @@ public class CashRegisterTravelValidator extends CashRegisterValidator
         LOG.info("ID recebido no request: {}", id);
 
         validateCar(request.getCar());
-        validateDriver(request.getCar());
+        validateDriver(request.getDriver());
     }
 
     private void validateCar(String id) {
