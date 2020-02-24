@@ -15,7 +15,6 @@ public class FuelRequestDTOMock extends GenericRequestDTOMock{
         
         Map<String, Object> attributes = new HashMap<>();
 
-        attributes.put("km", BigDecimal.ONE);
         attributes.put("liters", BigDecimal.TEN);
         attributes.put("price", BigDecimal.ONE);
         attributes.put("date", LocalDate.now());
