@@ -36,7 +36,6 @@ export class FuelPage extends CommonCashRegister implements OnInit {
       date: [new Date().toISOString(), Validators.required],
       driver: [null, Validators.required],
       car: [null, Validators.required],
-      km: [null, Validators.required],
       price: [null, Validators.required],
       liters: [null, Validators.required]
     });
@@ -53,7 +52,6 @@ export class FuelPage extends CommonCashRegister implements OnInit {
           data: suc.date,
           driver: this.formatObject(suc.driver),
           car: this.formatObject(suc.car),
-          km: suc.km,
           price: suc.price,
           liters: suc.liters
         });

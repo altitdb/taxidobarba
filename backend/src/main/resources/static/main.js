@@ -420,7 +420,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane>\n    <!--  our side menu  -->\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Taxi do Barba</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let page of pages\">\n            <app-menu-item [link]=\"page\"></app-menu-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n  \n    <!-- the main content -->\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane>\n    <!--  our side menu  -->\n    <ion-menu contentId=\"main\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Taxi do Barba</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let page of pages\">\n            <app-menu-item [link]=\"page\"></app-menu-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n  \n    <!-- the main content -->\n    <ion-router-outlet id=\"main\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>");
 
 /***/ }),
 
@@ -645,7 +645,7 @@ var AppComponent = /** @class */ (function () {
             {
                 title: 'Mensal',
                 url: '/monthly',
-                icon: 'list-box'
+                icon: 'calendar'
             },
             {
                 title: 'Cartão',
@@ -665,7 +665,7 @@ var AppComponent = /** @class */ (function () {
             {
                 title: 'Multas',
                 url: '/traffic-ticket',
-                icon: 'filing'
+                icon: 'person-add'
             },
             {
                 title: 'Sobre',
@@ -797,7 +797,7 @@ var AppModule = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".active-item {\n  border-left: 8px solid var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2FsdGl0ZGIvdGF4aWRvYmFyYmEvZnJvbnRlbmQvc3JjL2FwcC9tZW51LWl0ZW0vbWVudS1pdGVtLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tZW51LWl0ZW0vbWVudS1pdGVtLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksK0NBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL21lbnUtaXRlbS9tZW51LWl0ZW0uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYWN0aXZlLWl0ZW0ge1xuICAgIGJvcmRlci1sZWZ0OiA4cHggc29saWQgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICB9IiwiLmFjdGl2ZS1pdGVtIHtcbiAgYm9yZGVyLWxlZnQ6IDhweCBzb2xpZCB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".active-item {\n  border-left: 8px solid var(--ion-color-primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi93b3JrL3RheGlkb2JhcmJhL2Zyb250ZW5kL3NyYy9hcHAvbWVudS1pdGVtL21lbnUtaXRlbS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbWVudS1pdGVtL21lbnUtaXRlbS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLCtDQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9tZW51LWl0ZW0vbWVudS1pdGVtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFjdGl2ZS1pdGVtIHtcbiAgICBib3JkZXItbGVmdDogOHB4IHNvbGlkIHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgfSIsIi5hY3RpdmUtaXRlbSB7XG4gIGJvcmRlci1sZWZ0OiA4cHggc29saWQgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xufSJdfQ== */");
 
 /***/ }),
 
@@ -917,7 +917,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/altitdb/taxidobarba/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /work/taxidobarba/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })

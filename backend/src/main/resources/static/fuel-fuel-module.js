@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Taxi do Barba\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [formGroup]=\"form\">\n  <ion-item>\n    <ion-label>Data</ion-label>\n    <ion-datetime\n      display-format=\"DD/MM/YYYY\"\n      picker-format=\"DD/MM/YYYY\"\n      formControlName=\"date\"\n    ></ion-datetime>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Motorista</ion-label>\n    <ion-select placeholder=\"Selecione\" formControlName=\"driver\">\n      <ion-select-option *ngFor=\"let item of drivers\" value=\"{{item.id}}\">{{item.name}}</ion-select-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Carro</ion-label>\n    <ion-select placeholder=\"Selecione\" formControlName=\"car\">\n      <ion-select-option *ngFor=\"let item of cars\" value=\"{{item.id}}\">{{item.name}}</ion-select-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>KM</ion-label>\n    <ion-input type=\"number\" formControlName=\"km\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Preço</ion-label>\n    <ion-input type=\"number\" formControlName=\"price\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Litros</ion-label>\n    <ion-input type=\"number\" formControlName=\"liters\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-button (click)=\"form.reset()\">Limpar</ion-button>\n    <ion-button (click)=\"save()\" [disabled]=\"!form.valid\">Salvar</ion-button>\n  </ion-item>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Taxi do Barba\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [formGroup]=\"form\">\n  <ion-item>\n    <ion-label>Data</ion-label>\n    <ion-datetime\n      display-format=\"DD/MM/YYYY\"\n      picker-format=\"DD/MM/YYYY\"\n      formControlName=\"date\"\n    ></ion-datetime>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Motorista</ion-label>\n    <ion-select placeholder=\"Selecione\" formControlName=\"driver\">\n      <ion-select-option *ngFor=\"let item of drivers\" value=\"{{item.id}}\">{{item.name}}</ion-select-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Carro</ion-label>\n    <ion-select placeholder=\"Selecione\" formControlName=\"car\">\n      <ion-select-option *ngFor=\"let item of cars\" value=\"{{item.id}}\">{{item.name}}</ion-select-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Preço</ion-label>\n    <ion-input type=\"number\" formControlName=\"price\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label>Litros</ion-label>\n    <ion-input type=\"number\" formControlName=\"liters\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-button (click)=\"form.reset()\">Limpar</ion-button>\n    <ion-button (click)=\"save()\" [disabled]=\"!form.valid\">Salvar</ion-button>\n  </ion-item>\n</ion-content>\n");
 
 /***/ }),
 
@@ -230,7 +230,6 @@ var FuelPage = /** @class */ (function (_super) {
             date: [new Date().toISOString(), _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             driver: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             car: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            km: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             price: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             liters: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
@@ -247,7 +246,6 @@ var FuelPage = /** @class */ (function (_super) {
                     data: suc.date,
                     driver: _this.formatObject(suc.driver),
                     car: _this.formatObject(suc.car),
-                    km: suc.km,
                     price: suc.price,
                     liters: suc.liters
                 });

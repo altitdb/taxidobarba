@@ -35,7 +35,7 @@ export class AppComponent {
     {
       title: 'Mensal',
       url: '/monthly',
-      icon: 'list-box'
+      icon: 'calendar'
     },
     {
       title: 'Cartão',
@@ -55,7 +55,7 @@ export class AppComponent {
     {
       title: 'Multas',
       url: '/traffic-ticket',
-      icon: 'filing'
+      icon: 'person-add'
     },
     {
       title: 'Sobre',
