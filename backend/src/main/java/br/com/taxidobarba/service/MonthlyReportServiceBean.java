@@ -140,7 +140,6 @@ public class MonthlyReportServiceBean {
                         .withId(fuel.getId())
                         .withDate(dateFormatted(fuel.getDate()))
                         .withDriver(fuel.getDriver().getName())
-                        .withKm(fuel.getKm())
                         .withType(CashRegisterType.FUEL)
                         .withValue(fuel.getPrice())
                         .build();

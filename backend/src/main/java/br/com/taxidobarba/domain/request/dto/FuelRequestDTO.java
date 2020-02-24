@@ -10,9 +10,6 @@ public class FuelRequestDTO {
 
     @NotNull
     @DecimalMin(value = "0.01")
-    private BigDecimal km;
-    @NotNull
-    @DecimalMin(value = "0.01")
     private BigDecimal liters;
     @NotNull
     @DecimalMin(value = "0.01")
@@ -23,10 +20,6 @@ public class FuelRequestDTO {
     private String car;
     @NotNull
     private String driver;
-
-    public BigDecimal getKm() {
-        return km;
-    }
 
     public BigDecimal getLiters() {
         return liters;
@@ -50,7 +43,7 @@ public class FuelRequestDTO {
 
     @Override
     public String toString() {
-        return "FuelRequestDTO [km=" + km + ", liters=" + liters + ", price=" + price + ", date=" + date + ", car="
+        return "FuelRequestDTO [liters=" + liters + ", price=" + price + ", date=" + date + ", car="
                 + car + ", driver=" + driver + "]";
     }
 

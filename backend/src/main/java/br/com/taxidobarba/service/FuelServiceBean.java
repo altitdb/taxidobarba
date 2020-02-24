@@ -80,7 +80,6 @@ public class FuelServiceBean {
                 .withDate(request.getDate())
                 .withDriver(driver)
                 .withFuelPrice(fuelPrice)
-                .withKm(request.getKm())
                 .withLiters(liters)
                 .withPrice(price)
                 .build();
@@ -95,7 +94,6 @@ public class FuelServiceBean {
                 .withDate(fuel.getDate())
                 .withDriver(driverDto)
                 .withFuelPrice(fuel.getFuelPrice())
-                .withKm(fuel.getKm())
                 .withLiters(fuel.getLiters())
                 .withPrice(fuel.getPrice())
                 .build();

@@ -62,10 +62,6 @@ public class FuelResponseDTO {
 
     }
 
-    public BigDecimal getKm() {
-        return km;
-    }
-
     public BigDecimal getLiters() {
         return liters;
     }

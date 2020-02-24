@@ -51,7 +51,6 @@ public class FuelControllerTest extends ControllerTest {
                     .wihtCar(car)
                     .withDriver(driver)
                     .withFuelPrice(BigDecimal.ONE)
-                    .withKm(BigDecimal.ONE)
                     .withLiters(BigDecimal.ONE)
                     .withPrice(BigDecimal.ONE)
                     .build();

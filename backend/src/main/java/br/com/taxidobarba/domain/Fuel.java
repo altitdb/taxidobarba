@@ -12,7 +12,6 @@ public class Fuel {
 
 	@Id
 	private String id;
-	private BigDecimal km;
 	private BigDecimal liters;
 	private BigDecimal price;
 	private BigDecimal fuelPrice;
@@ -28,11 +27,6 @@ public class Fuel {
 
 		public FuelBuilder() {
 			fuel = new Fuel();
-		}
-
-		public FuelBuilder withKm(BigDecimal km) {
-			fuel.km = km;
-			return this;
 		}
 
 		public FuelBuilder withLiters(BigDecimal liters) {
@@ -78,10 +72,6 @@ public class Fuel {
 
 	public String getId() {
 		return id;
-	}
-
-	public BigDecimal getKm() {
-		return km;
 	}
 
 	public BigDecimal getLiters() {
