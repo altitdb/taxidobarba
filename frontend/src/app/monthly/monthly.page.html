@@ -56,12 +56,12 @@
   </ion-grid>
   <ion-item>
     <div class="ion-text-end">
-      Valor Bruto {{ amount.grossValue }}
+      Valor Bruto {{ amount && amount.grossValue }}
     </div>
   </ion-item>
   <ion-item>
     <div class="ion-text-end">
-      Total Líquido {{ amount.netValue }}
+      Total Líquido {{ amount && amount.netValue }}
     </div>
   </ion-item>
 </ion-content>
