@@ -130,7 +130,7 @@ public class ActualMonthSummaryServiceBean {
 		}
         
         averageDayValue = amountWorkedDays > 0
-                ? totalPrice.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL32)
+                ? totalPrice.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL128)
                 : BigDecimal.ZERO;
 
         return new SummaryDTO.SummaryBuilder()
@@ -166,17 +166,17 @@ public class ActualMonthSummaryServiceBean {
         }
 
         if(amountKmRolled.compareTo(BigDecimal.ZERO) > 0) {
-            litersPerKm = amountKmRolled.divide(amountLiters, MathContext.DECIMAL32);
-            averagePriceSpentPerKm = amountPriceFuel.divide(amountKmRolled, MathContext.DECIMAL32);
+            litersPerKm = amountKmRolled.divide(amountLiters, MathContext.DECIMAL128);
+            averagePriceSpentPerKm = amountPriceFuel.divide(amountKmRolled, MathContext.DECIMAL128);
         }
         
         if(amountWorkedDays > 0) {
-            averageKmPerDay = amountKmRolled.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL32);
-            averagePricePerDay = (amountPriceCity.add(amountPriceTravel)).divide(BigDecimal.valueOf(amountWorkedDays),MathContext.DECIMAL32);
+            averageKmPerDay = amountKmRolled.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL128);
+            averagePricePerDay = (amountPriceCity.add(amountPriceTravel)).divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL128);
         }
 
         if(amountLiters.compareTo(BigDecimal.ZERO) > 0) {
-            averagePriceFuel = amountPriceFuel.divide(amountLiters, MathContext.DECIMAL32);
+            averagePriceFuel = amountPriceFuel.divide(amountLiters, MathContext.DECIMAL128);
         }
         
         return new ConsumptionDTO.ConsumptionBuilder()
@@ -268,12 +268,12 @@ public class ActualMonthSummaryServiceBean {
                     amount = amountCity.add(amountTravel);
 
                     if (amountWorkedDays > 0) {
-                        average = amount.divide(BigDecimal.valueOf(amountWorkedDays));
+                        average = amount.divide(BigDecimal.valueOf(amountWorkedDays), MathContext.DECIMAL128);
                     }
 
                     if (amountPriceCity.add(amountPriceTravel).compareTo(BigDecimal.ZERO) > 0) {
                         percentage = (amount.multiply(new BigDecimal(100)))
-                                .divide(amountPriceCity.add(amountPriceTravel), MathContext.DECIMAL32);
+                                .divide(amountPriceCity.add(amountPriceTravel), MathContext.DECIMAL128);
                     }
                     
                     DriverDTO driverDTO = new DriverDTO.DriverBuilder()
