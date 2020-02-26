@@ -28,10 +28,10 @@
           {{ item.month }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ item.grossValue }}
+          {{ item.grossValue | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ item.netValue }}
+          {{ item.netValue | currency }}
         </ion-col>
       </ion-item-divider>
     </ion-row>
@@ -41,10 +41,10 @@
           Total
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ amount && amount.grossValue }}
+          {{ amount && amount.grossValue | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ amount && amount.netValue }}
+          {{ amount && amount.netValue | currency }}
         </ion-col>
       </ion-item-divider>
     </ion-row>

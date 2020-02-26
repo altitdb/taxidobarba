@@ -34,16 +34,16 @@
           {{ item.date }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ item.goal }}
+          {{ item.goal | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ item.lastMonth }}
+          {{ item.lastMonth | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ item.actualMonth }}
+          {{ item.actualMonth | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ item.percentage }}
+          {{ item.percentage | number: '2.2-2' }}
         </ion-col>
       </ion-item-divider>
     </ion-row>
@@ -53,16 +53,16 @@
           Total
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ summary && summary.goal }}
+          {{ summary && summary.goal | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ summary && summary.lastMonth }}
+          {{ summary && summary.lastMonth | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ summary && summary.actualMonth }}
+          {{ summary && summary.actualMonth | currency }}
         </ion-col>
         <ion-col class="ion-text-end">
-          {{ summary && summary.percentage }}
+          {{ summary && summary.percentage | number: '2.2-2' }}
         </ion-col>
       </ion-item-divider>
     </ion-row>

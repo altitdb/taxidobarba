@@ -17,9 +17,9 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item> Valor bruto: {{ report?.summary.grossValue }} </ion-item>
-      <ion-item> Valor líquido: {{ report?.summary.netValue }} </ion-item>
-      <ion-item> Valor esperado: {{ report?.summary.averageDayValue }} </ion-item>
+      <ion-item> Valor bruto: {{ report?.summary.grossValue | currency }} </ion-item>
+      <ion-item> Valor líquido: {{ report?.summary.netValue | currency }} </ion-item>
+      <ion-item> Valor esperado: {{ report?.summary.averageDayValue | currency }} </ion-item>
     </ion-card-content>
   </ion-card>
 
@@ -41,18 +41,20 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item> KM por Litro: {{ report?.consumption.litersPerKm }} </ion-item>
       <ion-item>
-        KM Médio por Dia: {{ report?.consumption.averageKmPerDay }}
+        KM por Litro: {{ report?.consumption.litersPerKm | number }}
       </ion-item>
       <ion-item>
-        Preço Médio por KM: {{ report?.consumption.averagePriceSpentPerKm }}
+        KM Médio por Dia: {{ report?.consumption.averageKmPerDay | number }}
       </ion-item>
       <ion-item>
-        Preço Médio por Litro: {{ report?.consumption.averagePriceFuel }}
+        Preço Médio por KM: {{ report?.consumption.averagePriceSpentPerKm | currency }}
       </ion-item>
       <ion-item>
-        Valor Médio por Dia: {{ report?.consumption.averagePricePerDay }}
+        Preço Médio por Litro: {{ report?.consumption.averagePriceFuel | currency }}
+      </ion-item>
+      <ion-item>
+        Valor Médio por Dia: {{ report?.consumption.averagePricePerDay | currency }}
       </ion-item>
     </ion-card-content>
   </ion-card>
@@ -83,7 +85,9 @@
           <ion-item>
             Valor Bruto: {{ report?.card.credit.grossValue }}
           </ion-item>
-          <ion-item> Valor Taxa: {{ report?.card.credit.taxValue }} </ion-item>
+          <ion-item> 
+            Valor Taxa: {{ report?.card.credit.taxValue }}
+          </ion-item>
           <ion-item>
             Valor Líquido: {{ report?.card.credit.netValue }}
           </ion-item>
@@ -98,7 +102,9 @@
           <ion-item>
             Valor Líquido: {{ report?.card.summary.netValue }}
           </ion-item>
-          <ion-item> Valor Taxa: {{ report?.card.summary.taxValue }} </ion-item>
+          <ion-item>
+            Valor Taxa: {{ report?.card.summary.taxValue }}
+          </ion-item>
           <ion-item>
             Percentual Recebimento: {{ report?.card.summary.percent }}
           </ion-item>
@@ -131,9 +137,9 @@
         </ion-card-header>
 
         <ion-card-content>
-          <ion-item> Média Diária: {{ item.average }} </ion-item>
-          <ion-item> Valor Total: {{ item.amount }} </ion-item>
-          <ion-item> Percentual: {{ item.percentage }} </ion-item>
+          <ion-item> Média Diária: {{ item.average | currency }} </ion-item>
+          <ion-item> Valor Total: {{ item.amount | currency }} </ion-item>
+          <ion-item> Percentual: {{ item.percentage | number: '2.2-2' }} </ion-item>
         </ion-card-content>
       </ion-card>
     </ion-card-content>
